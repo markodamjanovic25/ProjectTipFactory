@@ -1,0 +1,79 @@
+﻿@using ProjectXbet.ViewModels
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log In";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <title>Log in - Tip Factory</title>
+</head>
+<body style="background-color: #1E1D22; height: 100vh;">
+    <div class="login-form">
+
+        <div class="row align-content-center h-100">
+            <div class="col text-center">
+                <img src="~/img/logo-landing.svg" alt="logo" />
+            </div>
+        </div>
+        <div class="row mt-2 align-content-center">
+            <div class="col text-center">
+                <h5 class="text-white">Welcome to Tip Factory</h5>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col text-center">
+
+                <form id="login-form" asp-controller="Account" asp-action="Login">
+                    <div class="login-form-items">
+                        <div class="login-form-item">
+                            <input type="text" asp-for="UserName" placeholder="username" />
+                             <span class="fs-s text-ludicrous" asp-validation-for="UserName"></span>
+                        </div>
+                        
+                        <div class="login-form-item">
+                            <input type="password" asp-for="Password" placeholder="password" />
+                            <span class="fs-s text-ludicrous" asp-validation-for="Password"></span>
+                        </div>
+                        
+                        <div class="login-form-item flex-row">
+                            <small style="color: #535353;">remember me</small>
+                            <input asp-for="RememberMe" />
+                        </div>
+                        
+                        <div class="login-form-item">
+                            <input class="btn btn-login" style="font-size: 14px;" type="submit" value="log in" />
+                        </div>
+                        <br />
+                        <div class="login-form-item">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <a asp-controller="Account" asp-action="Login">
+                                        <small class="text-dark">password recovery</small>
+                                    </a>
+                                </div>
+                                <div class="col text-center">
+                                    <a asp-controller="Account" asp-action="Register">
+                                        <small class="text-yellow">register</small>
+                                    </a>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200819135250_UserExtension.cs" />
+    <Compile Remove="Migrations\20200819135250_UserExtension.Designer.cs" />
+    <Compile Remove="Migrations\20200820205649_UserPredictionTableAdd.cs" />
+    <Compile Remove="Migrations\20200820205649_UserPredictionTableAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200825174057_MatchModifying.cs" />
+    <Compile Remove="Migrations\20200825174057_MatchModifying.Designer.cs" />
+    <Compile Remove="Migrations\20200825193104_wtf.cs" />
+    <Compile Remove="Migrations\20200825193104_wtf.Designer.cs" />
+    <Compile Remove="Migrations\20200827114157_UserTypePredictionCreate.cs" />
+    <Compile Remove="Migrations\20200827114157_UserTypePredictionCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200827123009_UserTableAdd.cs" />
+    <Compile Remove="Migrations\20200827123009_UserTableAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200827165058_update-database.cs" />
+    <Compile Remove="Migrations\20200827165058_update-database.Designer.cs" />
+    <Compile Remove="Migrations\20200827180817_test.cs" />
+    <Compile Remove="Migrations\20200827180817_test.Designer.cs" />
+    <Compile Remove="Migrations\20200827181035_UserTypePredictionModification.cs" />
+    <Compile Remove="Migrations\20200827181035_UserTypePredictionModification.Designer.cs" />
+    <Compile Remove="Migrations\20200827184803_test.cs" />
+    <Compile Remove="Migrations\20200827184803_test.Designer.cs" />
+    <Compile Remove="Migrations\20200827185802_as.cs" />
+    <Compile Remove="Migrations\20200827185802_as.Designer.cs" />
+    <Compile Remove="Migrations\20200828002201_AddingRoles.cs" />
+    <Compile Remove="Migrations\20200828002201_AddingRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200828002628_as.cs" />
+    <Compile Remove="Migrations\20200828002628_as.Designer.cs" />
+    <Compile Remove="Migrations\20200828151011_UserRolePredictionsModification.cs" />
+    <Compile Remove="Migrations\20200828151011_UserRolePredictionsModification.Designer.cs" />
+    <Compile Remove="Migrations\20200907133933_BetslipAdd.cs" />
+    <Compile Remove="Migrations\20200907133933_BetslipAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200907134146_BetslipAdd.cs" />
+    <Compile Remove="Migrations\20200907134146_BetslipAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200907134951_BetslipAdd.cs" />
+    <Compile Remove="Migrations\20200907134951_BetslipAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200907135016_BetslipAdd.cs" />
+    <Compile Remove="Migrations\20200907135016_BetslipAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200918164941_PredictionMatchColumnAdd.cs" />
+    <Compile Remove="Migrations\20200918164941_PredictionMatchColumnAdd.Designer.cs" />
+    <Compile Remove="Migrations\20200923181436_SubscriptionDateModification.cs" />
+    <Compile Remove="Migrations\20200923181436_SubscriptionDateModification.Designer.cs" />
+    <Compile Remove="Migrations\20201028184021_MessageTableCreate.cs" />
+    <Compile Remove="Migrations\20201028184021_MessageTableCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201104135041_MessageModelModification.cs" />
+    <Compile Remove="Migrations\20201104135041_MessageModelModification.Designer.cs" />
+    <Compile Remove="Migrations\20201104135140_MessageModelModification.cs" />
+    <Compile Remove="Migrations\20201104135140_MessageModelModification.Designer.cs" />
+    <Compile Remove="Migrations\20201104144549_MessageModelExpansion.cs" />
+    <Compile Remove="Migrations\20201104144549_MessageModelExpansion.Designer.cs" />
+    <Compile Remove="Migrations\20201104144731_MessageModelExpansion.cs" />
+    <Compile Remove="Migrations\20201104144731_MessageModelExpansion.Designer.cs" />
+    <Compile Remove="Migrations\20201104144841_MessageModelExpansion.cs" />
+    <Compile Remove="Migrations\20201104144841_MessageModelExpansion.Designer.cs" />
+    <Compile Remove="Migrations\20201104145316_MessageModelExpansion.cs" />
+    <Compile Remove="Migrations\20201104145316_MessageModelExpansion.Designer.cs" />
+    <Compile Remove="Migrations\20201104150148_MessageExpansion.cs" />
+    <Compile Remove="Migrations\20201104150148_MessageExpansion.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

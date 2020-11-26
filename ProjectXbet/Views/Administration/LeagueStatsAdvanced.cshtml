@@ -1,0 +1,96 @@
+﻿@model ProjectXbet.ViewModels.AdminStatsViewModel
+@{
+    Layout = null;
+    int TipTypeId = (int)ViewData["TipTypeId"];
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/style.css" />
+<script src="~/js/jquery.js"></script>
+<div class="overflow-auto">
+    <table class="table table-bordered table-dark">
+        <tr>
+            <th scope="col">League</th>
+            @foreach (var OddsItem in Model.Odds)
+            {
+                <th>@OddsItem.ToString()</th>
+            }
+        </tr>
+        @foreach (var LeagueItem in Model.LeagueStatsByOdds)
+        {
+    <tr>
+        <td class="text-center">
+            <img src="@LeagueItem.Key.LeagueFlag" width="33" height="22" title="@LeagueItem.Key.LeagueName" />
+        </td>
+        @foreach (var item in LeagueItem.Value)
+        {
+            if (item[0] == 0 && item[1] == 0)
+            {
+                <td></td>
+            }
+            else
+            {
+                if (item[0] != 0 && item[1] != 0)
+                {
+                    if (TipTypeId == 1)
+                    {
+                        if ((item[0] / item[1]) <= 1.25)
+                        {
+                            <td class="bg-success text-white"><small>@item[1] / @item[0]</small></td>
+                        }
+                        else
+                        {
+                            <td class="bg-danger text-white"><small>@item[1] / @item[0]</small></td>
+                        }
+                    }
+                    else if (TipTypeId == 2)
+                    {
+                        if ((item[0] / item[1]) <= 2)
+                        {
+                            <td class="bg-success text-white"><small>@item[1] / @item[0]</small></td>
+                        }
+                        else
+                        {
+                            <td class="bg-danger text-white"><small>@item[1] / @item[0]</small></td>
+                        }
+                    }
+                    else
+                    {
+                        if ((item[0] / item[1]) <= 2)
+                        {
+                            <td class="bg-success text-white"><small>@item[1] / @item[0]</small></td>
+                        }
+                        else
+                        {
+                            <td class="bg-danger text-white"><small>@item[1] / @item[0]</small></td>
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    if (item[0] == 1 && item[1] == 0)
+                    {
+                        <td class="bg-danger text-white"><small>@item[1] / @item[0]</small></td>
+                    }
+                    else if (item[0] == 2 && item[1] == 0)
+                    {
+                        <td class="bg-danger text-white"><small>@item[1] / @item[0]</small></td>
+                    }
+                    else if (item[0] == 3 && item[1] == 0)
+                    {
+                        <td class="bg-danger text-white"><small>@item[1] / @item[0]</small></td>
+                    }
+                    else
+                    {
+                        <td><small>@item[1] / @item[0]</small></td>
+                    }
+                }
+            }
+        }
+    </tr>
+        }
+    </table>
+</div>

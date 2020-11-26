@@ -1,0 +1,151 @@
+﻿@model ProjectXbet.ViewModels.AdministrationViewModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+
+
+    
+    <hr />
+    <div class="row ml-5 p-5">
+        <div class="col-md-4" style=" border: 2px solid black;">
+            <h4>Add Prediction</h4>
+            <form asp-controller="Administration" asp-action="CreatePrediction" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Odds" class="control-label"></label>
+                    <input asp-for="Odds" class="form-control" />
+                    <span asp-validation-for="Odds" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Chance" class="control-label"></label>
+                    <input asp-for="Chance" class="form-control" />
+                    <span asp-validation-for="Chance" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MatchId" class="control-label"></label>
+                    <select asp-for="MatchId">
+                        @foreach (var item in Model.Matches)
+                        {
+                            <option value="@item.MatchId">@item.ClubHomeName - @item.ClubAwayName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TipId" class="control-label"></label>
+                    <select asp-for="TipId">
+                        @foreach (var item in Model.Tips)
+                        {
+                            <option value="@item.TipId">@item.TipName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RoleId" class="control-label"></label>
+                    <select asp-for="RoleId">
+                        @foreach (var item in Model.Roles)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 ml-5" style="border: 2px solid black;">
+            <h4>Add Match</h4>
+            <form asp-controller="Administration" asp-action="CreateMatch" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="MatchDateTime" class="control-label"></label>
+                    <input asp-for="MatchDateTime" class="form-control" />
+                    <span asp-validation-for="MatchDateTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClubHomeName" class="control-label"></label>
+                    <input asp-for="ClubHomeName" class="form-control" />
+                    <span asp-validation-for="ClubHomeName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClubAwayName" class="control-label"></label>
+                    <input asp-for="ClubAwayName" class="form-control" />
+                    <span asp-validation-for="ClubAwayName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LeagueId" class="control-label"></label>
+                    <select asp-for="LeagueId">
+                        @foreach (var item in Model.Leagues)
+                        {
+                            <option value=@item.LeagueId>@item.LeagueName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+            @if (ViewData["msg"] != null)
+            {
+                <p>@ViewData["msg"]</p>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="tips-holder text-center">
+                <div class="tips-holder-header">
+                    <h3><span class="table-heading">your tips</span></h3>
+                </div>
+                <div class="table-holder">
+                    <table class="table table-dark text-center">
+                        <tr>
+                            <th scope="col">datetime</th>
+                            <th scope="col" colspan="2">match</th>
+                            <th scope="col" colspan="2">tip</th>
+                            <th scope="col">odds</th>
+                            <th scope="col" colspan="2"><span class="text-primary">set outcome</span></th>
+                        </tr>
+                        @foreach (var item in Model.Predictions)
+                        {
+                    <tr>
+                        <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
+                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                        <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
+                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" /> </td>
+                        <td align="center"><small>@item.Tip.TipName</small></td>
+                        <td align="center"><small>@item.Odds</small></td>
+                        <td align="center">
+                            <form asp-controller="Administration" asp-action="SetPredictionOutcome" asp-route-PredictionId=@item.PredictionId asp-route-IsCorrect="false" method="post">
+                                <input style="width: 20%;" asp-for="ClubHomeGoalsHalf" placeholder="home half"/>
+                                <input style="width: 20%;" asp-for="ClubAwayGoalsHalf" placeholder="away half" />
+                                <input style="width: 20%;" asp-for="ClubHomeGoals" placeholder="home" />
+                                <input style="width: 20%;" asp-for="ClubAwayGoals" placeholder="away" />
+                                <input class="btn text-danger w-auto" type="submit" value="lose" />
+                            </form>
+                        </td>
+                        <td align="center">
+                            <form asp-controller="Administration" asp-action="SetPredictionOutcome" asp-route-PredictionId=@item.PredictionId asp-route-IsCorrect="true" method="post">
+                                <input style="width: 20%;" asp-for="ClubHomeGoalsHalf" placeholder="home half" />
+                                <input style="width: 20%;" asp-for="ClubAwayGoalsHalf" placeholder="away half" />
+                                <input style="width: 20%;" asp-for="ClubHomeGoals" placeholder="home" />
+                                <input style="width: 20%;" asp-for="ClubAwayGoals" placeholder="away" />
+                                <input class="btn text-success w-auto" type="submit" value="win" />
+                            </form>
+                        </td>
+                    </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,276 @@
+﻿@model ProjectXbet.ViewModels.AccountViewModel
+@{
+    string unlimited = "Unlimited";
+}
+<script>
+    let activeItemLG = document.getElementById("lg-item-account");
+    activeItemLG.classList.add("nav-item-active");
+    let activeItemSM = document.getElementById("sm-item-account");
+    activeItemSM.classList.add("nav-item-active");
+</script>
+
+
+<div class="row" style="margin-top: 10vh">
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 p-2">
+        <div class="account-bets-holder account-holder bg-white" id="account-bets-holder">
+            <span class="table-heading p-2">
+                <img src="~/img/Bets.svg"/> Bets
+            </span>
+            @foreach (var item in Model.Tickets)
+            {
+                <div class="account-bet-holder">
+                    <small class="text-white">Time created: @item.TimeCreated.Day/@item.TimeCreated.Month @item.TimeCreated.Hour:@item.TimeCreated.Minute</small>
+                    <small class="text-white">Odds: @item.TotalOdds</small>
+                    @if (item.Status == "Win")
+                    {
+                        <small class="text-success">WIN</small>
+                    }
+                    else if (item.Status == "Lose")
+                    {
+                        <small class="text-danger">LOSE</small>
+                    }
+                    else
+                    {
+                        <small class="text-warning">active</small>
+                    }
+                    <a asp-controller="Prediction" asp-action="GetTicketInfo" asp-route-TicketId="@item.TicketId"><h5 class="text-yellow font-weight-bold">view</h5></a>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 p-2">
+        <div class="account-holder" id="account-user-holder">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="@Model.Role.RoleFlag" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-4 text-right">
+                    Username
+                </div>
+                <div class="col-4 text-left">
+                    @Model.User.UserName
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-4 text-right">
+                    Email
+                </div>
+                <div class="col-4 text-left">
+                    @Model.User.Email
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-4 text-right">
+                    Account type
+                </div>
+                <div class="col-4 text-left">
+                    @Model.Role.Name
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-4 text-right">
+                    Expires on
+                </div>
+                <div class="col-4 text-left">
+                    @if (Model.ExpDate.Year > 2019)
+                    {
+                        @Model.ExpDate
+                    }
+                    else
+                    {
+                        @unlimited
+                    }
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-12 text-right">
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <input type="submit" class="btn btn-logout float-right" value="log out" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="row">
+    <div class="col-xl-5 col-sm-12">
+        <div class="account-bets-holder account-holder bg-white" id="account-messages-holder">
+            <div class="row">
+                <div class="col">
+                    <span class="table-heading p-2">
+                        <img src="~/img/Messages.svg" /> Messages
+                    </span>
+                </div>
+                <div class="col text-center" id="ShowReceivedMessages">
+                    <img src="~/img/ReceivedMessages.svg" alt="received" />
+                    <br />
+                    <span class="text-dark">Received</span>
+                </div>
+                <div class="col text-center" id="ShowSentMessages">
+                    <img src="~/img/SentMessages.svg" alt="sent" />
+                    <br />
+                    <span class="text-dark">Sent</span>
+                </div>
+            </div>
+            <div id="ReceivedMessages">
+                @{int ReceivedMessageNumber = 0; }
+                @foreach (var item in Model.ReceivedMessages)
+                {
+                    <div class="message-collapsed" id="received-message-collapsed-@ReceivedMessageNumber" onclick="ExpandReceivedMessage(@ReceivedMessageNumber)">
+                        <div class="row">
+                            <div class="col-2">
+                                <span class="fs-s" style="opacity: 0.7;">@item.TimeSent.Day . @item.TimeSent.Month  </span>
+                            </div>
+                            <div class="col">
+                                <span class="fs-s font-weight-bold text-yellow">@item.Subject</span>
+                            </div>
+                            <div class="col" id="received-message-short-@ReceivedMessageNumber">
+                                <span class="fs-s">@item.Text.Substring(0, 27) ...</span>
+                            </div>
+                        </div>
+
+                        <div class="message-expanded" id="received-message-expanded-@ReceivedMessageNumber">
+                            <hr />
+                            <div class="row">
+                                <div class="col text-left">
+                                    <span class="text-dark">Sender ID: </span><span class="text-yellow font-weight-bold">@item.SenderId</span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div>
+                                <p>@item.Text</p>
+                            </div>
+                        </div>
+                    </div>
+                    ReceivedMessageNumber++;
+                }
+            </div>
+            <div style="display: none;" id="SentMessages">
+                @{ int SentMessageNumber = 0;}
+                @foreach (var item in Model.SentMessages)
+                {
+                    <div class="message-collapsed" id="sent-message-collapsed-@SentMessageNumber" onclick="ExpandSentMessage(@SentMessageNumber)">
+                        <div class="row">
+                            <div class="col-2">
+                                <span class="fs-s" style="opacity: 0.7;">@item.TimeSent.Day . @item.TimeSent.Month  </span>
+                            </div>
+                            <div class="col">
+                                <span class="fs-s font-weight-bold text-yellow">@item.Subject  </span>
+                            </div>
+                            <div class="col" id="sent-message-short-@SentMessageNumber">
+                                <span class="fs-s">@item.Text.Substring(0, 27) ...</span>
+                            </div>
+                        </div>
+                        <div class="message-expanded" id="sent-message-expanded-@SentMessageNumber">
+                            <hr />
+                            <div class="row">
+                                <div class="col text-left">
+                                    <span class="text-dark">Sent to: </span><span class="text-yellow font-weight-bold">Administrator</span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div>
+                                <p>@item.Text</p>
+                            </div>
+                        </div>
+                    </div>
+                    SentMessageNumber++;
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2"></div>
+    <div class="col-xl-5 col-sm-12">
+        <div class="account-bets-holder account-holder bg-white" id="account-invoices-holder">
+            <div class="row">
+                <div class="col">
+                    <span class="table-heading p-2">
+                        <img src="~/img/Invoices.svg" /> Invoices
+                    </span>
+                </div>
+            </div>
+            <div id="Invoices">
+                @{int InvoiceNumber = 0; }
+                @foreach (var item in Model.Invoices)
+                {
+                    <div class="invoice-collapsed" id="invoice-collapsed-@InvoiceNumber" onclick="ExpandInvoice(@InvoiceNumber)">
+                        <div class="row">
+                            <div class="col-2">
+                                <span class="fs-s" style="opacity: 0.7;">@item.CreatedTimeStamp.Day . @item.CreatedTimeStamp.Month  </span>
+                            </div>
+                            <div class="col">
+                                <span class="fs-s font-weight-bold text-yellow">@item.Amount€</span>
+                            </div>
+                            <div class="col" id="invoice-short-@InvoiceNumber">
+                                <span class="fs-s">@item.Description.Substring(0, 27) ...</span>
+                            </div>
+                        </div>
+
+                        <div class="invoice-expanded" id="invoice-expanded-@InvoiceNumber">
+                            <hr />
+                            <div class="row">
+                                <div class="col text-left">
+                                    <span class="text-dark">User ID: </span><span class="text-yellow font-weight-bold">@item.Subscription.UserId</span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div>
+                                <p>@item.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                    InvoiceNumber++;
+                }
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+<nav class="nav-bottom" id="bottom-nav-account-view">
+    <ul class="nav-bottom-items-holder">
+        <li class="nav-bottom-item">
+            <a class="nav-link" id="bottom-nav-bets-account">
+                <img src="~/img/Bets.svg" alt="bets"/>
+            </a>
+            <br />
+            <span class="text-grey">bets</span>
+        </li>
+
+        <li class="nav-bottom-item">
+            <a class="nav-link nav-item-active" id="bottom-nav-messages-account">
+                <img src="~/img/Messages.svg" alt="messages" />
+            </a>
+            <br />
+            <span class="text-grey">messages</span>
+        </li>
+        <li class="nav-bottom-item">
+            <a class="nav-link" id="bottom-nav-user-account">
+                <img src="@Model.Role.RoleFlag" alt="user" />
+            </a>
+            <br />
+            <span class="text-grey">profile</span>
+        </li>
+        <li class="nav-bottom-item">
+            <a class="nav-link" id="bottom-nav-invoices-account">
+                <img src="~/img/Invoices.svg" alt="invoices" />
+            </a>
+            <br />
+            <span class="text-grey">invoices</span>
+        </li>
+    </ul>
+        </nav>

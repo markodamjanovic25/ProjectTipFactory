@@ -1,0 +1,337 @@
+﻿@model ProjectXbet.ViewModels.StatisticsViewModel
+@{
+    int TipTypeId = (int)ViewData["TipType"];
+}
+<script>
+    let activeItemLG = document.getElementById("lg-item-stats");
+    activeItemLG.classList.add("nav-item-active");
+    let activeItemSM = document.getElementById("sm-item-stats");
+    activeItemSM.classList.add("nav-item-active");
+</script>
+        <div class="row">
+            <div class="col-4"></div>
+            @if (TipTypeId == 1)
+            {
+                <div class="col-4 tiptype-holder">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                                <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.5 0C3.71688 8.09663 0 13.1614 0 18.0844C0 23.0096 4.25006 27 9.5 27C14.7499 27 19 23.0096 19 18.0844C19 13.1614 15.2831 8.09663 9.5 0ZM9.46794 5.76C10.0225 6.57562 10.6875 7.99537 10.6875 9.495C10.6875 13.8915 5.9375 14.6115 5.9375 11.9362C5.9375 10.0991 8.29825 7.38675 9.46794 5.76V5.76Z" fill="#00A3FF" />
+                                </svg>
+
+
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
+                                <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.75 10.125H7.5V6.75H13.75C14.44 6.75 15 5.994 15 5.0625C15 4.131 14.44 3.375 13.75 3.375C13.2463 3.375 12.8163 3.78337 12.6188 4.36556L10.4325 2.75231C11.0562 1.12388 12.3 0 13.75 0C18.7137 0 18.7113 10.125 13.75 10.125ZM22.5 21.9375C22.5 19.143 20.82 16.875 18.75 16.875H10V20.25H18.75C19.44 20.25 20 21.006 20 21.9375C20 22.869 19.44 23.625 18.75 23.625C18.2463 23.625 17.8163 23.2166 17.6188 22.6344L15.4325 24.2477C16.0562 25.8761 17.3 27 18.75 27C20.82 27 22.5 24.732 22.5 21.9375ZM23.7675 9.01969C23.87 7.749 24.6575 6.75 25.625 6.75C26.6588 6.75 27.5 7.88569 27.5 9.28125C27.5 10.6768 26.6588 11.8125 25.625 11.8125H15V15.1875H25.625C28.04 15.1875 30 12.5415 30 9.28125C30 6.021 28.04 3.375 25.625 3.375C23.595 3.375 21.9038 5.25825 21.41 7.79119L23.7675 9.01969V9.01969ZM12.5 11.8125H2.5V15.1875H12.5V11.8125ZM7.5 16.875H0V20.25H7.5V16.875ZM5 6.75H0V10.125H5V6.75Z" fill="black" />
+                                </svg>
+
+
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
+                                <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9375 0C6.58139 8.08757 0 10.8719 0 17.9954C0 22.834 3.2395 26.9638 9.5 26.9998C15.7605 27.0358 19 22.0341 19 16.9244C19 12.2658 16.8234 7.87269 12.7173 5.14121C13.6927 8.07407 12.3943 10.7527 11.1329 11.6752C11.2068 7.92107 9.94544 2.35011 5.9375 0ZM10.9102 14.6249C14.8738 19.1125 12.4397 24.7498 9.25617 24.7498C7.31922 24.7498 6.32278 23.3267 6.33333 21.8507C6.35339 19.1136 9.22239 19.1114 10.9102 14.6249V14.6249Z" fill="black" />
+                                </svg>
+
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (TipTypeId == 2)
+            {
+                <div class="col-4 tiptype-holder">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                                <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.5 0C3.71688 8.09663 0 13.1614 0 18.0844C0 23.0096 4.25006 27 9.5 27C14.7499 27 19 23.0096 19 18.0844C19 13.1614 15.2831 8.09663 9.5 0ZM9.46794 5.76C10.0225 6.57562 10.6875 7.99537 10.6875 9.495C10.6875 13.8915 5.9375 14.6115 5.9375 11.9362C5.9375 10.0991 8.29825 7.38675 9.46794 5.76V5.76Z" fill="black" />
+                                </svg>
+
+
+
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
+                                <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.75 10.125H7.5V6.75H13.75C14.44 6.75 15 5.994 15 5.0625C15 4.131 14.44 3.375 13.75 3.375C13.2463 3.375 12.8163 3.78337 12.6188 4.36556L10.4325 2.75231C11.0562 1.12388 12.3 0 13.75 0C18.7137 0 18.7113 10.125 13.75 10.125ZM22.5 21.9375C22.5 19.143 20.82 16.875 18.75 16.875H10V20.25H18.75C19.44 20.25 20 21.006 20 21.9375C20 22.869 19.44 23.625 18.75 23.625C18.2463 23.625 17.8163 23.2166 17.6188 22.6344L15.4325 24.2477C16.0562 25.8761 17.3 27 18.75 27C20.82 27 22.5 24.732 22.5 21.9375ZM23.7675 9.01969C23.87 7.749 24.6575 6.75 25.625 6.75C26.6588 6.75 27.5 7.88569 27.5 9.28125C27.5 10.6768 26.6588 11.8125 25.625 11.8125H15V15.1875H25.625C28.04 15.1875 30 12.5415 30 9.28125C30 6.021 28.04 3.375 25.625 3.375C23.595 3.375 21.9038 5.25825 21.41 7.79119L23.7675 9.01969V9.01969ZM12.5 11.8125H2.5V15.1875H12.5V11.8125ZM7.5 16.875H0V20.25H7.5V16.875ZM5 6.75H0V10.125H5V6.75Z" fill="#00C944" />
+                                </svg>
+
+
+
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
+                                <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9375 0C6.58139 8.08757 0 10.8719 0 17.9954C0 22.834 3.2395 26.9638 9.5 26.9998C15.7605 27.0358 19 22.0341 19 16.9244C19 12.2658 16.8234 7.87269 12.7173 5.14121C13.6927 8.07407 12.3943 10.7527 11.1329 11.6752C11.2068 7.92107 9.94544 2.35011 5.9375 0ZM10.9102 14.6249C14.8738 19.1125 12.4397 24.7498 9.25617 24.7498C7.31922 24.7498 6.32278 23.3267 6.33333 21.8507C6.35339 19.1136 9.22239 19.1114 10.9102 14.6249V14.6249Z" fill="black" />
+                                </svg>
+
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-4 tiptype-holder">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                                <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.5 0C3.71688 8.09663 0 13.1614 0 18.0844C0 23.0096 4.25006 27 9.5 27C14.7499 27 19 23.0096 19 18.0844C19 13.1614 15.2831 8.09663 9.5 0ZM9.46794 5.76C10.0225 6.57562 10.6875 7.99537 10.6875 9.495C10.6875 13.8915 5.9375 14.6115 5.9375 11.9362C5.9375 10.0991 8.29825 7.38675 9.46794 5.76V5.76Z" fill="black" />
+                                </svg>
+
+
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
+                                <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.75 10.125H7.5V6.75H13.75C14.44 6.75 15 5.994 15 5.0625C15 4.131 14.44 3.375 13.75 3.375C13.2463 3.375 12.8163 3.78337 12.6188 4.36556L10.4325 2.75231C11.0562 1.12388 12.3 0 13.75 0C18.7137 0 18.7113 10.125 13.75 10.125ZM22.5 21.9375C22.5 19.143 20.82 16.875 18.75 16.875H10V20.25H18.75C19.44 20.25 20 21.006 20 21.9375C20 22.869 19.44 23.625 18.75 23.625C18.2463 23.625 17.8163 23.2166 17.6188 22.6344L15.4325 24.2477C16.0562 25.8761 17.3 27 18.75 27C20.82 27 22.5 24.732 22.5 21.9375ZM23.7675 9.01969C23.87 7.749 24.6575 6.75 25.625 6.75C26.6588 6.75 27.5 7.88569 27.5 9.28125C27.5 10.6768 26.6588 11.8125 25.625 11.8125H15V15.1875H25.625C28.04 15.1875 30 12.5415 30 9.28125C30 6.021 28.04 3.375 25.625 3.375C23.595 3.375 21.9038 5.25825 21.41 7.79119L23.7675 9.01969V9.01969ZM12.5 11.8125H2.5V15.1875H12.5V11.8125ZM7.5 16.875H0V20.25H7.5V16.875ZM5 6.75H0V10.125H5V6.75Z" fill="black" />
+                                </svg>
+
+
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
+                                <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9375 0C6.58139 8.08757 0 10.8719 0 17.9954C0 22.834 3.2395 26.9638 9.5 26.9998C15.7605 27.0358 19 22.0341 19 16.9244C19 12.2658 16.8234 7.87269 12.7173 5.14121C13.6927 8.07407 12.3943 10.7527 11.1329 11.6752C11.2068 7.92107 9.94544 2.35011 5.9375 0ZM10.9102 14.6249C14.8738 19.1125 12.4397 24.7498 9.25617 24.7498C7.31922 24.7498 6.32278 23.3267 6.33333 21.8507C6.35339 19.1136 9.22239 19.1114 10.9102 14.6249V14.6249Z" fill="#FF0000" />
+                                </svg>
+
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="col-4"></div>
+        </div>
+        <div class="row justify-content-center">
+            @*<div class="col-lg-2"></div>*@
+            <div class="col-xl-10 col-lg-12 col-sm-12">
+                <div class="stats-tips-holder text-center mt-3 p-1" id="stats-tips-holder">
+                        <div class="mt-3 tips-holder-header">
+                            <h3><span class="table-heading">tips</span></h3>
+                        </div>
+                        <div class="table-holder">
+                            <table class="table table-dark text-center">
+                                <tr>
+                                    <th scope="col">datetime</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">match</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">tip</th>
+                                    <th class="tip-name-cell" scope="col"></th>
+                                    <th scope="col">odds</th>
+                                    <th scope="col">
+                                        @*<select>
+                                @foreach(var item in Model.Leagues)
+                                {
+                                    <option value="@item.LeagueId">@item.LeagueName</option>
+                                }
+                            </select>*@
+                                    </th>
+                                </tr>
+                                @foreach (var item in Model.Predictions)
+                                {
+                                    <tr>
+                                        <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
+                                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                        <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
+                                        <td align="center">@item.Match.ClubHomeGoals:@item.Match.ClubAwayGoals (@item.Match.ClubHomeGoalsHalf:@item.Match.ClubAwayGoalsHalf)</td>
+                                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" /> </td>
+                                        <td class="tip-name-cell" align="center"><small>@item.Tip.TipName</small></td>
+                                        @if (item.IsCorrect.Value == true)
+                                        {
+                                            <td class="text-adventurous" align="center"><small>@item.Odds</small></td>
+                                            <td align="center"><img src="~/img/IsCorrectTrue.svg" /></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-ludicrous" align="center"><small>@item.Odds</small></td>
+                                            <td align="center"><img src="~/img/IsCorrectFalse.svg" /></td>
+                                        }
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                
+            </div>
+            @*<div class="col-lg-2"></div>*@
+        </div>
+        <div class="row justify-content-center">
+            @*<div class="col-lg-1"></div>*@
+            <div class="col-xl-4 col-lg-12 col-sm-12">
+                <div class="stats-leaguetip-holder text-center mt-3" id="stats-leaguestats-holder">
+                    <div class="tips-holder-header">
+                        <h3><span class="table-heading">league stats</span></h3>
+                    </div>
+                    <div class="table-holder">
+                        <table class="table table-dark text-center">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">league</th>
+                                <th scope="col">total</th>
+                                <th scope="col">wins</th>
+                                <th scope="col">%</th>
+                            </tr>
+                            @foreach (var item in Model.LeagueStats.OrderByDescending(k => k.Value[0]).ThenByDescending(k => k.Value[1]))
+                            {
+                                    decimal LeagueTotal = item.Value[0];
+                                    decimal LeagueWins = item.Value[1];
+                                    decimal LeaguePercentage = (LeagueWins / LeagueTotal) * 100;
+                                <tr>
+                                    <td>
+                                        <img src=@item.Key.LeagueFlag width="33" height="22" />
+                                    </td>
+                                    <td>
+                                        <small>@item.Key.LeagueName</small>
+                                    </td>
+
+                                    <td>
+                                        <small>
+                                            @LeagueTotal
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <small>
+                                            @LeagueWins
+                                        </small>
+                                    </td>
+                                    <td>
+                                        @if (LeaguePercentage == 0)
+                                        {
+                                            <small>0%</small>
+                                        }
+                                        else
+                                        {
+                                            <small>
+                                                @LeaguePercentage.ToString("#.00")%
+                                            </small>
+                                        }
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    @*<div class="d-inline float-right mt-1 mr-3">
+                        <select>
+                            <option>by total</option>
+                            <option>by wins</option>
+                            <option>by percentage</option>
+                        </select>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-12 col-sm-12">
+                <div class="stats-leaguetip-holder text-center mt-3" id="stats-tipstats-holder">
+                    <div class="tips-holder-header">
+                        <h3><span class="table-heading">tip stats</span></h3>
+                    </div>
+                    <div class="table-holder">
+                        <table class="table table-dark text-center">
+                            <tr>
+                                <th scope="col">tip</th>
+                                <th scope="col"></th>
+                                <th scope="col">odds</th>
+                                <th scope="col">total</th>
+                                <th scope="col">wins</th>
+                                <th scope="col">%</th>
+                            </tr>
+                            @{
+                                decimal TipTypeAverageOdds = (decimal)Model.TipTypeStats.GetValue(0);
+                                decimal TipTypeTotal = (decimal)Model.TipTypeStats.GetValue(1);
+                                decimal TipTypeWins = (decimal)Model.TipTypeStats.GetValue(2);
+                                decimal TipTypePercentage = (TipTypeWins / TipTypeTotal) * 100;
+                            }
+                            <tr>
+                                <td><img src="~/img/Overall.svg" /></td>
+                                <td><small class="text-yellow">overall</small></td>
+                                <td><small class="text-yellow">@TipTypeAverageOdds.ToString("#.00")</small></td>
+                                <td><small class="text-yellow">@TipTypeTotal</small></td>
+                                <td><small class="text-yellow">@TipTypeWins</small></td>
+                                <td>
+                                    <small class="text-yellow">
+                                        @TipTypePercentage.ToString("#.00")
+                                    </small>
+                                </td>
+                            </tr>
+                            @foreach (var item in Model.TipStats.OrderByDescending(k => k.Value[1]).ThenByDescending(k => k.Value[2]))
+                            {
+                                    decimal TipTotal = item.Value[1];
+                                    decimal TipWins = item.Value[2];
+                                    decimal TipPercentage = (TipWins / TipTotal) * 100;
+                                <tr>
+                                    <td>
+                                        <img src=@item.Key.TipFlag />
+                                    </td>
+                                    <td><small>@item.Key.TipName</small></td>
+                                    <td><small>@item.Value[0].ToString("#.00")</small></td>
+                                    <td><small>@TipTotal</small></td>
+                                    <td><small>@TipWins</small></td>
+                                    <td>
+                                        @if (TipPercentage == 0)
+                                        {
+                                            <small>0%</small>
+                                        }
+                                        else
+                                        {
+                                            <small>@TipPercentage.ToString("#.00")%</small>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="height: 9vh;"></div>
+        </div>
+        <nav class="nav-bottom" id="bottom-nav-stats-view">
+            <ul class="nav-bottom-items-holder">
+                <li class="nav-bottom-item">
+                    <a class="nav-link" id="bottom-nav-leagues-stats">
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.2338 24.7917C20.8819 30.189 18.5194 33.5417 17.5 35C16.4806 33.5417 14.1167 30.1904 12.7662 24.7917H22.2338V24.7917ZM33.4104 24.7917C31.1383 29.7369 26.6292 33.444 21.1808 34.6106C23.0985 31.5948 24.4504 28.2494 25.2306 24.7917H33.4104V24.7917ZM1.58958 24.7917H9.76938C10.5554 28.2713 11.9131 31.6138 13.8192 34.6106C8.37083 33.444 3.86167 29.7369 1.58958 24.7917ZM22.8083 21.875H12.1917C11.7687 18.9802 11.7687 16.0213 12.1917 13.125H22.8098C23.2298 16.0213 23.2298 18.9802 22.8083 21.875V21.875ZM9.24729 21.875H0.552708C0.191042 20.4779 0 19.0108 0 17.5C0 15.9892 0.191042 14.5235 0.552708 13.125H9.24729C8.86375 16.0242 8.86375 18.9758 9.24729 21.875ZM34.4473 21.875H25.7513C26.1377 18.9758 26.1377 16.0242 25.7527 13.125H34.4473C34.8075 14.5235 35 15.9892 35 17.5C35 19.0108 34.8075 20.4779 34.4473 21.875ZM22.2338 10.2083H12.7662C14.1152 4.80958 16.4792 1.45833 17.5 0C19.2413 2.49083 21.0642 5.54021 22.2338 10.2083ZM9.76792 10.2069H1.58813C3.86167 5.26313 8.37083 1.55604 13.8192 0.387917C12.0152 3.21708 10.5904 6.56688 9.76792 10.2069ZM33.4104 10.2069H25.2306C24.4183 6.61646 23.0242 3.27979 21.1794 0.387917C26.6277 1.55604 31.1383 5.26313 33.4104 10.2069Z" fill="white" />
+                        </svg>
+
+                    </a>
+                    <br />
+                    <span class="text-grey">league stats</span>
+                </li>
+
+                <li class="nav-bottom-item">
+                    <a class="nav-link nav-item-active" id="bottom-nav-tips-previous-stats">
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32.0833 2.91667V32.0833H2.91667V2.91667H32.0833ZM35 0H0V35H35V0ZM29.1667 10.2083H17.5V11.6667H29.1667V10.2083ZM29.1667 17.5H17.5V18.9583H29.1667V17.5ZM29.1667 24.7917H17.5V26.25H29.1667V24.7917ZM13.8308 8.30667L12.7954 7.29167L9.07229 11.0935L6.82792 8.97604L5.81 10.0115L9.09125 13.125L13.8308 8.30667ZM13.8308 15.5983L12.7954 14.5833L9.07375 18.3852L6.82938 16.2677L5.81146 17.3017L9.09125 20.4167L13.8308 15.5983ZM13.8308 22.89L12.7954 21.875L9.07375 25.6769L6.82938 23.5594L5.81146 24.5933L9.09125 27.7083L13.8308 22.89Z" fill="white" />
+                        </svg>
+                    </a>
+                    <br />
+                    <span class="text-grey">tips</span>
+                </li>
+                <li class="nav-bottom-item">
+                    <a class="nav-link" id="bottom-nav-tips-stats">
+                        <svg width="30" height="35" viewBox="0 0 30 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.49326 35H0V21.875H7.49326V24.4052C8.4494 24.1165 9.47447 23.6833 10.1384 23.4004C11.1005 22.9921 12.0252 22.7923 12.9663 22.7923C14.7857 22.7923 16.2709 23.52 19.415 24.5496C20.3742 24.8617 21.0276 25.5937 21.1759 26.4542C22.8604 25.1956 25.552 23.1627 25.5775 23.1438C26.1125 22.7296 26.7359 22.5108 27.3759 22.5108C28.8026 22.5108 30 23.6235 30 25.0017C30 25.7162 29.6718 26.4265 29.0603 26.9792C26.9952 28.8458 25.3961 30.2356 23.9844 31.4621C23.1452 32.1927 22.3869 32.8504 21.6645 33.4935C20.542 34.4954 19.3895 34.9606 18.0363 34.9606C17.4293 34.9606 16.7894 34.8658 16.076 34.669C11.9203 33.5271 9.35608 33.1581 7.49326 33.0575V35V35ZM5.99461 23.3333H1.49865V33.5417H5.99461V23.3333ZM7.49326 31.5933C10.6284 31.7654 14.0948 32.6083 16.4837 33.266C17.7081 33.6029 19.1228 33.7823 20.6529 32.4188C22.5697 30.7096 24.7322 28.8998 28.0398 25.9102C29.2747 24.7946 27.773 23.31 26.5081 24.2871C26.5081 24.2871 22.0706 27.6398 20.9796 28.4331C20.4116 28.8488 19.9381 29.19 19.2592 29.19C19.0988 29.19 18.925 29.171 18.7361 29.1288C17.7545 28.9085 15.9142 28.509 14.6074 28.1065C13.7456 27.8396 14.0514 26.6583 15.009 26.8552C15.6789 26.9908 17.3978 27.3656 18.3075 27.6135C19.8317 28.0233 20.2198 26.3492 18.94 25.9335C18.0977 25.6565 18.1352 25.6448 16.109 24.9638C14.1593 24.306 12.791 23.8656 10.7363 24.7363C9.7787 25.1417 8.59027 25.6346 7.49326 25.9233V31.5933V31.5933ZM13.1731 2.55354L17.9838 0L28.4744 5.62917V16.8248L17.9838 22.2717L7.49326 16.8248V5.56792L13.1642 2.55792L13.1672 2.55063L13.1731 2.55354V2.55354ZM17.2345 11.3254L8.99191 7.14875V15.9498L17.2345 20.23V11.3254V11.3254ZM18.7331 11.3269V20.23L26.9757 15.9498V7.19979L18.7331 11.3269ZM21.3858 8.35917L13.1881 4.20583L9.8881 5.95875L17.9868 10.061L21.3858 8.35917ZM14.7737 3.36437L23.0178 7.54104L26.078 6.00833L17.9793 1.66396L14.7737 3.36437V3.36437Z" fill="white" />
+                        </svg>
+                    </a>
+                    <br />
+                    <span class="text-grey">tip stats</span>
+                </li>
+            </ul>
+        </nav>

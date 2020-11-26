@@ -1,0 +1,321 @@
+﻿@model ProjectXbet.ViewModels.PredictionsViewModel
+@{ 
+    Layout = "_Layout";
+    int TipTypeId = (int)ViewData["TipType"];
+}
+<script>
+    let activeItemLG = document.getElementById("lg-item-tips");
+    activeItemLG.classList.add("nav-item-active");
+    let activeItemSM = document.getElementById("sm-item-tips");
+    activeItemSM.classList.add("nav-item-active");
+</script>
+    <div class="row mb-3">
+        <div class="col-4"></div>
+        @if (TipTypeId == 1)
+        {
+            <div class="col-4 tiptype-holder">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                            <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.5 0C3.71688 8.09663 0 13.1614 0 18.0844C0 23.0096 4.25006 27 9.5 27C14.7499 27 19 23.0096 19 18.0844C19 13.1614 15.2831 8.09663 9.5 0ZM9.46794 5.76C10.0225 6.57562 10.6875 7.99537 10.6875 9.495C10.6875 13.8915 5.9375 14.6115 5.9375 11.9362C5.9375 10.0991 8.29825 7.38675 9.46794 5.76V5.76Z" fill="#00A3FF" />
+                            </svg>
+
+
+                        </a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="2">
+                            <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.75 10.125H7.5V6.75H13.75C14.44 6.75 15 5.994 15 5.0625C15 4.131 14.44 3.375 13.75 3.375C13.2463 3.375 12.8163 3.78337 12.6188 4.36556L10.4325 2.75231C11.0562 1.12388 12.3 0 13.75 0C18.7137 0 18.7113 10.125 13.75 10.125ZM22.5 21.9375C22.5 19.143 20.82 16.875 18.75 16.875H10V20.25H18.75C19.44 20.25 20 21.006 20 21.9375C20 22.869 19.44 23.625 18.75 23.625C18.2463 23.625 17.8163 23.2166 17.6188 22.6344L15.4325 24.2477C16.0562 25.8761 17.3 27 18.75 27C20.82 27 22.5 24.732 22.5 21.9375ZM23.7675 9.01969C23.87 7.749 24.6575 6.75 25.625 6.75C26.6588 6.75 27.5 7.88569 27.5 9.28125C27.5 10.6768 26.6588 11.8125 25.625 11.8125H15V15.1875H25.625C28.04 15.1875 30 12.5415 30 9.28125C30 6.021 28.04 3.375 25.625 3.375C23.595 3.375 21.9038 5.25825 21.41 7.79119L23.7675 9.01969V9.01969ZM12.5 11.8125H2.5V15.1875H12.5V11.8125ZM7.5 16.875H0V20.25H7.5V16.875ZM5 6.75H0V10.125H5V6.75Z" fill="black" />
+                            </svg>
+
+
+                        </a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="3">
+                            <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9375 0C6.58139 8.08757 0 10.8719 0 17.9954C0 22.834 3.2395 26.9638 9.5 26.9998C15.7605 27.0358 19 22.0341 19 16.9244C19 12.2658 16.8234 7.87269 12.7173 5.14121C13.6927 8.07407 12.3943 10.7527 11.1329 11.6752C11.2068 7.92107 9.94544 2.35011 5.9375 0ZM10.9102 14.6249C14.8738 19.1125 12.4397 24.7498 9.25617 24.7498C7.31922 24.7498 6.32278 23.3267 6.33333 21.8507C6.35339 19.1136 9.22239 19.1114 10.9102 14.6249V14.6249Z" fill="black" />
+                            </svg>
+
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (TipTypeId == 2)
+        {
+            <div class="col-4 tiptype-holder">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                            <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.5 0C3.71688 8.09663 0 13.1614 0 18.0844C0 23.0096 4.25006 27 9.5 27C14.7499 27 19 23.0096 19 18.0844C19 13.1614 15.2831 8.09663 9.5 0ZM9.46794 5.76C10.0225 6.57562 10.6875 7.99537 10.6875 9.495C10.6875 13.8915 5.9375 14.6115 5.9375 11.9362C5.9375 10.0991 8.29825 7.38675 9.46794 5.76V5.76Z" fill="black" />
+                            </svg>
+
+
+
+                        </a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="2">
+                            <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.75 10.125H7.5V6.75H13.75C14.44 6.75 15 5.994 15 5.0625C15 4.131 14.44 3.375 13.75 3.375C13.2463 3.375 12.8163 3.78337 12.6188 4.36556L10.4325 2.75231C11.0562 1.12388 12.3 0 13.75 0C18.7137 0 18.7113 10.125 13.75 10.125ZM22.5 21.9375C22.5 19.143 20.82 16.875 18.75 16.875H10V20.25H18.75C19.44 20.25 20 21.006 20 21.9375C20 22.869 19.44 23.625 18.75 23.625C18.2463 23.625 17.8163 23.2166 17.6188 22.6344L15.4325 24.2477C16.0562 25.8761 17.3 27 18.75 27C20.82 27 22.5 24.732 22.5 21.9375ZM23.7675 9.01969C23.87 7.749 24.6575 6.75 25.625 6.75C26.6588 6.75 27.5 7.88569 27.5 9.28125C27.5 10.6768 26.6588 11.8125 25.625 11.8125H15V15.1875H25.625C28.04 15.1875 30 12.5415 30 9.28125C30 6.021 28.04 3.375 25.625 3.375C23.595 3.375 21.9038 5.25825 21.41 7.79119L23.7675 9.01969V9.01969ZM12.5 11.8125H2.5V15.1875H12.5V11.8125ZM7.5 16.875H0V20.25H7.5V16.875ZM5 6.75H0V10.125H5V6.75Z" fill="#00C944" />
+                            </svg>
+
+
+
+                        </a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="3">
+                            <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9375 0C6.58139 8.08757 0 10.8719 0 17.9954C0 22.834 3.2395 26.9638 9.5 26.9998C15.7605 27.0358 19 22.0341 19 16.9244C19 12.2658 16.8234 7.87269 12.7173 5.14121C13.6927 8.07407 12.3943 10.7527 11.1329 11.6752C11.2068 7.92107 9.94544 2.35011 5.9375 0ZM10.9102 14.6249C14.8738 19.1125 12.4397 24.7498 9.25617 24.7498C7.31922 24.7498 6.32278 23.3267 6.33333 21.8507C6.35339 19.1136 9.22239 19.1114 10.9102 14.6249V14.6249Z" fill="black" />
+                            </svg>
+
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-4 tiptype-holder">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                            <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.5 0C3.71688 8.09663 0 13.1614 0 18.0844C0 23.0096 4.25006 27 9.5 27C14.7499 27 19 23.0096 19 18.0844C19 13.1614 15.2831 8.09663 9.5 0ZM9.46794 5.76C10.0225 6.57562 10.6875 7.99537 10.6875 9.495C10.6875 13.8915 5.9375 14.6115 5.9375 11.9362C5.9375 10.0991 8.29825 7.38675 9.46794 5.76V5.76Z" fill="black" />
+                            </svg>
+
+
+                        </a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="2">
+                            <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.75 10.125H7.5V6.75H13.75C14.44 6.75 15 5.994 15 5.0625C15 4.131 14.44 3.375 13.75 3.375C13.2463 3.375 12.8163 3.78337 12.6188 4.36556L10.4325 2.75231C11.0562 1.12388 12.3 0 13.75 0C18.7137 0 18.7113 10.125 13.75 10.125ZM22.5 21.9375C22.5 19.143 20.82 16.875 18.75 16.875H10V20.25H18.75C19.44 20.25 20 21.006 20 21.9375C20 22.869 19.44 23.625 18.75 23.625C18.2463 23.625 17.8163 23.2166 17.6188 22.6344L15.4325 24.2477C16.0562 25.8761 17.3 27 18.75 27C20.82 27 22.5 24.732 22.5 21.9375ZM23.7675 9.01969C23.87 7.749 24.6575 6.75 25.625 6.75C26.6588 6.75 27.5 7.88569 27.5 9.28125C27.5 10.6768 26.6588 11.8125 25.625 11.8125H15V15.1875H25.625C28.04 15.1875 30 12.5415 30 9.28125C30 6.021 28.04 3.375 25.625 3.375C23.595 3.375 21.9038 5.25825 21.41 7.79119L23.7675 9.01969V9.01969ZM12.5 11.8125H2.5V15.1875H12.5V11.8125ZM7.5 16.875H0V20.25H7.5V16.875ZM5 6.75H0V10.125H5V6.75Z" fill="black" />
+                            </svg>
+
+
+                        </a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="3">
+                            <svg width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.9375 0C6.58139 8.08757 0 10.8719 0 17.9954C0 22.834 3.2395 26.9638 9.5 26.9998C15.7605 27.0358 19 22.0341 19 16.9244C19 12.2658 16.8234 7.87269 12.7173 5.14121C13.6927 8.07407 12.3943 10.7527 11.1329 11.6752C11.2068 7.92107 9.94544 2.35011 5.9375 0ZM10.9102 14.6249C14.8738 19.1125 12.4397 24.7498 9.25617 24.7498C7.31922 24.7498 6.32278 23.3267 6.33333 21.8507C6.35339 19.1136 9.22239 19.1114 10.9102 14.6249V14.6249Z" fill="#FF0000" />
+                            </svg>
+
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="col-4"></div>
+    </div>
+    <!--wrapper-->
+    <div class="row">
+        
+        <div class="col-xl-4 col-lg-12">
+                <div class="tips-holder text-center" id="previous-tips-holder">
+                    <div class="tips-holder-header">
+                        <h4><span class="table-heading">previous tips</span></h4>
+                    </div>
+                    <div class="table-holder">
+                        <table class="table table-dark text-center">
+                            <tr>
+                                <th scope="col">datetime</th>
+                                <th scope="col"></th>
+                                <th scope="col">match</th>
+                                <th scope="col">tip</th>
+                                <th scope="col">odds</th>
+                                <th scope="col"></th>
+                            </tr>
+                            @foreach (var item in Model.PredictionsPrevious)
+                            {
+                                <tr>
+                                    <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
+                                    <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                    <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
+                                    <td align="center"><img src=@item.Tip.TipFlag title="@item.Tip.TipName" width="33" height="22" /> </td>
+                                    @if (item.IsCorrect.Value == true)
+                                    {
+                                        <td class="text-adventurous" align="center"><small>@item.Odds</small></td>
+                                        <td align="center"><img src="~/img/IsCorrectTrue.svg" /></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-ludicrous" align="center"><small>@item.Odds</small></td>
+                                        <td align="center"><img src="~/img/IsCorrectFalse.svg" /></td>
+                                    }
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+        </div>
+
+        
+        <div class="col-xl-8 col-lg-12 col-sm-12">
+                <div class="tips-holder text-center" id="tips-holder">
+                    <div class="tips-holder-header">
+                        <h3><span class="table-heading">your tips</span></h3>
+                    </div>
+                    <div class="table-holder">
+                        <table class="table table-dark text-center">
+                            <tr>
+                                <th scope="col">datetime</th>
+                                <th scope="col"></th>
+                                <th scope="col">match</th>
+                                <th scope="col">tip</th>
+                                <th class="tip-name-cell" scope="col"></th>
+                                <th scope="col">odds</th>
+                                <th class="tip-chance-cell" scope="col">chance</th>
+                                <th scope="col"></th>
+                            </tr>
+                            @if (Model.Predictions.Count < 1)
+                            {
+                                <tr>
+                                    <td align="center" valign="middle" colspan="8" class="text-primary">Tips will be available on friday.</td>
+                                </tr>
+                            }
+                            @foreach (var item in Model.Predictions)
+                            {
+                                <tr>
+                                    <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
+                                    <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                    <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
+                                    <td align="center"><img src=@item.Tip.TipFlag title="@item.Tip.TipName" width="33" height="22" /> </td>
+                                    <td class="tip-name-cell" align="center"><small>@item.Tip.TipName</small></td>
+                                    <td align="center"><small>@item.Odds.ToString("#.00")</small></td>
+                                    <td class="tip-chance-cell" align="center"><small>@item.Chance%</small></td>
+                                    <td align="center">
+                                        <a href="#" class="text-yellow font-weight-bold" title="add to betslip" id="TicketItem-@item.PredictionId">+</a>
+                                        <script type="text/javascript">
+
+                                        $(document).ready(function () {
+                                            $("#TicketItem-@item.PredictionId").on("click", function () {
+                                                var thisPredictionId = @item.PredictionId;
+                                                $.ajax({
+                                                    url: "Prediction/AddTicketItem",
+                                                    method: "POST",
+                                                    data: { PredictionId: thisPredictionId }
+                                                }).done(function () {
+                                                    $('#betslip-holder').load(document.URL + ' #betslip-holder');
+                                                    $('#betslip').css("display", "block");
+                                                    $("#message").html("Ticket item added");
+                                                    $("#message").fadeOut();
+                                                    $("#message").fadeIn();
+                                                });
+                                            });
+                                        });
+                                        </script>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div id="randomizer-holder">
+                <span class="table-heading">
+                    let the system randomize your bet slip
+                    <br />
+                    click on a box to get random tip
+                </span>
+                <div class="tips-picker mt-2">
+                    <div class="tips-boxes-holder">
+                        @if (Model.Predictions.Count < 1)
+                        {
+                            
+                                <span class="text-primary">Tips will be available on friday.</span>
+                            
+                        }
+                        @{int boxPosition = 0; }
+                        @foreach (var item in Model.PredictionBoxes)
+                        {
+                            //while (boxPosition <= Model.PredictionBoxes.Count)
+                            //{
+                            <div class="tips-box" onmouseover="BoxMouseover(@boxPosition)" onmouseout="BoxMouseout(@boxPosition)">
+                                <a href="#" class="random-ticket-item text-yellow font-weight-bold" id="RandomTicketItem-@item.Key">
+                                    <img class="box" id="box-closed-@boxPosition" src="~/img/box-closed.svg" alt="box" />
+                                    <img class="box" id="box-open-@boxPosition" src="~/img/box-open.svg" alt="box" style="display: none;" />
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $("#RandomTicketItem-@item.Key").on("click", function () {
+                                                $.ajax({
+                                                    url: "Prediction/AddRandomTicketItem",
+                                                    method: "POST",
+                                                    data: { TipTypeId: @TipTypeId}
+                                                }).done(function () {
+                                                    $('#betslip').load(document.URL + ' #betslip');
+                                                    $('#betslip').css("display", "block");
+                                                    $("#message").html("Ticket item added");
+                                                    $("#message").fadeOut();
+                                                    $("#message").fadeIn();
+                                                });
+                                            });
+                                        });
+                                    </script>
+                                </a>
+
+                            </div>
+                            boxPosition++;
+                            //}
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="height: 5vh;"></div>
+    </div>
+
+<nav class="nav-bottom" id="bottom-nav-tips-view">
+    <ul class="nav-bottom-items-holder">
+        <li class="nav-bottom-item">
+            <a class="nav-link" id="bottom-nav-previous-tips">
+                <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32.0833 2.91667V32.0833H2.91667V2.91667H32.0833ZM35 0H0V35H35V0ZM29.1667 10.2083H17.5V11.6667H29.1667V10.2083ZM29.1667 17.5H17.5V18.9583H29.1667V17.5ZM29.1667 24H10.5L10 22.5L5.5 25L10 27.5L10.5 26.25H29.1667V24ZM13.8308 8.30667L12.7954 7.29167L9.07229 11.0935L6.82792 8.97604L5.81 10.0115L9.09125 13.125L13.8308 8.30667ZM13.8308 15.5983L12.7954 14.5833L9.07375 18.3852L6.82938 16.2677L5.81146 17.3017L9.09125 20.4167L13.8308 15.5983Z" fill="white" />
+                </svg>
+            </a>
+                <br />
+                <span class="text-grey">previous</span>
+        </li>
+        
+        <li class="nav-bottom-item">
+            <a class="nav-link nav-item-active" id="bottom-nav-tips-tips">
+                <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32.0833 2.91667V32.0833H2.91667V2.91667H32.0833ZM35 0H0V35H35V0ZM29.1667 10.2083H17.5V11.6667H29.1667V10.2083ZM29.1667 17.5H17.5V18.9583H29.1667V17.5ZM29.1667 24.7917H17.5V26.25H29.1667V24.7917ZM13.8308 8.30667L12.7954 7.29167L9.07229 11.0935L6.82792 8.97604L5.81 10.0115L9.09125 13.125L13.8308 8.30667ZM13.8308 15.5983L12.7954 14.5833L9.07375 18.3852L6.82938 16.2677L5.81146 17.3017L9.09125 20.4167L13.8308 15.5983ZM13.8308 22.89L12.7954 21.875L9.07375 25.6769L6.82938 23.5594L5.81146 24.5933L9.09125 27.7083L13.8308 22.89Z" fill="white" />
+                </svg>
+            </a>
+            <br />
+            <span class="text-grey">tips</span>
+        </li>
+        <li class="nav-bottom-item">
+            <a class="nav-link" id="bottom-nav-randomize-tips">
+                <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.1575 3.03479L3.03333 7.15896L30.8758 35L35 30.8758L7.1575 3.03479V3.03479ZM10.2506 12.3142L5.09542 7.15896L7.1575 5.09687L12.3127 10.2521L10.2506 12.3142ZM12.775 3.79021C14.5717 4.33854 15.979 5.74583 16.5258 7.5425C17.0756 5.74583 18.4829 4.33854 20.2781 3.79021C18.4829 3.24188 17.0756 1.83604 16.5258 0.0379167C15.979 1.83458 14.5717 3.24188 12.775 3.79021V3.79021ZM4.97583 13.9315C4.24958 16.3158 2.38438 18.181 0 18.9087C2.38438 19.6365 4.24958 21.5002 4.97583 23.8831C5.70354 21.5002 7.56875 19.635 9.95167 18.9087C7.56875 18.1796 5.70354 16.3158 4.97583 13.9315V13.9315ZM18.9073 9.31583C20.179 9.70375 21.1721 10.6983 21.56 11.97C21.9479 10.6983 22.9425 9.70375 24.2127 9.31583C22.9425 8.92792 21.9479 7.93333 21.56 6.66167C21.1721 7.93187 20.1775 8.92792 18.9073 9.31583V9.31583ZM25.3619 0C24.92 1.44958 23.784 2.58417 22.3358 3.0275C23.7869 3.47083 24.92 4.60542 25.3648 6.05646C25.8067 4.60687 26.9427 3.47229 28.3894 3.0275C26.9427 2.58563 25.8052 1.44958 25.3619 0V0Z" fill="white" />
+                </svg>
+            </a>
+            <br />
+            <span class="text-grey">randomize</span>
+        </li>
+    </ul>
+</nav>
+
+
+    <!--wrapper-->
+    
+

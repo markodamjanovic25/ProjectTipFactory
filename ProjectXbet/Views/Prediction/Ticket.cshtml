@@ -1,0 +1,72 @@
+﻿@model ProjectXbet.ViewModels.TicketViewModel
+
+    <script>
+    let activeItemLG = document.getElementById("lg-item-account");
+    activeItemLG.classList.add("nav-item-active");
+        let activeItemSM = document.getElementById("sm-item-account");
+    activeItemSM.classList.add("nav-item-active");
+    </script>
+
+    <div class="tips-holder text-center">
+        <div class="tips-holder-header">
+            <h4><span class="table-heading">#@Model.Ticket.TicketId</span></h4>
+            <h5>@Model.Ticket.TimeCreated</h5>
+        </div>
+        <div class="table-holder" style="max-height: 100vh;">
+            <table class="table table-dark text-center">
+                <tr>
+                    <th scope="col">datetime</th>
+                    <th scope="col" colspan="2">match</th>
+                    <th scope="col" colspan="2">tip</th>
+                    <th scope="col">odds</th>
+                </tr>
+                @foreach (var item in Model.Predictions)
+                {
+                    <tr>
+                        <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
+                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                        <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
+                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" /> </td>
+                        @if (item.IsCorrect.HasValue)
+                        {
+                        if (item.IsCorrect.Value == true)
+                        {
+                            <td align="center"><small class="text-success">@item.Tip.TipName</small></td>
+                        }
+                        else
+                        {
+                            <td align="center"><small class="text-danger">@item.Tip.TipName</small></td>
+                            }
+                        }
+                        else
+                        {
+                            <td align="center"><small class="text-warning">@item.Tip.TipName</small></td>
+                        }
+
+                        <td class="text-white" align="center"><small>@item.Odds</small></td>
+
+
+
+                    </tr>
+                }
+                <tr>
+                    @if (Model.Ticket.Status != null)
+                    {
+                        if (Model.Ticket.Status == "Win")
+                        {
+                            <td colspan="5" align="right"><span class="fs-s text-success">WIN</span></td>
+                        }
+                        else
+                        {
+                            <td colspan="5" align="right"><span class="fs-s text-danger">LOSE</span></td>
+                        }
+                    }
+                    else
+                    {
+                        <td colspan="5" align="right"><span class="fs-s text-warning">ACTIVE</span></td>
+                    }
+                    <td><span class="fs-s font-weight-bold">@Model.Ticket.TotalOdds.ToString("#.00")</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>

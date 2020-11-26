@@ -1,0 +1,78 @@
+﻿<script>
+    let activeItemLG = document.getElementById("lg-item-about");
+    activeItemLG.classList.add("nav-item-active");
+    let activeItemSM = document.getElementById("sm-item-about");
+    activeItemSM.classList.add("nav-item-active");
+</script>
+        <div style="width: 50%; margin-left: 22%; margin-top: 37vh;">
+            <div class="row border-bottom">
+                <div class="col text-center about-item">
+                    <a asp-controller="About" asp-action="Instructions">
+                        <svg width="50"
+                             height="50"
+                             viewBox="0 0 50 50"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M45.8333 12.5V45.8333H4.16667V12.5H45.8333ZM50 0H0V50H50V0ZM18.75 28.125C18.75 29.85 17.35 31.25 15.625 31.25C13.9 31.25 12.5 29.85 12.5 28.125C12.5 26.4 13.9 25 15.625 25C17.35 25 18.75 26.4 18.75 28.125ZM28.125 28.125C28.125 29.85 26.725 31.25 25 31.25C23.275 31.25 21.875 29.85 21.875 28.125C21.875 26.4 23.275 25 25 25C26.725 25 28.125 26.4 28.125 28.125ZM37.5 28.125C37.5 29.85 36.1021 31.25 34.375 31.25C32.6479 31.25 31.25 29.85 31.25 28.125C31.25 26.4 32.6479 25 34.375 25C36.1021 25 37.5 26.4 37.5 28.125Z"
+                                  fill="black" />
+                        </svg>
+
+                        <h5 class="text-dark">instructions</h5>
+                    </a>
+                </div>
+
+                <div class="col text-center about-item">
+                    <a asp-controller="About" asp-action="Accounts">
+                        <svg width="52"
+                             height="52"
+                             viewBox="0 0 52 52"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.173 15.1667L2.96833 8.66883H49.023L47.8183 15.1667H4.173V15.1667ZM7.45333 4.33333L6.50217 0H45.4892L44.538 4.33333H7.45333V4.33333ZM0 19.5022L4.40917 52H47.4565L52 19.5022H0V19.5022ZM8.19433 47.6688L5.551 28.1667H46.4143L43.6865 47.6688H8.19433ZM26.2145 44.8868L26.2232 45.5H13.3553L13.2513 44.8673C12.9632 43.1795 12.8678 42.2153 14.5123 41.769C16.3367 41.2772 18.161 40.8395 17.043 38.9762C13.5178 33.4598 15.2057 30.3333 18.4167 30.3333C21.567 30.3333 23.868 33.345 21.3525 38.9783C20.5985 40.8287 22.4358 41.2663 24.388 41.7712C26.1235 42.2197 26.195 43.1882 26.2145 44.8868ZM40.5752 34.6667H30.2098L30.1492 36.8333H40.2783L40.5752 34.6667ZM41.1667 30.3333H30.3333L30.2727 32.5H40.872L41.1667 30.3333ZM39.9793 39H30.0863L30.0235 41.1667H39.6847L39.9793 39ZM39.3878 43.3333H29.9607L29.9 45.5H39.0888L39.3878 43.3333Z"
+                                  fill="black" />
+                        </svg>
+
+                        <h5 class="text-dark">accounts</h5>
+                    </a>
+                </div>
+
+                <div class="col text-center about-item">
+                    <a asp-controller="About" asp-action="TermsAndConditions">
+                        <svg width="50"
+                             height="50"
+                             viewBox="0 0 50 50"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M34.6658 12L21.5 25.3934L15.333 19.5912L11 23.8939L21.5 34L39 16.3016L34.6658 12Z"
+                                  fill="black" />
+                            <rect x="2"
+                                  y="2"
+                                  width="46"
+                                  height="46"
+                                  stroke="black"
+                                  stroke-width="4" />
+                            <line x1="10.5" y1="8" x2="10.5" y2="38" stroke="black" />
+                            <line x1="10" y1="37.5" x2="39" y2="37.5" stroke="black" />
+                            <line x1="39.5" y1="20" x2="39.5" y2="38" stroke="black" />
+                            <line x1="30" y1="8.5" x2="10" y2="8.5" stroke="black" />
+                        </svg>
+
+                        <h5 class="text-dark">
+                            terms & conditions
+                        </h5>
+                    </a>
+                </div>
+
+                <div class="col text-center about-item">
+                    <a asp-controller="Account" asp-action="Contact">
+                        <svg width="67" height="50" viewBox="0 0 67 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M33.5 26.9806L0.041875 0H66.9609L33.5 26.9806ZM18.3552 21.9194L0 7.11667V41.8417L18.3552 21.9194ZM48.6448 21.9194L67 41.8417V7.11667L48.6448 21.9194ZM44.2982 25.4222L33.5 34.1306L22.7018 25.4222L0.0614167 50H66.9386L44.2982 25.4222V25.4222Z" fill="black" />
+                        </svg>
+
+
+                        <h5 class="text-dark">contact us</h5>
+                    </a>
+                </div>
+
+            </div>
+        </div>

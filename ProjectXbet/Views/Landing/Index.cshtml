@@ -1,0 +1,867 @@
+﻿@model ProjectXbet.ViewModels.LandingViewModel
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    @*<script src="~/js/msyscripts.js"></script>*@
+    <title>Welcome to Tip Factory</title>
+</head>
+<body style="height: 100vh;">
+    <div class="container-fluid landing-bg">
+        <div class="bg-70-black" id="bg-70-black"></div>
+
+        <div class="logo-holder-landing" id="logoholderlanding">
+            <img src="~/img/logo-landing.svg" alt="logo" />
+        </div>
+        <br />
+        <div class="welcome-message-landing">
+            <h5 class="text-grey mt-3" id="welcome-landing">We bet on mathematics.</h5>
+        </div>
+        <div class="tipsnstats-header-holder" id="tipsnstatsheader">
+            <a href="#" onclick="ShowTipsNStats()">
+                <img src="~/img/tipsnstats.svg" alt="" />
+                <h6 class="text-white">tips&stats</h6>
+            </a>
+        </div>
+        <div class="about-header-holder" id="aboutheader">
+            <a href="#" onclick="ShowAbout()">
+                <img src="~/img/about.svg" alt="" />
+                <h6 class="text-white">about</h6>
+            </a>
+        </div>
+        <div class="statsntips-component" id="tipsnstatsholder">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-xl-4 col-sm-12 safe-col text-center">
+
+                    <div class="safe-tips-cube">
+                        <div class="scene">
+                            <div class="cube" id="safe-cube">
+                                <!--front, back-->
+                                <div class="cube__face cube__face--front">
+                                    <div class="cube-face-header">
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">this round</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            @*<thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col" colspan="2" align="center">
+                                                            <h6>match</h6>
+                                                        </th>
+                                                        <th scope="col"><h6>tip</h6></th>
+                                                        <th scope="col"><h6>odds</h6></th>
+                                                    </tr>
+                                                </thead>*@
+                                            <tbody>
+                                                @if (Model.PredictionsMonotonous.Count() < 1)
+                                                {
+                                                    <tr>
+                                                        <td class="text-primary" colspan="5">
+                                                            Tips will be available on friday.
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @foreach (var item in Model.PredictionsMonotonous)
+                                                {
+                                                    <tr>
+                                                        <td align="center"><p class="fs-s">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month</p></td>
+                                                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                                        <td align="center" colspan="2"><p class="fs-s">@item.Match.ClubHomeName - @item.Match.ClubAwayName</p></td>
+                                                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" title="@item.Tip.TipName" /> </td>
+                                                        <td align="center"><p class="fs-s">@item.Odds</p></td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        @*<h6>
+                                                <span class="cube-table-heading">log in to see more!</span>
+                                            </h6>*@
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="SafeShowSide('back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="SafeShowSide('top')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="SafeShowSide('bottom')" />
+                                    </div>
+                                </div>
+
+                                <div class="cube__face cube__face--back">
+                                    <div class="cube-face-header">
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">last round</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            @*<thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col" colspan="2" align="center">
+                                                            <h6>match</h6>
+                                                        </th>
+                                                        <th scope="col"><h6>tip</h6></th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"><h6>odds</h6></th>
+                                                    </tr>
+                                                </thead>*@
+                                            <tbody>
+                                                @foreach (var item in Model.PredictionsPreviousMonotonous)
+                                                {
+                                                    <tr>
+                                                        <td align="center"><p class="fs-s">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month</p></td>
+                                                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                                        <td align="center" colspan="2"><p class="fs-s">@item.Match.ClubHomeName - @item.Match.ClubAwayName</p></td>
+                                                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" title="@item.Tip.TipName" /> </td>
+                                                        @if (item.IsCorrect.Value == true)
+                                                        {
+                                                            <td align="center"><p class="fs-s text-success">@item.Odds</p></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td align="center"><p class="fs-s text-danger">@item.Odds</p></td>
+                                                        }
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        @*<h6 class="mt-2">
+                                                <span class="cube-table-heading">log in to see more!</span>
+                                            </h6>*@
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="SafeShowSide('front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="SafeShowSide('top')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="SafeShowSide('bottom')" />
+                                    </div>
+                                </div>
+
+                                <!--right, left-->
+                                <div class="cube__face cube__face--right">
+                                    <div class="m-auto">
+                                        <img src="~/img/logo-large.svg" />
+                                    </div>
+                                </div>
+                                <div class="cube__face cube__face--left">
+                                    <div class="m-auto">
+                                        <img src="~/img/logo-large.svg" />
+                                    </div>
+                                </div>
+
+                                <!--top, bottom-->
+                                <div class="cube__face cube__face--top">
+                                    <div class="cube-face-header">
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">tip stats</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2"><h5>tip</h5></th>
+                                                    <th scope="col">
+                                                        <h5>odds</h5>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <h5>total</h5>
+                                                    </th>
+                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>%</h5></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.TipsMonotonous.OrderByDescending(k => k.Value[1]).ThenByDescending(k => k.Value[2]))
+                                                {
+                                                    decimal TipTotal = item.Value[1];
+                                                    decimal TipWins = item.Value[2];
+                                                    decimal TipPercentage = (TipWins / TipTotal) * 100;
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            <img src=@item.Key.TipFlag title="@item.Key.TipName" />
+                                                        </td>
+                                                        <td><h6>@item.Value[0].ToString("#.00")</h6></td>
+                                                        <td><h6>@TipTotal</h6></td>
+                                                        <td><h6>@TipWins</h6></td>
+                                                        <td>
+
+                                                            @if (TipPercentage == 0)
+                                                            {
+                                                                <h6>0%</h6>
+                                                            }
+                                                            else
+                                                            {
+                                                                <h6>@TipPercentage.ToString("#.00")%</h6>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        @*<h6 class="mt-2">
+                                                <span class="cube-table-heading">log in to see more!</span>
+                                            </h6>*@
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="SafeShowSide('front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="SafeShowSide('back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="SafeShowSide('bottom')" />
+                                    </div>
+                                </div>
+                                <div class="cube__face cube__face--bottom">
+                                    <div class="cube-face-header">
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">league stats</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2"><h5>league</h5></th>
+                                                    <th scope="col">
+                                                        <h5>total</h5>
+                                                    </th>
+                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>%</h5></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.LeaguesMonotonous.OrderByDescending(k => k.Value[0]).ThenByDescending(k => k.Value[1]))
+                                                {
+                                                    decimal LeagueTotal = item.Value[0];
+                                                    decimal LeagueWins = item.Value[1];
+                                                    decimal LeaguePercentage = (LeagueWins / LeagueTotal) * 100;
+                                                    <tr>
+                                                        <td>
+                                                            <img src=@item.Key.LeagueFlag width="33" height="22" />
+                                                        </td>
+                                                        <td>
+                                                            <p class="fs-s">@item.Key.LeagueName</p>
+                                                        </td>
+
+                                                        <td>
+                                                            <p class="fs-s">
+                                                                @LeagueTotal
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="fs-s">
+                                                                @LeagueWins
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            @if (LeaguePercentage == 0)
+                                                            {
+                                                                <p class="fs-s">0%</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="fs-s">
+                                                                    @LeaguePercentage.ToString("#.00")%
+                                                                </p>
+                                                            }
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        @*<h6 class="mt-2">
+                                                <span class="cube-table-heading">log in to see more!</span>
+                                            </h6>*@
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="SafeShowSide('front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="SafeShowSide('back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="SafeShowSide('top')" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="landing-buttons-holder-safe">
+                            <input class="btn bg-black font-weight-bold"
+                                   type="submit"
+                                   value="this round"
+                                   onclick="SafeShowSide('front')" />
+                            <input class="btn bg-black font-weight-bold"
+                                   type="submit"
+                                   value="last round"
+                                   onclick="SafeShowSide('back')" />
+                            <input class="btn bg-black font-weight-bold"
+                                   type="submit"
+                                   value="tip stats"
+                                   onclick="SafeShowSide('top')" />
+                            <input class="btn bg-black font-weight-bold"
+                                   type="submit"
+                                   value="league stats"
+                                   onclick="SafeShowSide('bottom')" />
+                        </div>*@
+                </div>
+                <div class="col-xl-4 col-sm-12 risky-col text-center">
+                    <div class="risky-tips-cube d-inline text-center">
+                        <div class="scene">
+                            <div class="cube" id="risky-cube">
+                                <!--front, back-->
+                                <div class="cube__face cube__face--front">
+                                    <div class="cube-face-header">
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">this round</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            @*<thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col" colspan="2" align="center">
+                                                            <h6>match</h6>
+                                                        </th>
+                                                        <th scope="col"><h6>tip</h6></th>
+                                                        <th scope="col"><h6>odds</h6></th>
+                                                    </tr>
+                                                </thead>*@
+                                            <tbody>
+                                                @if (Model.PredictionsAdventurous.Count() < 1)
+                                                {
+                                                    <tr>
+                                                        <td class="text-primary" colspan="5">
+                                                            Tips will be available on friday.
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @foreach (var item in Model.PredictionsAdventurous)
+                                                {
+                                                    <tr>
+                                                        <td align="center"><p class="fs-s">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month</p></td>
+                                                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                                        <td align="center" colspan="2"><p class="fs-s">@item.Match.ClubHomeName - @item.Match.ClubAwayName</p></td>
+                                                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" title="@item.Tip.TipName" /> </td>
+                                                        <td align="center"><p class="fs-s">@item.Odds</p></td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        @*<h6 class="mt-2">
+                                                <span class="cube-table-heading">log in to see more!</span>
+                                            </h6>*@
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="RiskyShowSide('back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="RiskyShowSide('top')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="RiskyShowSide('bottom')" />
+                                    </div>
+                                </div>
+
+                                <div class="cube__face cube__face--back">
+                                    <div class="cube-face-header">
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">last round</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            @*<thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col" colspan="2">
+                                                            <h6>match</h6>
+                                                        </th>
+                                                        <th scope="col" colspan="2"><h6>tip</h6></th>
+                                                        <th scope="col"><h6>odds</h6></th>
+                                                    </tr>
+                                                </thead>*@
+                                            <tbody>
+                                                @foreach (var item in Model.PredictionsPreviousAdventurous)
+                                                {
+                                                    <tr>
+                                                        <td align="center"><p class="fs-s">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month</p></td>
+                                                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                                        <td align="center" colspan="2"><p class="fs-s">@item.Match.ClubHomeName - @item.Match.ClubAwayName</p></td>
+                                                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" title="@item.Tip.TipName" /> </td>
+                                                        @if (item.IsCorrect.Value == true)
+                                                        {
+                                                            <td align="center"><p class="fs-s text-success">@item.Odds</p></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td align="center"><p class="fs-s text-danger">@item.Odds</p></td>
+                                                        }
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        @*<h6 class="mt-2">
+                                                <span class="cube-table-heading">log in to see more!</span>
+                                            </h6>*@
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="RiskyShowSide('front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="RiskyShowSide('top')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="RiskyShowSide('bottom')" />
+                                    </div>
+                                </div>
+
+                                <!--right, left-->
+                                <div class="cube__face cube__face--right">
+                                    <div class="m-auto">
+                                        <img src="~/img/logo-large.svg" />
+                                    </div>
+                                </div>
+                                <div class="cube__face cube__face--left">
+                                    <div class="m-auto">
+                                        <img src="~/img/logo-large.svg" />
+                                    </div>
+                                </div>
+
+                                <!--top, bottom-->
+                                <div class="cube__face cube__face--top">
+                                    <div class="cube-face-header">
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">tip stats</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2"><h5>tip</h5></th>
+                                                    <th scope="col">
+                                                        <h5>odds</h5>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <h5>total</h5>
+                                                    </th>
+                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>%</h5></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.TipsAdventurous.OrderByDescending(k => k.Value[1]).ThenByDescending(k => k.Value[2]))
+                                                {
+                                                    decimal TipTotal = item.Value[1];
+                                                    decimal TipWins = item.Value[2];
+                                                    decimal TipPercentage = (TipWins / TipTotal) * 100;
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            <img src=@item.Key.TipFlag title="@item.Key.TipName" />
+                                                        </td>
+                                                        <td><h6>@item.Value[0].ToString("#.00")</h6></td>
+                                                        <td><h6>@TipTotal</h6></td>
+                                                        <td><h6>@TipWins</h6></td>
+                                                        <td>
+
+                                                            @if (TipPercentage == 0)
+                                                            {
+                                                                <h6>0%</h6>
+                                                            }
+                                                            else
+                                                            {
+                                                                <h6>@TipPercentage.ToString("#.00")%</h6>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        @*<h6 class="mt-2">
+                                                <span class="cube-table-heading">log in to see more!</span>
+                                            </h6>*@
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="RiskyShowSide('front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="RiskyShowSide('back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="RiskyShowSide('bottom')" />
+                                    </div>
+                                </div>
+                                <div class="cube__face cube__face--bottom">
+                                    <div class="cube-face-header">
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">league stats</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2"><h5>league</h5></th>
+                                                    <th scope="col">
+                                                        <h5>total</h5>
+                                                    </th>
+                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>%</h5></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.LeaguesAdventurous.OrderByDescending(k => k.Value[0]).ThenByDescending(k => k.Value[1]))
+                                                {
+                                                    decimal LeagueTotal = item.Value[0];
+                                                    decimal LeagueWins = item.Value[1];
+                                                    decimal LeaguePercentage = (LeagueWins / LeagueTotal) * 100;
+                                                    <tr>
+                                                        <td>
+                                                            <img src=@item.Key.LeagueFlag width="33" height="22" />
+                                                        </td>
+                                                        <td>
+                                                            <p class="fs-s">@item.Key.LeagueName</p>
+                                                        </td>
+
+                                                        <td>
+                                                            <p class="fs-s">
+                                                                @LeagueTotal
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="fs-s">
+                                                                @LeagueWins
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            @if (LeaguePercentage == 0)
+                                                            {
+                                                                <p class="fs-s">0%</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="fs-s">
+                                                                    @LeaguePercentage.ToString("#.00")%
+                                                                </p>
+                                                            }
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        @*<h6 class="mt-2">
+                                                <span class="cube-table-heading">log in to see more!</span>
+                                            </h6>*@
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="RiskyShowSide('front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="RiskyShowSide('back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="RiskyShowSide('top')" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="landing-buttons-holder-risky">
+                            <input class="btn bg-black font-weight-bold"
+                                   type="submit"
+                                   value="this round"
+                                   onclick="RiskyShowSide('front')" />
+                            <input class="btn bg-black font-weight-bold"
+                                   type="submit"
+                                   value="last round"
+                                   onclick="RiskyShowSide('back')" />
+                            <input class="btn bg-black font-weight-bold"
+                                   type="submit"
+                                   value="tip stats"
+                                   onclick="RiskyShowSide('top')" />
+                            <input class="btn bg-black font-weight-bold"
+                                   type="submit"
+                                   value="league stats"
+                                   onclick="RiskyShowSide('bottom')" />
+                        </div>*@
+                </div>
+                <div class="col-2"></div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+        <div class="about-component" id="aboutholder">
+            <div class="row mt-3">
+                <div class="col-4"></div>
+                <div class="col-xl-4 col-sm-12 text-center">
+                    <h4 class="text-dark font-weight-bold">Welcome to Tip Factory</h4>
+                    <br /> <br />
+                    We offer football tips that are product of enormous amount of statistics.
+                    <br /> <br />
+                    Goal of our prediction system is to find tips that have way better chances of winning outcome than it was expected. That difference in chances brings profit.
+                    <br /> <br />
+                    All tips we offer are goal amount tips, we do not interfere with winner predictions since we found them unreliable.
+                    <br /> <br />
+                    We only share tips that our prediction system considers valuable.
+                    <br /> <br />
+                </div>
+                <div class="col-4"></div>
+            </div>
+            <hr id="about-component-hr"/>
+            <div class="row m-auto">
+                <div class="col-xl-4 col-sm-12 text-center mt-2">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <img src="~/img/tipsLogo.svg" alt="tip types" />
+                            <br />
+                            <span class="text-grey">tip types</span>
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-2 d-flex align-items-center justify-content-center" style="background-color: #1E1D22;">
+                            <img src="img/monotonousSmall.svg" alt="monotonous" />
+                        </div>
+                        <div class="col-10" style="border: 3px solid #1E1D22;">
+                            <table>
+                                <tr>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[0][0].ToString("#.00")</td>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[0][1]</td>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[0][2]</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-grey">Avg. odds</td>
+                                    <td class="text-grey">Total</td>
+                                    <td class="text-grey">Wins</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-2 d-flex align-items-center justify-content-center" style="background-color: #1E1D22;">
+                            <img src="img/adventurousSmall.svg" alt="adventurous" />
+                        </div>
+                        <div class="col-10" style="border: 3px solid #1E1D22;">
+                            <table>
+                                <tr>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[1][0].ToString("#.00")</td>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[1][1]</td>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[1][2]</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-grey">Avg. odds</td>
+                                    <td class="text-grey">Total</td>
+                                    <td class="text-grey">Wins</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-2 d-flex align-items-center justify-content-center" style="background-color: #1E1D22;">
+                            <img src="img/ludicrousSmall.svg" alt="ludicrous" />
+                        </div>
+                        <div class="col-10" style="border: 3px solid #1E1D22;">
+                            <table>
+                                <tr>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[2][0].ToString("#.00")</td>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[2][1]</td>
+                                    <td class="text-dark font-weight-bold">@Model.TipTypeStats[2][2]</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-grey">Avg. odds</td>
+                                    <td class="text-grey">Total</td>
+                                    <td class="text-grey">Wins</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-12 text-center mt-2">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <img src="~/img/mathsLogo.svg" alt="maths" />
+                            <br />
+                            <span class="text-grey">calculated tips</span>
+                        </div>
+                    </div>
+                    <div class="text-center bg-black p-5">
+                        <h4 class="text-white">We believe in <b>mathematics</b>.</h4>
+                        <p class="text-light">We bet on mathematics.</p>
+                        <p class="text-light">We only share tips our prediction system considers valuable.</p>
+                    </div>
+                </div>
+                    <div class="col-xl-4 col-sm-12 text-center mt-2">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <img src="~/img/leaguesLogo.svg" alt="leagues" />
+                                <br />
+                                <span class="text-grey">supported leagues</span>
+                            </div>
+                        </div>
+                        <div class="bg-black p-5">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="~/img/england.svg" alt="england" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Premier</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/spain.svg" alt="spain" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">La Liga</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/italy.png" alt="italy" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Serie A</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/france.svg" alt="france" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Ligue 1</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/germany.svg" alt="germany" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Bundesliga</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <img src="~/img/england.svg" alt="england" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Championship</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/england.svg" alt="england" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">One</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/england.svg" alt="england" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Two</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/switzerland.svg" alt="switzerland" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Super</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/belgium.svg" alt="belgium" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Jupiler</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <img src="~/img/netherlands.svg" alt="netherlands" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Eredivisie</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/portugal.svg" alt="portugal" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Primeira</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/austria.svg" alt="austria" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Tipico B.</span>
+                                </div>
+                                <div class="col">
+                                    <img src="~/img/denmark.svg" alt="denmark" width="33" height="22" />
+                                    <br />
+                                    <span class="fs-xs text-white">Superliga</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!--footer-->
+        <div class="login-holder-landing">
+            <form asp-controller="Account" asp-action="Login" method="get">
+                <input class="btn btn-login-landing font-weight-bold"
+                       type="submit"
+                       value="log in" />
+            </form>
+        </div>
+
+    </div>
+    <div style="width: 100%; height: 5vh;"></div>
+    <script src="~/js/msyscripts.js"></script>
+</body>
+</html>

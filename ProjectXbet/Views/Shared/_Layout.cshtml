@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Tip Factory</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="~/js/jquery.js"></script>
+    @await Html.PartialAsync("_Favicons")
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="nav-top">
+            <ul class="nav-top-items-holder" style="margin-left: 0;">
+                <li class="nav-top-item">
+                    <a class="nav-link" onclick="ExpandNavbar()">
+                        <div class="hamburger mr-5 mt-3 text-center">
+                            <div class="line" id="x-line-1"></div>
+                            <div class="line" id="x-line-2"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-top-item"></li>
+                <li class="nav-top-item">
+                    <div class="logo-holder text-center">
+                        <img src="img/LogoNav.svg" alt="logo" />
+                    </div>
+                </li>
+                <li class="nav-top-item">
+                    <a class="nav-link" id="nav-top-betslip">
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.4167 1.58333V17.4167H1.58333V1.58333H17.4167ZM19 0H0V19H19V0ZM15.7429 5.54167H3.25714V6.33333H15.7429V5.54167ZM15.7429 9.5H3.25714V10.2917H15.7429V9.5ZM15.7429 13.4583H3.25714V14.25H15.7429V13.4583Z" fill="white" />
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-top-item" id="sm-item-account">
+                    <a class="nav-link" asp-controller="Account" asp-action="Profile">
+                        <svg width="35"
+                             height="35"
+                             viewBox="0 0 35 35"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M35 0V35H0V0H35ZM26.0779 23.4267C22.734 22.6552 19.6219 21.9785 21.1283 19.1319C25.7163 10.4665 22.3446 5.83333 17.5 5.83333C12.5592 5.83333 9.27063 10.6444 13.8717 19.1319C15.4233 21.9946 12.1946 22.6712 8.92208 23.4267C5.93542 24.1165 5.82458 25.5996 5.83333 28.194L5.83917 29.1667H29.1623L29.1667 28.2246C29.1769 25.6112 29.0763 24.1194 26.0779 23.4267Z"
+                                  fill="white" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+
+
+        </nav>
+        <div class="nav-top-expanded" id="nav-top-expanded">
+            <ul class="nav-expanded-items-holder" id="nav-expanded-items-holder">
+                <li class="nav-item" id="sm-item-tips">
+                    <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32.0833 2.91667V32.0833H2.91667V2.91667H32.0833ZM35 0H0V35H35V0ZM29.1667 10.2083H17.5V11.6667H29.1667V10.2083ZM29.1667 17.5H17.5V18.9583H29.1667V17.5ZM29.1667 24.7917H17.5V26.25H29.1667V24.7917ZM13.8308 8.30667L12.7954 7.29167L9.07229 11.0935L6.82792 8.97604L5.81 10.0115L9.09125 13.125L13.8308 8.30667ZM13.8308 15.5983L12.7954 14.5833L9.07375 18.3852L6.82938 16.2677L5.81146 17.3017L9.09125 20.4167L13.8308 15.5983ZM13.8308 22.89L12.7954 21.875L9.07375 25.6769L6.82938 23.5594L5.81146 24.5933L9.09125 27.7083L13.8308 22.89Z" fill="white" />
+                        </svg>
+
+                        <h6 class="text-light font-weight-bold mt-2">
+                            tips
+                        </h6>
+                    </a>
+                </li>
+
+                <li class="nav-item" id="sm-item-stats">
+                    <a class="nav-link" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                        <svg width="41" height="35" viewBox="0 0 41 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="10" width="5" height="24" stroke="white" stroke-width="2" />
+                            <rect x="10" y="17" width="5" height="17" stroke="white" stroke-width="2" />
+                            <rect x="18" y="15" width="5" height="19" stroke="white" stroke-width="2" />
+                            <rect x="27" y="10" width="4" height="24" stroke="white" stroke-width="2" />
+                            <rect x="35" y="1" width="5" height="33" stroke="white" stroke-width="2" />
+                        </svg>
+
+
+
+
+                        <h6 class="text-light mt-2">stats</h6>
+                    </a>
+                </li>
+
+                <li class="nav-item" id="sm-item-about">
+                    <a class="nav-link" asp-controller="About" asp-action="Index">
+                        <svg width="40" height="35" viewBox="0 0 40 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M40 27.014H18.3333L6.66667 35V27.014H0V0H40V27.014ZM38.3784 1.54412H1.62162V25.2206H8.10811V31.9118L17.2973 25.2206H38.3784V1.54412ZM21.0811 12.7283V20.6825H18.9189V12.7283H21.0811ZM20 10.342C21.15 10.342 22.0833 9.45116 22.0833 8.35348C22.0833 7.25581 21.15 6.36494 20 6.36494C18.85 6.36494 17.9167 7.25581 17.9167 8.35348C17.9167 9.45116 18.85 10.342 20 10.342Z" fill="white" />
+                        </svg>
+
+
+                        <h6 class="text-light mt-2">about</h6>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <nav class="nav-left text-center">
+            <div class="logo-holder">
+                <img src="img/LogoNav.svg" alt="logo" />
+            </div>
+
+            <ul class="nav-items-holder">
+                <li class="nav-item" id="lg-item-tips">
+                    <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32.0833 2.91667V32.0833H2.91667V2.91667H32.0833ZM35 0H0V35H35V0ZM29.1667 10.2083H17.5V11.6667H29.1667V10.2083ZM29.1667 17.5H17.5V18.9583H29.1667V17.5ZM29.1667 24.7917H17.5V26.25H29.1667V24.7917ZM13.8308 8.30667L12.7954 7.29167L9.07229 11.0935L6.82792 8.97604L5.81 10.0115L9.09125 13.125L13.8308 8.30667ZM13.8308 15.5983L12.7954 14.5833L9.07375 18.3852L6.82938 16.2677L5.81146 17.3017L9.09125 20.4167L13.8308 15.5983ZM13.8308 22.89L12.7954 21.875L9.07375 25.6769L6.82938 23.5594L5.81146 24.5933L9.09125 27.7083L13.8308 22.89Z" fill="white" />
+                        </svg>
+
+                        <h6 class="text-light font-weight-bold nav-item-text mt-3">
+                            tips
+                        </h6>
+                    </a>
+                </li>
+
+                <li class="nav-item" id="lg-item-stats">
+                    <a class="nav-link" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                        <svg width="41" height="35" viewBox="0 0 41 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="10" width="5" height="24" stroke="white" stroke-width="2" />
+                            <rect x="10" y="17" width="5" height="17" stroke="white" stroke-width="2" />
+                            <rect x="18" y="15" width="5" height="19" stroke="white" stroke-width="2" />
+                            <rect x="27" y="10" width="4" height="24" stroke="white" stroke-width="2" />
+                            <rect x="35" y="1" width="5" height="33" stroke="white" stroke-width="2" />
+                        </svg>
+
+
+
+
+                        <h6 class="text-light nav-item-text mt-4">stats</h6>
+                    </a>
+                </li>
+
+                <li class="nav-item" id="lg-item-about">
+                    <a class="nav-link" asp-controller="About" asp-action="Index">
+                        <svg width="40" height="35" viewBox="0 0 40 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M40 27.014H18.3333L6.66667 35V27.014H0V0H40V27.014ZM38.3784 1.54412H1.62162V25.2206H8.10811V31.9118L17.2973 25.2206H38.3784V1.54412ZM21.0811 12.7283V20.6825H18.9189V12.7283H21.0811ZM20 10.342C21.15 10.342 22.0833 9.45116 22.0833 8.35348C22.0833 7.25581 21.15 6.36494 20 6.36494C18.85 6.36494 17.9167 7.25581 17.9167 8.35348C17.9167 9.45116 18.85 10.342 20 10.342Z" fill="white" />
+                        </svg>
+
+
+                        <h6 class="text-light nav-item-text mt-3">about</h6>
+                    </a>
+                </li>
+
+                <li class="nav-item" id="lg-item-account">
+                    <a class="nav-link" asp-controller="Account" asp-action="Profile">
+                        <svg width="35"
+                             height="35"
+                             viewBox="0 0 35 35"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M35 0V35H0V0H35ZM26.0779 23.4267C22.734 22.6552 19.6219 21.9785 21.1283 19.1319C25.7163 10.4665 22.3446 5.83333 17.5 5.83333C12.5592 5.83333 9.27063 10.6444 13.8717 19.1319C15.4233 21.9946 12.1946 22.6712 8.92208 23.4267C5.93542 24.1165 5.82458 25.5996 5.83333 28.194L5.83917 29.1667H29.1623L29.1667 28.2246C29.1769 25.6112 29.0763 24.1194 26.0779 23.4267Z"
+                                  fill="white" />
+                        </svg>
+                        <h6 class="text-light nav-item-text mt-3">account</h6>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <main role="main" class="pb-3">
+            <div class="wrapper">
+                @RenderBody()
+            </div>
+            <div class="text-dark" id="message-holder">
+                <h5 class="text-dark" id="message"></h5>
+            </div>
+            @await Component.InvokeAsync("Betslip")
+        </main>
+
+        <footer class="footer text-muted">
+            <div class="container-fluid text-center">
+                &copy; 2020 - Tip Factory - <a class="mr-5" asp-controller="About" asp-action="TermsAndConditions">Terms</a>
+            </div>
+        </footer>
+        
+    </div>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/msyscripts.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

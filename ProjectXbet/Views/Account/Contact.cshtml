@@ -1,0 +1,36 @@
+﻿@model ProjectXbet.ViewModels.MessageViewModel
+<script>
+    let activeItemLG = document.getElementById("lg-item-about");
+    activeItemLG.classList.add("nav-item-active");
+    let activeItemSM = document.getElementById("sm-item-about");
+    activeItemSM.classList.add("nav-item-active");
+</script>
+
+<h4 class="text-dark font-weight-bolder mt-5"><span class="table-heading">contact us</span></h4>
+
+<div class="m-auto" style="width: 75%;">
+    <p class="text-dark">We are open to suggestions. <br/> Reporting bugs is appreciated. <br/> If you have any questions, feel free to ask us.</p>
+    <form asp-controller="Account" asp-action="SendMessage" method="post">
+        <div class="row">
+            <div class="col-1">
+                <b>Subject</b>
+            </div>
+            <div class="col">
+                <input asp-for="Subject" class="w-100" style="border: 1px solid black;" type="text" />
+                <span class="fs-s text-ludicrous" asp-validation-for="Subject"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-1">
+                <b>Message</b>
+            </div>
+            <div class="col">
+                <textarea asp-for="Text" class="w-100" rows="10" style="resize: none; border: 1px solid black;">
+                </textarea>
+                <span class="fs-s text-ludicrous" asp-validation-for="Text"></span>
+            </div>
+        </div>
+        <input class="btn btn-primary mt-2 float-right" type="submit" value="Send" />
+    </form>
+</div>

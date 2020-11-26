@@ -1,0 +1,138 @@
+﻿@model ProjectXbet.ViewModels.BetslipViewModel
+
+<div class="betslip-holder" id="betslip-holder">
+    <div class="betslip-header" id="betslip-header" onclick="ExpandBetslip()">
+        <div class="row ml-2 mb-2">
+            <div class="col-auto p-0">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.4167 1.58333V17.4167H1.58333V1.58333H17.4167ZM19 0H0V19H19V0ZM15.7429 5.54167H3.25714V6.33333H15.7429V5.54167ZM15.7429 9.5H3.25714V10.2917H15.7429V9.5ZM15.7429 13.4583H3.25714V14.25H15.7429V13.4583Z" fill="white" />
+                </svg>
+            </div>
+            <div class="col-auto p-1 text-white mt-2">
+                <small class="text-white">betslip</small>
+            </div>
+            @if (Model.Predictions.Count > 0)
+            {
+                <div class="col-9" id="betslip-cancel">
+                    <div class="betslip-controls">
+                        <div class="betslip-control justify-content-end">
+                            <a href="#" id="delete-ticket">
+                                <span class="text-white fs-19">x</span>
+                                <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $("#delete-ticket").on("click", function () {
+                                                $.ajax({
+                                                    url: "Prediction/DeleteTicket",
+                                                    method: "POST",
+                                                    data: {TicketId : @Model.TicketId}
+                                                }).done(function () {
+                                                    $('#betslip-holder').load(document.URL + ' #betslip-holder');
+                                                    $("#message").html("Ticket canceled");
+                                                    $("#message").fadeOut();
+                                                    $("#message").fadeIn();
+                                                });
+                                            });
+                                        });
+                                </script>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+
+    </div>
+
+    <div class="betslip" id="betslip">
+        <div class="betslip-table-holder">
+            <table class="table table-dark text-center">
+                @if (Model.Predictions != null)
+                {
+                    foreach (var item in Model.Predictions)
+                    {
+                        <tr>
+                            <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
+                            <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
+                            <td align="center"><img src=@item.Tip.TipFlag title="@item.Tip.TipName" title="@item.Tip.TipName" width="33" height="22" /> </td>
+                            <td align="center"><small>@item.Odds</small></td>
+                            <td align="center">
+                                <a href="#" class="text-light" id="DeleteTicketItem-@item.PredictionId">-</a>
+                                <script type="text/javascript">
+                                        $(document).ready(function () {
+
+                                            $("#DeleteTicketItem-@item.PredictionId").on("click", function () {
+
+
+                                                var thisPredictionId = @item.PredictionId;
+
+                                                $.ajax({
+                                                    url: "Prediction/DeleteTicketItem",
+                                                    method: "POST",
+                                                    data: {PredictionId : thisPredictionId}
+                                                }).done(function () {
+                                                    $('#betslip-holder').load(document.URL + ' #betslip-holder');
+                                                    //$('#betslip-header').load(document.URL + ' #betslip');
+                                                    $('#betslip').css("display", "block");
+                                                    $("#message").html("Ticket item removed");
+                                                    $("#message").fadeOut();
+                                                    $("#message").fadeIn();
+                                                });
+                                                
+                                            });
+                                        });
+                                </script>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="4"><small class="text-white">add bet to betslip by clicking "+" near tip</small></td></tr>
+                }
+            </table>
+        </div>
+        @if (Model.Predictions.Count > 0)
+        {
+        <div class="betslip-infos">
+            <div class="betslip-info">
+                <div class="text-white text-right w-100" style="height: 5%;">
+                    <span class="fs-19">odds: <b>@Model.TotalOdds.ToString("#.00")</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="betslip-control">
+
+            @*@using (Html.BeginForm("SaveTicket", "Prediction", new { TicketId = Model.TicketId }, FormMethod.Post))
+            {
+                <label>
+                    <small class="text-success font-weight-bold">save</small>
+                    <input type="submit" style="display: none;" />
+                </label>
+            }*@
+            <a href="#" id="SaveTicket"><small class="text-success font-weight-bold">save</small></a>
+            <script type="text/javascript">
+                                        $(document).ready(function () {
+
+                                            $("#SaveTicket").on("click", function () {
+                                                $.ajax({
+                                                    url: "Prediction/SaveTicket",
+                                                    method: "POST",
+                                                    data: { TicketId: @Model.TicketId}
+                                                }).done(function () {
+                                                    $('#betslip-holder').load(document.URL + ' #betslip-holder');
+                                                    $("#message").html("Ticket saved");
+                                                    $("#message").fadeOut();
+                                                    $("#message").fadeIn();
+                                                });
+                                            });
+                                        });
+            </script>
+        </div>
+        }
+
+    </div>
+
+
+</div>
