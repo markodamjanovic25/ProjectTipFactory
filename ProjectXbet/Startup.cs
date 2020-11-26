@@ -31,8 +31,7 @@ namespace ProjectXbet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<XbetContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
 
             services.AddIdentity<User, Role>().AddEntityFrameworkStores<XbetContext>();
 
