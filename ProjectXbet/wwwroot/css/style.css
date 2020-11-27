@@ -715,6 +715,7 @@ ANIMATIONS
 }
 
 .nav-bottom-item {
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     width: 100%;
