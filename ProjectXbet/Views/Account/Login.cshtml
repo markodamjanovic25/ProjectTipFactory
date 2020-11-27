@@ -23,9 +23,9 @@
                 <img src="~/img/logo-landing.svg" alt="logo" />
             </div>
         </div>
-        <div class="row mt-2 align-content-center">
-            <div class="col text-center">
-                <h5 class="text-white">Welcome to Tip Factory</h5>
+        <div class="row mt-3">
+            <div class="col text-left">
+                <h5 class="text-grey">welcome</h5>
             </div>
         </div>
 
@@ -44,16 +44,16 @@
                             <span class="fs-s text-ludicrous" asp-validation-for="Password"></span>
                         </div>
                         
-                        <div class="login-form-item flex-row">
+                        <div class="login-form-item flex-row justify-content-end">
                             <small style="color: #535353;">remember me</small>
                             <input asp-for="RememberMe" />
                         </div>
                         
-                        <div class="login-form-item">
+                        <div class="login-form-item flex-row justify-content-end">
                             <input class="btn btn-login" style="font-size: 14px;" type="submit" value="log in" />
                         </div>
                         <br />
-                        <div class="login-form-item">
+                        <div class="login-form-item" style="margin-top: 25vh;">
                             <div class="row">
                                 <div class="col text-center">
                                     <a asp-controller="Account" asp-action="Login">

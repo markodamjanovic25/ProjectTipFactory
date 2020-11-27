@@ -95,27 +95,33 @@ function ExpandNavbar() {
     if (isNavExpanded) {
         ExpandNavbarReverse();
     } else {
-        let nav = document.getElementById("nav-top-expanded");
-        nav.style.display = "block";
+        //let nav = document.getElementById("nav-top-expanded");
+        //nav.style.display = "block";
+        $("#nav-top-expanded").show();
+        //let navItemsHolder = document.getElementById("nav-expanded-items-holder");
+        //navItemsHolder.style.display = "flex";
+        $("#nav-expanded-items-holder").css("display", "flex");
 
-        let navItemsHolder = document.getElementById("nav-expanded-items-holder");
-        navItemsHolder.style.display = "flex";
-
-        document.getElementById("x-line-1").classList.add("rotateZ45");
-        document.getElementById("x-line-2").classList.add("rotateZM45");
+        $("#x-line-1").addClass("rotateZ45");
+        $("#x-line-2").hide();
+        $("#x-line-3").addClass("rotateZM45");
         isNavExpanded = true;
     }
 }
 
 function ExpandNavbarReverse() {
-    let nav = document.getElementById("nav-top-expanded");
-    nav.style.display = "none";
+    //let nav = document.getElementById("nav-top-expanded");
+    //nav.style.display = "none";
+    $("#nav-top-expanded").hide();
 
-    let navItemsHolder = document.getElementById("nav-expanded-items-holder");
-    navItemsHolder.style.display = "none";
+    //let navItemsHolder = document.getElementById("nav-expanded-items-holder");
+    //navItemsHolder.style.display = "none";
 
-    document.getElementById("x-line-1").classList.remove("rotateZ45");
-    document.getElementById("x-line-2").classList.remove("rotateZM45");
+    $("nav-expanded-items-holder").hide();
+
+    $("#x-line-1").removeClass("rotateZ45");
+    $("#x-line-2").show();
+    $("#x-line-3").removeClass("rotateZM45");
     isNavExpanded = false;
 }
 //Nav
