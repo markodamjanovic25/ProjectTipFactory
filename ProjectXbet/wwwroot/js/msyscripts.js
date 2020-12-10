@@ -68,18 +68,13 @@ function HideAbout() {
     aboutShown = false;
 }
 
-function SafeShowSide(side) {
-  let cube = document.getElementById("safe-cube");
-  cube.className = "";
-  cube.classList.add("cube");
-  cube.classList.add("show-" + side);
+function CubeShowSide(cube, side) {
+    let CubeToRoll = document.getElementById(cube + "-cube");
+    CubeToRoll.className = "";
+    CubeToRoll.classList.add("cube");
+    CubeToRoll.classList.add("show-" + side);
 }
-function RiskyShowSide(side) {
-  let cube = document.getElementById("risky-cube");
-  cube.className = "";
-  cube.classList.add("cube");
-  cube.classList.add("show-" + side);
-}
+
 //Landing
 
 //Nav

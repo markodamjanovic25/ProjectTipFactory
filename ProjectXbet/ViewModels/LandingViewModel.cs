@@ -19,6 +19,11 @@ namespace ProjectXbet.ViewModels
         public IDictionary<League, int[]> LeaguesAdventurous;
         public IDictionary<Tip, decimal[]> TipsAdventurous;
 
+        public IEnumerable<Prediction> PredictionsLudicrous;
+        public IEnumerable<Prediction> PredictionsPreviousLudicrous;
+        public IDictionary<League, int[]> LeaguesLudicrous;
+        public IDictionary<Tip, decimal[]> TipsLudicrous;
+
         public List<decimal[]> TipTypeStats;
         
         public LandingViewModel()
@@ -32,6 +37,11 @@ namespace ProjectXbet.ViewModels
             PredictionsPreviousAdventurous = new List<Prediction>();
             LeaguesAdventurous = new ConcurrentDictionary<League, int[]>();
             TipsAdventurous = new ConcurrentDictionary<Tip, decimal[]>();
+
+            PredictionsLudicrous = new List<Prediction>();
+            PredictionsPreviousLudicrous = new List<Prediction>();
+            LeaguesLudicrous = new ConcurrentDictionary<League, int[]>();
+            TipsLudicrous = new ConcurrentDictionary<Tip, decimal[]>();
 
             TipTypeStats = new List<decimal[]>();
             

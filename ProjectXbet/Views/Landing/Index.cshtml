@@ -37,32 +37,25 @@
             </a>
         </div>
         <div class="statsntips-component" id="tipsnstatsholder">
+            <div class="ml-5">
+                <h4 class="text-black-50">log in to see more!</h4>
+            </div>
             <div class="row">
-                <div class="col-2"></div>
-                <div class="col-xl-4 col-sm-12 safe-col text-center">
-
-                    <div class="safe-tips-cube">
+                <div class="col-1"></div>
+                <div class="col-xl-3 col-sm-12 monotonous-col text-center">
+                    <div class="monotonous-tips-cube">
                         <div class="scene">
-                            <div class="cube" id="safe-cube">
+                            <div class="cube" id="monotonous-cube">
                                 <!--front, back-->
                                 <div class="cube__face cube__face--front">
                                     <div class="cube-face-header">
+                                        <img src="img/monotonousSmall.svg" alt="monotonous" />
                                         <h5 class="mt-1">
                                             <span class="cube-table-heading">this round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
-                                            @*<thead>
-                                                    <tr>
-                                                        <th scope="col"></th>
-                                                        <th scope="col" colspan="2" align="center">
-                                                            <h6>match</h6>
-                                                        </th>
-                                                        <th scope="col"><h6>tip</h6></th>
-                                                        <th scope="col"><h6>odds</h6></th>
-                                                    </tr>
-                                                </thead>*@
                                             <tbody>
                                                 @if (Model.PredictionsMonotonous.Count() < 1)
                                                 {
@@ -87,43 +80,31 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        @*<h6>
-                                                <span class="cube-table-heading">log in to see more!</span>
-                                            </h6>*@
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="last round"
-                                               onclick="SafeShowSide('back')" />
+                                               onclick="CubeShowSide('monotonous', 'back')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="tip stats"
-                                               onclick="SafeShowSide('top')" />
+                                               onclick="CubeShowSide('monotonous', 'top')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="league stats"
-                                               onclick="SafeShowSide('bottom')" />
+                                               onclick="CubeShowSide('monotonous', 'bottom')" />
                                     </div>
                                 </div>
 
                                 <div class="cube__face cube__face--back">
                                     <div class="cube-face-header">
+                                        <img src="img/monotonousSmall.svg" alt="monotonous" />
                                         <h5 class="mt-1">
                                             <span class="cube-table-heading">last round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
-                                            @*<thead>
-                                                    <tr>
-                                                        <th scope="col"></th>
-                                                        <th scope="col" colspan="2" align="center">
-                                                            <h6>match</h6>
-                                                        </th>
-                                                        <th scope="col"><h6>tip</h6></th>
-                                                        <th scope="col"></th>
-                                                        <th scope="col"><h6>odds</h6></th>
-                                                    </tr>
-                                                </thead>*@
+
                                             <tbody>
                                                 @foreach (var item in Model.PredictionsPreviousMonotonous)
                                                 {
@@ -147,21 +128,18 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        @*<h6 class="mt-2">
-                                                <span class="cube-table-heading">log in to see more!</span>
-                                            </h6>*@
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="this round"
-                                               onclick="SafeShowSide('front')" />
+                                               onclick="CubeShowSide('monotonous', 'front')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="tip stats"
-                                               onclick="SafeShowSide('top')" />
+                                               onclick="CubeShowSide('monotonous', 'top')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="league stats"
-                                               onclick="SafeShowSide('bottom')" />
+                                               onclick="CubeShowSide('monotonous', 'bottom')" />
                                     </div>
                                 </div>
 
@@ -180,6 +158,7 @@
                                 <!--top, bottom-->
                                 <div class="cube__face cube__face--top">
                                     <div class="cube-face-header">
+                                        <img src="img/monotonousSmall.svg" alt="monotonous" />
                                         <h5 class="mt-1">
                                             <span class="cube-table-heading">tip stats</span>
                                         </h5>
@@ -230,25 +209,23 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        @*<h6 class="mt-2">
-                                                <span class="cube-table-heading">log in to see more!</span>
-                                            </h6>*@
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="this round"
-                                               onclick="SafeShowSide('front')" />
+                                               onclick="CubeShowSide('monotonous', 'front')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="last round"
-                                               onclick="SafeShowSide('back')" />
+                                               onclick="CubeShowSide('monotonous', 'back')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="league stats"
-                                               onclick="SafeShowSide('bottom')" />
+                                               onclick="CubeShowSide('monotonous', 'bottom')" />
                                     </div>
                                 </div>
                                 <div class="cube__face cube__face--bottom">
                                     <div class="cube-face-header">
+                                        <img src="img/monotonousSmall.svg" alt="monotonous" />
                                         <h5 class="mt-1">
                                             <span class="cube-table-heading">league stats</span>
                                         </h5>
@@ -308,68 +285,38 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        @*<h6 class="mt-2">
-                                                <span class="cube-table-heading">log in to see more!</span>
-                                            </h6>*@
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="this round"
-                                               onclick="SafeShowSide('front')" />
+                                               onclick="CubeShowSide('monotonous', 'front')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="last round"
-                                               onclick="SafeShowSide('back')" />
+                                               onclick="CubeShowSide('monotonous', 'back')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="tip stats"
-                                               onclick="SafeShowSide('top')" />
+                                               onclick="CubeShowSide('monotonous', 'top')" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @*<div class="landing-buttons-holder-safe">
-                            <input class="btn bg-black font-weight-bold"
-                                   type="submit"
-                                   value="this round"
-                                   onclick="SafeShowSide('front')" />
-                            <input class="btn bg-black font-weight-bold"
-                                   type="submit"
-                                   value="last round"
-                                   onclick="SafeShowSide('back')" />
-                            <input class="btn bg-black font-weight-bold"
-                                   type="submit"
-                                   value="tip stats"
-                                   onclick="SafeShowSide('top')" />
-                            <input class="btn bg-black font-weight-bold"
-                                   type="submit"
-                                   value="league stats"
-                                   onclick="SafeShowSide('bottom')" />
-                        </div>*@
                 </div>
-                <div class="col-xl-4 col-sm-12 risky-col text-center">
+                <div class="col-xl-3 col-sm-12 adventurous-col text-center">
                     <div class="risky-tips-cube d-inline text-center">
                         <div class="scene">
-                            <div class="cube" id="risky-cube">
+                            <div class="cube" id="adventurous-cube">
                                 <!--front, back-->
                                 <div class="cube__face cube__face--front">
                                     <div class="cube-face-header">
+                                        <img src="~/img/adventurousSmall.svg" alt="adventurous" />
                                         <h5 class="mt-1">
                                             <span class="cube-table-heading">this round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
-                                            @*<thead>
-                                                    <tr>
-                                                        <th scope="col"></th>
-                                                        <th scope="col" colspan="2" align="center">
-                                                            <h6>match</h6>
-                                                        </th>
-                                                        <th scope="col"><h6>tip</h6></th>
-                                                        <th scope="col"><h6>odds</h6></th>
-                                                    </tr>
-                                                </thead>*@
                                             <tbody>
                                                 @if (Model.PredictionsAdventurous.Count() < 1)
                                                 {
@@ -394,42 +341,30 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        @*<h6 class="mt-2">
-                                                <span class="cube-table-heading">log in to see more!</span>
-                                            </h6>*@
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="last round"
-                                               onclick="RiskyShowSide('back')" />
+                                               onclick="CubeShowSide('adventurous', 'back')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="tip stats"
-                                               onclick="RiskyShowSide('top')" />
+                                               onclick="CubeShowSide('adventurous', 'top')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="league stats"
-                                               onclick="RiskyShowSide('bottom')" />
+                                               onclick="CubeShowSide('adventurous', 'bottom')" />
                                     </div>
                                 </div>
 
                                 <div class="cube__face cube__face--back">
                                     <div class="cube-face-header">
+                                        <img src="~/img/adventurousSmall.svg" alt="adventurous" />
                                         <h5 class="mt-1">
                                             <span class="cube-table-heading">last round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
-                                            @*<thead>
-                                                    <tr>
-                                                        <th scope="col"></th>
-                                                        <th scope="col" colspan="2">
-                                                            <h6>match</h6>
-                                                        </th>
-                                                        <th scope="col" colspan="2"><h6>tip</h6></th>
-                                                        <th scope="col"><h6>odds</h6></th>
-                                                    </tr>
-                                                </thead>*@
                                             <tbody>
                                                 @foreach (var item in Model.PredictionsPreviousAdventurous)
                                                 {
@@ -452,21 +387,18 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        @*<h6 class="mt-2">
-                                                <span class="cube-table-heading">log in to see more!</span>
-                                            </h6>*@
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="this round"
-                                               onclick="RiskyShowSide('front')" />
+                                               onclick="CubeShowSide('adventurous', 'front')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="tip stats"
-                                               onclick="RiskyShowSide('top')" />
+                                               onclick="CubeShowSide('adventurous', 'top')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="league stats"
-                                               onclick="RiskyShowSide('bottom')" />
+                                               onclick="CubeShowSide('adventurous', 'bottom')" />
                                     </div>
                                 </div>
 
@@ -485,6 +417,7 @@
                                 <!--top, bottom-->
                                 <div class="cube__face cube__face--top">
                                     <div class="cube-face-header">
+                                        <img src="~/img/adventurousSmall.svg" alt="adventurous" />
                                         <h5 class="mt-1">
                                             <span class="cube-table-heading">tip stats</span>
                                         </h5>
@@ -535,25 +468,23 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        @*<h6 class="mt-2">
-                                                <span class="cube-table-heading">log in to see more!</span>
-                                            </h6>*@
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="this round"
-                                               onclick="RiskyShowSide('front')" />
+                                               onclick="CubeShowSide('adventurous', 'front')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="last round"
-                                               onclick="RiskyShowSide('back')" />
+                                               onclick="CubeShowSide('adventurous', 'back')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="league stats"
-                                               onclick="RiskyShowSide('bottom')" />
+                                               onclick="CubeShowSide('adventurous', 'bottom')" />
                                     </div>
                                 </div>
                                 <div class="cube__face cube__face--bottom">
                                     <div class="cube-face-header">
+                                        <img src="~/img/adventurousSmall.svg" alt="adventurous" />
                                         <h5 class="mt-1">
                                             <span class="cube-table-heading">league stats</span>
                                         </h5>
@@ -613,53 +544,285 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        @*<h6 class="mt-2">
-                                                <span class="cube-table-heading">log in to see more!</span>
-                                            </h6>*@
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="this round"
-                                               onclick="RiskyShowSide('front')" />
+                                               onclick="CubeShowSide('adventurous', 'front')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="last round"
-                                               onclick="RiskyShowSide('back')" />
+                                               onclick="CubeShowSide('adventurous', 'back')" />
                                         <input class="btn bg-black font-weight-bold"
                                                type="submit"
                                                value="tip stats"
-                                               onclick="RiskyShowSide('top')" />
+                                               onclick="CubeShowSide('adventurous', 'top')" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @*<div class="landing-buttons-holder-risky">
-                            <input class="btn bg-black font-weight-bold"
-                                   type="submit"
-                                   value="this round"
-                                   onclick="RiskyShowSide('front')" />
-                            <input class="btn bg-black font-weight-bold"
-                                   type="submit"
-                                   value="last round"
-                                   onclick="RiskyShowSide('back')" />
-                            <input class="btn bg-black font-weight-bold"
-                                   type="submit"
-                                   value="tip stats"
-                                   onclick="RiskyShowSide('top')" />
-                            <input class="btn bg-black font-weight-bold"
-                                   type="submit"
-                                   value="league stats"
-                                   onclick="RiskyShowSide('bottom')" />
-                        </div>*@
                 </div>
-                <div class="col-2"></div>
+                <div class="col-xl-3 col-sm-12 ludicrous-col text-center">
+                    <div class="ludicrous-tips-cube d-inline text-center">
+                        <div class="scene">
+                            <div class="cube" id="ludicrous-cube">
+                                <!--front, back-->
+                                <div class="cube__face cube__face--front">
+                                    <div class="cube-face-header">
+                                        <img src="~/img/ludicrousSmall.svg" alt="ludicrous" />
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">this round</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                @if (Model.PredictionsLudicrous.Count() < 1)
+                                                {
+                                                    <tr>
+                                                        <td class="text-primary" colspan="5">
+                                                            Tips will be available on friday.
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @foreach (var item in Model.PredictionsLudicrous)
+                                                {
+                                                    <tr>
+                                                        <td align="center"><p class="fs-s">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month</p></td>
+                                                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                                        <td align="center" colspan="2"><p class="fs-s">@item.Match.ClubHomeName - @item.Match.ClubAwayName</p></td>
+                                                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" title="@item.Tip.TipName" /> </td>
+                                                        <td align="center"><p class="fs-s">@item.Odds</p></td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="CubeShowSide('ludicrous', 'back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="CubeShowSide('ludicrous', 'top')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="CubeShowSide('ludicrous', 'bottom')" />
+                                    </div>
+                                </div>
+
+                                <div class="cube__face cube__face--back">
+                                    <div class="cube-face-header">
+                                        <img src="~/img/ludicrousSmall.svg" alt="ludicrous" />
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">last round</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                @foreach (var item in Model.PredictionsPreviousLudicrous)
+                                                {
+                                                    <tr>
+                                                        <td align="center"><p class="fs-s">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month</p></td>
+                                                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
+                                                        <td align="center" colspan="2"><p class="fs-s">@item.Match.ClubHomeName - @item.Match.ClubAwayName</p></td>
+                                                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" title="@item.Tip.TipName" /> </td>
+                                                        @if (item.IsCorrect.Value == true)
+                                                        {
+                                                            <td align="center"><p class="fs-s text-success">@item.Odds</p></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td align="center"><p class="fs-s text-danger">@item.Odds</p></td>
+                                                        }
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="CubeShowSide('ludicrous', 'front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="CubeShowSide('ludicrous', 'top')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="CubeShowSide('ludicrous', 'bottom')" />
+                                    </div>
+                                </div>
+
+                                <!--right, left-->
+                                <div class="cube__face cube__face--right">
+                                    <div class="m-auto">
+                                        <img src="~/img/logo-large.svg" />
+                                    </div>
+                                </div>
+                                <div class="cube__face cube__face--left">
+                                    <div class="m-auto">
+                                        <img src="~/img/logo-large.svg" />
+                                    </div>
+                                </div>
+
+                                <!--top, bottom-->
+                                <div class="cube__face cube__face--top">
+                                    <div class="cube-face-header">
+                                        <img src="~/img/ludicrousSmall.svg" alt="ludicrous" />
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">tip stats</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2"><h5>tip</h5></th>
+                                                    <th scope="col">
+                                                        <h5>odds</h5>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <h5>total</h5>
+                                                    </th>
+                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>%</h5></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.TipsLudicrous.OrderByDescending(k => k.Value[1]).ThenByDescending(k => k.Value[2]))
+                                                {
+                                                    decimal TipTotal = item.Value[1];
+                                                    decimal TipWins = item.Value[2];
+                                                    decimal TipPercentage = (TipWins / TipTotal) * 100;
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            <img src=@item.Key.TipFlag title="@item.Key.TipName" />
+                                                        </td>
+                                                        <td><h6>@item.Value[0].ToString("#.00")</h6></td>
+                                                        <td><h6>@TipTotal</h6></td>
+                                                        <td><h6>@TipWins</h6></td>
+                                                        <td>
+
+                                                            @if (TipPercentage == 0)
+                                                            {
+                                                                <h6>0%</h6>
+                                                            }
+                                                            else
+                                                            {
+                                                                <h6>@TipPercentage.ToString("#.00")%</h6>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="CubeShowSide('ludicrous', 'front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="CubeShowSide('ludicrous', 'back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="league stats"
+                                               onclick="CubeShowSide('ludicrous', 'bottom')" />
+                                    </div>
+                                </div>
+                                <div class="cube__face cube__face--bottom">
+                                    <div class="cube-face-header">
+                                        <img src="~/img/ludicrousSmall.svg" alt="ludicrous" />
+                                        <h5 class="mt-1">
+                                            <span class="cube-table-heading">league stats</span>
+                                        </h5>
+                                    </div>
+                                    <div class="cube-table-holder">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2"><h5>league</h5></th>
+                                                    <th scope="col">
+                                                        <h5>total</h5>
+                                                    </th>
+                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>%</h5></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.LeaguesLudicrous.OrderByDescending(k => k.Value[0]).ThenByDescending(k => k.Value[1]))
+                                                {
+                                                    decimal LeagueTotal = item.Value[0];
+                                                    decimal LeagueWins = item.Value[1];
+                                                    decimal LeaguePercentage = (LeagueWins / LeagueTotal) * 100;
+                                                    <tr>
+                                                        <td>
+                                                            <img src=@item.Key.LeagueFlag width="33" height="22" />
+                                                        </td>
+                                                        <td>
+                                                            <p class="fs-s">@item.Key.LeagueName</p>
+                                                        </td>
+
+                                                        <td>
+                                                            <p class="fs-s">
+                                                                @LeagueTotal
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="fs-s">
+                                                                @LeagueWins
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            @if (LeaguePercentage == 0)
+                                                            {
+                                                                <p class="fs-s">0%</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p class="fs-s">
+                                                                    @LeaguePercentage.ToString("#.00")%
+                                                                </p>
+                                                            }
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="cube-face-footer">
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="this round"
+                                               onclick="CubeShowSide('ludicrous', 'front')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="last round"
+                                               onclick="CubeShowSide('ludicrous', 'back')" />
+                                        <input class="btn bg-black font-weight-bold"
+                                               type="submit"
+                                               value="tip stats"
+                                               onclick="CubeShowSide('ludicrous', 'top')" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
             </div>
-
-
-
-
-
-
         </div>
 
         <div class="about-component" id="aboutholder">

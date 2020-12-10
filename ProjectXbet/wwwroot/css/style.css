@@ -151,6 +151,11 @@ a:hover {
     background-color: #1e1d22;
     box-shadow: 0 10px 6px -6px #777;
 }
+.about-items-holder{
+    margin-left: 5vw;
+    width: 90%;
+    margin-top: 37vh;
+}
 .about-item:hover {
     border-bottom: 5px solid #1e1d22;
 }
@@ -1053,6 +1058,9 @@ svg {
         bottom: auto;
         width: 100%;
     }
+    .about-items-holder {
+        margin-top: 27vh;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
@@ -1104,7 +1112,10 @@ svg {
         bottom: 1%;
         margin-top: 5vh;
     }
-    .risky-col{
+    .adventurous-col{
+        margin-top: 14vh;
+    }
+    .ludicrous-col {
         margin-top: 14vh;
     }
     .about-component {

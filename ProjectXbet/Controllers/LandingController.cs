@@ -29,10 +29,15 @@ namespace ProjectXbet.Controllers
             viewModel.TipsMonotonous = await statisticsRepository.GetTipStats(1);
             viewModel.LeaguesMonotonous = await statisticsRepository.GetLeagueStats(1);
 
-            viewModel.PredictionsAdventurous = await predictionRepository.GetPredictionsByTipType("Basic", 1);
+            viewModel.PredictionsAdventurous = await predictionRepository.GetPredictionsByTipType("Basic", 2);
             viewModel.PredictionsPreviousAdventurous = await statisticsRepository.GetPredictionsPrevious(2);
             viewModel.TipsAdventurous = await statisticsRepository.GetTipStats(2);
             viewModel.LeaguesAdventurous = await statisticsRepository.GetLeagueStats(2);
+
+            viewModel.PredictionsLudicrous = await predictionRepository.GetPredictionsByTipType("Basic", 3);
+            viewModel.PredictionsPreviousLudicrous = await statisticsRepository.GetPredictionsPrevious(3);
+            viewModel.TipsLudicrous = await statisticsRepository.GetTipStats(3);
+            viewModel.LeaguesLudicrous = await statisticsRepository.GetLeagueStats(3);
 
             viewModel.TipTypeStats.Add(await statisticsRepository.GetTipTypeStats(1));
             viewModel.TipTypeStats.Add(await statisticsRepository.GetTipTypeStats(2));
