@@ -36,39 +36,42 @@
                     <div class="login-form-items">
                         <div class="login-form-item">
                             <input type="text" asp-for="UserName" placeholder="username" />
-                             <span class="fs-s text-ludicrous" asp-validation-for="UserName"></span>
+                            <span class="fs-s text-ludicrous" asp-validation-for="UserName"></span>
                         </div>
-                        
+
                         <div class="login-form-item">
                             <input type="password" asp-for="Password" placeholder="password" />
                             <span class="fs-s text-ludicrous" asp-validation-for="Password"></span>
                         </div>
-                        
+
                         <div class="login-form-item flex-row justify-content-end">
                             <small style="color: #535353;">remember me</small>
                             <input asp-for="RememberMe" />
                         </div>
-                        
+
                         <div class="login-form-item flex-row justify-content-end">
                             <input class="btn btn-login" style="font-size: 14px;" type="submit" value="log in" />
                         </div>
                         <br />
-                        <div class="login-form-item" style="margin-top: 25vh;">
-                            <div class="row">
-                                <div class="col text-center">
-                                    <a asp-controller="Account" asp-action="Login">
-                                        <small class="text-dark">password recovery</small>
-                                    </a>
-                                </div>
-                                <div class="col text-center">
-                                    <a asp-controller="Account" asp-action="Register">
-                                        <small class="text-yellow">register</small>
-                                    </a>
-                                </div>
-                            </div>    
-                        </div>
+
                     </div>
                 </form>
+                <div class="login-form-items">
+                    <div class="login-form-item" style="margin-top: 25vh;">
+                        <div class="row">
+                            <div class="col text-center">
+                                <a asp-controller="Account" asp-action="Login">
+                                    <small class="text-dark">password recovery</small>
+                                </a>
+                            </div>
+                            <div class="col text-center">
+                                <a asp-controller="Account" asp-action="Register">
+                                    <small class="text-yellow">register</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

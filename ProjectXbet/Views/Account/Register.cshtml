@@ -23,8 +23,12 @@
                 <img src="~/img/logo-landing.svg" alt="logo" />
             </div>
         </div>
-
-        <div class="row mt-5">
+        <div class="row mt-3">
+            <div class="col text-left">
+                <h5 class="text-grey">user registration</h5>
+            </div>
+        </div>
+        <div class="row mt-2">
             <div class="col text-center">
 
                 <form id="login-form" asp-controller="Account" asp-action="Register">
@@ -48,25 +52,28 @@
                             <input type="password" asp-for="ConfirmPassword" placeholder="confirm password" title="make sure passwords match" />
                             <span class="fs-s text-ludicrous" asp-validation-for="ConfirmPassword"></span>
                         </div>
-                        <div class="login-form-item">
+                        <div class="login-form-item flex-row justify-content-end">
                             <input class="btn btn-login" style="font-size: 14px;" type="submit" value="register" />
                         </div>
-                        <div class="login-form-item">
-                            <div class="row">
-                                <div class="col text-center">
-                                    <a asp-controller="Account" asp-action="Login">
-                                        <small class="text-dark">password recovery</small>
-                                    </a>
-                                </div>
-                                <div class="col text-center">
-                                    <a asp-controller="Account" asp-action="Login">
-                                        <small class="text-yellow">log in</small>
-                                    </a>
-                                </div>
+
+                    </div>
+                </form>
+                <div class="login-form-items">
+                    <div class="login-form-item">
+                        <div class="row">
+                            <div class="col text-center">
+                                <a asp-controller="Account" asp-action="Login">
+                                    <small class="text-dark">password recovery</small>
+                                </a>
+                            </div>
+                            <div class="col text-center">
+                                <a asp-controller="Account" asp-action="Login">
+                                    <small class="text-yellow">log in</small>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

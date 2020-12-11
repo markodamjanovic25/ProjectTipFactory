@@ -17,6 +17,8 @@ namespace ProjectXbet.ViewModels
         public string Email { get; set; }
 
         [Required]
+        []
+        [MinLength(6, ErrorMessage = "Password should be at least 6 characters long and include uppercase character, lowercase character, a digit and a non-alphanumeric character.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }      
         
