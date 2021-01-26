@@ -3,7 +3,6 @@
 <div class="col-md-4 m-auto" style="border: 4px solid black;">
     <h4>Edit match</h4>
     <form class="m-auto" asp-controller="Administration" asp-action="EditMatch" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="MatchId" />
         <h5>Match id:@Model.MatchId</h5>
         <div class="form-group">
@@ -17,27 +16,22 @@
         <div class="form-group">
             <label asp-for="ClubAwayName" class="control-label"></label>
             <input asp-for="ClubAwayName" class="form-control" />
-            <span asp-validation-for="ClubAwayName" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="ClubHomeGoalsHalf" class="control-label"></label>
             <input asp-for="ClubHomeGoalsHalf" class="form-control" />
-            <span asp-validation-for="ClubHomeGoalsHalf" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="ClubAwayGoalsHalf" class="control-label"></label>
             <input asp-for="ClubAwayGoalsHalf" class="form-control" />
-            <span asp-validation-for="ClubAwayGoalsHalf" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="ClubHomeGoals" class="control-label"></label>
             <input asp-for="ClubHomeGoals" class="form-control" />
-            <span asp-validation-for="ClubHomeGoals" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="ClubAwayGoals" class="control-label"></label>
             <input asp-for="ClubAwayGoals" class="form-control" />
-            <span asp-validation-for="ClubAwayGoals" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="LeagueId" class="control-label"></label>

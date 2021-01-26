@@ -46,6 +46,14 @@ namespace ProjectXbet.Controllers
         }
         //viewodel objects fill
         
+        [HttpGet]
+        public async Task<IActionResult> ShowLeagueStats(int LeagueId)
+        {
+            LeagueViewModel lVM = new LeagueViewModel();
+            lVM.League = await leagueRepository.GetLeagueByIdAsync(LeagueId);
+            lVM.Predictions = await leagueRepository.GetTipsByLeagueId(LeagueId);
+            return View("League", lVM);
+        }
 
         
 

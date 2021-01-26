@@ -114,7 +114,12 @@ namespace ProjectXbet.Controllers
                 MatchDateTime = match.MatchDateTime,
                 ClubHomeName = match.ClubHomeName,
                 ClubAwayName = match.ClubAwayName,
-                League = await leagueRepository.GetLeagueByIdAsync(match.LeagueId),
+                ClubHomeGoalsHalf = (int)match.ClubHomeGoalsHalf,
+                ClubAwayGoalsHalf = (int)match.ClubAwayGoalsHalf,
+                ClubHomeGoals = (int)match.ClubHomeGoals,
+                ClubAwayGoals = (int)match.ClubAwayGoals,
+                LeagueId = match.LeagueId,
+                //League = await leagueRepository.GetLeagueByIdAsync(match.LeagueId),
                 Leagues = await leagueRepository.GetLeagues()
             };
             return View("Match", matchViewModel);

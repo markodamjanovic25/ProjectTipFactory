@@ -34,7 +34,7 @@ namespace ProjectXbet.ViewModels
         public int ClubAwayGoals { get; set; }
         [DisplayName("League")]
         public int LeagueId { get; set; }
-        public League League { get; set; }
+        //public League League { get; set; }
 
         public List<League> Leagues;
     }
