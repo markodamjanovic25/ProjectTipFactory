@@ -8,267 +8,406 @@
     let activeItemSM = document.getElementById("sm-item-stats");
     activeItemSM.classList.add("nav-item-active");
 </script>
+
 <div class="row">
-    <div class="col-4"></div>
-    @if (TipTypeId == 1)
-    {
-        <div class="col-4 tiptype-holder">
-            <div class="row">
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
-                        <img src="~/img/monotonousMediumActive.svg" alt="monotonous" />
-                    </a>
+    <div class="col-2">
+        <div class="tf-navbar-left">
+            <div class="tf-navbar-left-page-navbar-holder">
+                <div class="row">
+                    <div class="col page-navbar-item page-navbar-item-active" id="page-navbar-item-previous-holder">
+                        <span class="nav-item-text">Previous</span>
+                    </div>
                 </div>
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
-                        <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
+                <div class="row">
+                    <div class="col page-navbar-item" id="page-navbar-item-leagues-holder">
+                        <span class="nav-item-text">Leagues</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col page-navbar-item" id="page-navbar-item-tips-holder">
+                        <span class="nav-item-text">Tips</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tf-navbar-left-tiptype-holder">
+                <h5><span class="font-weight-bold text-orange">Tip type</span></h5>
+                <hr />
+                <div class="row mt-3">
+                    @if (TipTypeId == 1)
+                    {
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                                <img src="~/img/monotonousMediumActive.svg" alt="monotonous" />
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
+                                <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
 
 
-                    </a>
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
+                                <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
+                            </a>
+                        </div>
+                    }
+                    else if (TipTypeId == 2)
+                    {
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                                <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
+                                <img src="~/img/adventurousMediumActive.svg" alt="adventurous" />
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
+                                <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                                <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
+                                <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
+                            </a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
+                                <img src="~/img/ludicrousMediumActive.svg" alt="ludicrous" />
+                            </a>
+                        </div>
+                    }
                 </div>
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
-                        <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
-                    </a>
+
+            </div>
+            <div class="tf-navbar-left-leagues-holder">
+                <h5><span class="font-weight-bold text-orange">Leagues</span></h5>
+                <hr />
+                @foreach (var item in Model.Leagues)
+                {
+                    <div class="row tf-navbar-left-league-item-holder">
+                        <div class="col">
+                            <a class="tf-navbar-left-league-item" href="#" id="tf-navbar-left-@item.LeagueId">
+                                <img src="@item.LeagueFlag" width="33" height="22" />
+                                <span class="fs-s text-dark font-weight-bolder">@item.LeagueName</span>
+                            </a>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $("#tf-navbar-left-@item.LeagueId").on("click", function () {
+                                                $.ajax({
+                                                    url: "Statistics/ShowPreviousTipsByLeagueAndTipType",
+                                                    method: "POST",
+                                                    data: {LeagueId : @item.LeagueId, TipTypeId : @TipTypeId}
+                                                }).done(function () {
+                                                    $('#stats-tips-table').load(document.URL + ' #stats-tips-table');
+                                                });
+                                            });
+                                        });
+                    </script>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="stats-content-holder text-center mt-3" id="stats-tips-holder">
+                    <div class="mt-3 tips-holder-header">
+                        <h4><span class="section-heading">Tips <img src="img/tipsFlag.svg" /></span></h4>
+                    </div>
+                    <div class="row">
+                        @foreach(var item in Model.Predictions)
+                        {
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="tip-card">
+                                <div class="row tip-card-match bg-blue">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col-4 text-left"><span class="tip-card-text-second">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</span></div>
+                                            <div class="col-4 text-center"><img src="@item.Match.League.LeagueFlag" width="33" height="22" /></div>
+                                            <div class="col-4"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5 text-right"><span class="tip-card-text">@item.Match.ClubHomeName</span></div>
+                                            <div class="col-2 text-center"><span class="tip-card-text">@item.Match.ClubHomeGoals-@item.Match.ClubAwayGoals</span></div>
+                                            <div class="col-5 text-left"><span class="tip-card-text">@item.Match.ClubAwayName</span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center"><span class="tip-card-text-second">(@item.Match.ClubHomeGoalsHalf-@item.Match.ClubAwayGoalsHalf) </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row tip-card-tip">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <img src="@item.Tip.TipFlag" width="33" height="22" />
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col text-center">
+                                                <span class="tip-card-text-second text-blue">@item.Tip.TipName</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="row mt-2">
+                                            <div class="col-4"></div>
+                                            @if (item.IsCorrect.Value)
+                                            {
+                                                <div class="col-4 text-center"><img src="~/img/IsCorrectTrue.svg" /></div>
+                                                <div class="col-4 text-right"><span class="tip-card-text text-adventurous">@item.Odds</span></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-4 text-center"><img src="~/img/IsCorrectFalse.svg" /></div>
+                                                <div class="col-4 text-right"><span class="tip-card-text text-ludicrous">@item.Odds</span></div>
+                                            }
+
+                                        </div>*@
+                                        @if (item.IsCorrect.Value)
+                                        {
+                                            <div class="row mt-2 bg-adventurous p-2">
+                                                <div class="col-4"></div>
+                                                <div class="col-4 text-center"><img src="~/img/IsCorrectWhite.svg" /></div>
+                                                <div class="col-4 text-right"><span class="tip-card-text text-white">@item.Odds</span></div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="row mt-2 bg-ludicrous p-2">
+                                                <div class="col-4"></div>
+                                                <div class="col-4 text-center"><img src="~/img/IsCorrectWhite.svg" /></div>
+                                                <div class="col-4 text-right"><span class="tip-card-text text-white">@item.Odds</span></div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-    }
-    else if (TipTypeId == 2)
-    {
-        <div class="col-4 tiptype-holder">
-            <div class="row">
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
-                        <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
-                    </a>
-                </div>
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
-                        <img src="~/img/adventurousMediumActive.svg" alt="adventurous" />
-                    </a>
-                </div>
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
-                        <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div class="col-4 tiptype-holder">
-            <div class="row">
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
-                        <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
-                    </a>
-                </div>
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="2">
-                        <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
-                    </a>
-                </div>
-                <div class="col-4 text-center">
-                    <a asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="3">
-                        <img src="~/img/ludicrousMediumActive.svg" alt="ludicrous" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    }
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="stats-content-holder text-center mt-3" id="stats-leaguestats-holder">
+                    <div class="mt-3 tips-holder-header">
+                        <h4><span class="section-heading">League stats <img src="~/img/leagueStatsFlag.svg"/></span></h4>
+                    </div>
 
-    <div class="col-4"></div>
+                    <div class="row">
+                        @foreach (var item in Model.LeagueStats.OrderByDescending(k => k.Value[0]).ThenByDescending(k => k.Value[1]))
+                        {
+                                decimal LeagueTotal = item.Value[0];
+                                decimal LeagueWins = item.Value[1];
+                                decimal LeaguePercentage = (LeagueWins / LeagueTotal) * 100;
+                            <div class="col-lg-3 col-sm-12">
+                                <div class="tip-card">
+                                    <div class="tip-card-tip bg-orange">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <img src="@item.Key.LeagueFlag" width="33" height="22" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <span class="tip-card-text">@item.Key.LeagueName</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tip-card-tip">
+                                        <div class="row">
+                                            <div class="col-4"><span class="tip-card-text-second text-blue">Total</span></div>
+                                            <div class="col-4"><span class="tip-card-text-second text-blue">Wins</span></div>
+                                            <div class="col-4"><span class="tip-card-text-second text-blue">%</span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4"><span class="tip-card-text font-weight-bold text-blue">@LeagueTotal</span></div>
+                                            <div class="col-4"><span class="tip-card-text font-weight-bold text-blue">@LeagueWins</span></div>
+                                            <div class="col-4">
+                                                @if (LeaguePercentage == 0)
+                                                    {
+                                                        <span class="tip-card-text font-weight-bold text-blue">0%</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="tip-card-text font-weight-bold text-blue">@LeaguePercentage.ToString("#.00")%</span>
+                                                    }
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col">
+                                                <a class="btn-blue d-block mt-3" asp-controller="Statistics" asp-action="ShowLeagueStats" asp-route-TipTypeId="@TipTypeId" asp-route-LeagueId="@item.Key.LeagueId">Show all</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="stats-content-holder text-center mt-3" id="stats-tipstats-holder">
+                    <div class="mt-3 tips-holder-header">
+                        <h4><span class="section-heading">Tip stats <img src="img/tipStatsFlag.svg" /></span></h4>
+                    </div>
+                    <div class="row">
+                        @{
+                            decimal TipTypeAverageOdds = (decimal)Model.TipTypeStats.GetValue(0);
+                            decimal TipTypeTotal = (decimal)Model.TipTypeStats.GetValue(1);
+                            decimal TipTypeWins = (decimal)Model.TipTypeStats.GetValue(2);
+                            decimal TipTypePercentage = (TipTypeWins / TipTypeTotal) * 100;
+                            decimal TipTypeRoi = ((TipTypeAverageOdds * TipTypeWins) - TipTypeTotal) / TipTypeTotal * 100;
+                        }
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="tip-card">
+                                <div class="tip-card-tip bg-orange">
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <img src="~/img/Overall.svg" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <span class="tip-card-text">Overall</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tip-card-tip">
+                                    <table>
+                                        <tr>
+                                            <th scope="col"><span class="tip-card-text-second text-blue">Odds</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-blue">Total</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-blue">Wins</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-blue">%</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-blue">ROI</span></th>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="tip-card-text font-weight-bold text-blue">@TipTypeAverageOdds.ToString("#.00")</span></td>
+                                            <td><span class="tip-card-text font-weight-bold text-blue">@TipTypeTotal</span></td>
+                                            <td><span class="tip-card-text font-weight-bold text-blue">@TipTypeWins</span></td>
+                                            <td>
+                                                @if (TipTypePercentage == 0)
+                                                {
+                                                    <span class="tip-card-text font-weight-bold text-blue">0%</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="tip-card-text font-weight-bold text-blue">@TipTypePercentage.ToString("#.00")%</span>
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @if (TipTypeRoi > 0)
+                                                {
+                                                    <span class="tip-card-text font-weight-bold text-adventurous">@TipTypeRoi.ToString("#.00")%</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="tip-card-text font-weight-bold text-ludicrous">@TipTypeRoi.ToString("#.00")%</span>
+                                                }
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in Model.TipStats.OrderByDescending(k => k.Value[1]).ThenByDescending(k => k.Value[2]))
+                        {
+                            decimal TipAverageOdds = item.Value[0];
+                            decimal TipTotal = item.Value[1];
+                            decimal TipWins = item.Value[2];
+                            decimal TipPercentage = (TipWins / TipTotal) * 100;
+                            decimal TipRoi = ((TipAverageOdds * TipWins) - TipTotal) / TipTotal * 100;
+                            <div class="col-lg-3 col-sm-12">
+                                <div class="tip-card">
+                                    <div class="tip-card-tip bg-orange">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <img src="@item.Key.TipFlag" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <span class="tip-card-text">@item.Key.TipName</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tip-card-tip">
+                                        <table>
+                                            <tr>
+                                                <th scope="col"><span class="tip-card-text text-blue">Odds</span></th>
+                                                <th scope="col"><span class="tip-card-text text-blue">Total</span></th>
+                                                <th scope="col"><span class="tip-card-text text-blue">Wins</span></th>
+                                                <th scope="col"><span class="tip-card-text text-blue">%</span></th>
+                                                <th scope="col"><span class="tip-card-text text-blue">ROI</span></th>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="tip-card-text font-weight-bold text-blue">@TipAverageOdds.ToString("#.00")</span></td>
+                                                <td><span class="tip-card-text font-weight-bold text-blue">@TipTotal</span></td>
+                                                <td><span class="tip-card-text font-weight-bold text-blue">@TipWins</span></td>
+                                                <td>
+                                                    @if (TipPercentage == 0)
+                                                    {
+                                                        <span class="tip-card-text font-weight-bold text-blue">0%</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="tip-card-text font-weight-bold text-blue">@TipPercentage.ToString("#.00")%</span>
+                                                    }
+
+                                                </td>
+                                                <td>
+                                                    @if (TipRoi > 0)
+                                                    {
+                                                        <span class="tip-card-text font-weight-bold text-adventurous">@TipRoi.ToString("#.00")%</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="tip-card-text font-weight-bold text-ludicrous">@TipRoi.ToString("#.00")%</span>
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a class="btn-blue d-block mt-3" asp-controller="Statistics" asp-action="ShowPredictionsByTip" asp-route-TipTypeId="@TipTypeId" asp-route-TipId="@item.Key.TipId">Show all</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-        <div class="row justify-content-center">
-            @*<div class="col-lg-2"></div>*@
-            <div class="col-xl-10 col-lg-12 col-sm-12">
-                <div class="stats-tips-holder text-center mt-3 p-1" id="stats-tips-holder">
-                        <div class="mt-3 tips-holder-header">
-                            <h3><span class="table-heading">tips</span></h3>
-                        </div>
-                        <div class="table-holder">
-                            <table class="table table-dark text-center">
-                                <tr>
-                                    <th scope="col">datetime</th>
-                                    <th scope="col"></th>
-                                    <th scope="col">match</th>
-                                    <th scope="col"></th>
-                                    <th scope="col">tip</th>
-                                    <th class="tip-name-cell" scope="col"></th>
-                                    <th scope="col">odds</th>
-                                    <th scope="col">
-                                        @*<select>
-                                @foreach(var item in Model.Leagues)
-                                {
-                                    <option value="@item.LeagueId">@item.LeagueName</option>
-                                }
-                            </select>*@
-                                    </th>
-                                </tr>
-                                @foreach (var item in Model.Predictions)
-                                {
-                                    <tr>
-                                        <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
-                                        <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
-                                        <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
-                                        <td align="center">@item.Match.ClubHomeGoals:@item.Match.ClubAwayGoals (@item.Match.ClubHomeGoalsHalf:@item.Match.ClubAwayGoalsHalf)</td>
-                                        <td align="center"><img src=@item.Tip.TipFlag width="33" height="22" /> </td>
-                                        <td class="tip-name-cell" align="center"><small>@item.Tip.TipName</small></td>
-                                        @if (item.IsCorrect.Value == true)
-                                        {
-                                            <td class="text-adventurous" align="center"><small>@item.Odds</small></td>
-                                            <td align="center"><img src="~/img/IsCorrectTrue.svg" /></td>
-                                        }
-                                        else
-                                        {
-                                            <td class="text-ludicrous" align="center"><small>@item.Odds</small></td>
-                                            <td align="center"><img src="~/img/IsCorrectFalse.svg" /></td>
-                                        }
-                                    </tr>
-                                }
-                            </table>
-                        </div>
-                    </div>
-                
-            </div>
-            @*<div class="col-lg-2"></div>*@
-        </div>
-        <div class="row justify-content-center">
-            @*<div class="col-lg-1"></div>*@
-            <div class="col-xl-4 col-lg-12 col-sm-12">
-                <div class="stats-leaguetip-holder text-center mt-3" id="stats-leaguestats-holder">
-                    <div class="tips-holder-header">
-                        <h3><span class="table-heading">league stats</span></h3>
-                    </div>
-                    <div class="table-holder">
-                        <table class="table table-dark text-center">
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col">league</th>
-                                <th scope="col">total</th>
-                                <th scope="col">wins</th>
-                                <th scope="col">%</th>
-                            </tr>
-                            @foreach (var item in Model.LeagueStats.OrderByDescending(k => k.Value[0]).ThenByDescending(k => k.Value[1]))
-                            {
-                                    decimal LeagueTotal = item.Value[0];
-                                    decimal LeagueWins = item.Value[1];
-                                    decimal LeaguePercentage = (LeagueWins / LeagueTotal) * 100;
-                                <tr>
-                                    <td>
-                                        <img src=@item.Key.LeagueFlag width="33" height="22" />
-                                    </td>
-                                    <td>
-                                        <small>@item.Key.LeagueName</small>
-                                    </td>
-
-                                    <td>
-                                        <small>
-                                            @LeagueTotal
-                                        </small>
-                                    </td>
-                                    <td>
-                                        <small>
-                                            @LeagueWins
-                                        </small>
-                                    </td>
-                                    <td>
-                                        @if (LeaguePercentage == 0)
-                                        {
-                                            <small>0%</small>
-                                        }
-                                        else
-                                        {
-                                            <small>
-                                                @LeaguePercentage.ToString("#.00")%
-                                            </small>
-                                        }
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-blacknyellow" asp-controller="Statistics" asp-action="ShowLeagueStats" asp-route-LeagueId="@item.Key.LeagueId"></a>
-                                    </td>
-
-                                </tr>
-                            }
-                        </table>
-                    </div>
-                    @*<div class="d-inline float-right mt-1 mr-3">
-                        <select>
-                            <option>by total</option>
-                            <option>by wins</option>
-                            <option>by percentage</option>
-                        </select>
-                    </div>*@
-                </div>
-            </div>
-            <div class="col-xl-6 col-lg-12 col-sm-12">
-                <div class="stats-leaguetip-holder text-center mt-3" id="stats-tipstats-holder">
-                    <div class="tips-holder-header">
-                        <h3><span class="table-heading">tip stats</span></h3>
-                    </div>
-                    <div class="table-holder">
-                        <table class="table table-dark text-center">
-                            <tr>
-                                <th scope="col">tip</th>
-                                <th scope="col"></th>
-                                <th scope="col">odds</th>
-                                <th scope="col">total</th>
-                                <th scope="col">wins</th>
-                                <th scope="col">%</th>
-                            </tr>
-                            @{
-                                decimal TipTypeAverageOdds = (decimal)Model.TipTypeStats.GetValue(0);
-                                decimal TipTypeTotal = (decimal)Model.TipTypeStats.GetValue(1);
-                                decimal TipTypeWins = (decimal)Model.TipTypeStats.GetValue(2);
-                                decimal TipTypePercentage = (TipTypeWins / TipTypeTotal) * 100;
-                            }
-                            <tr>
-                                <td><img src="~/img/Overall.svg" /></td>
-                                <td><small class="text-yellow">overall</small></td>
-                                <td><small class="text-yellow">@TipTypeAverageOdds.ToString("#.00")</small></td>
-                                <td><small class="text-yellow">@TipTypeTotal</small></td>
-                                <td><small class="text-yellow">@TipTypeWins</small></td>
-                                <td>
-                                    <small class="text-yellow">
-                                        @TipTypePercentage.ToString("#.00")
-                                    </small>
-                                </td>
-                            </tr>
-                            @foreach (var item in Model.TipStats.OrderByDescending(k => k.Value[1]).ThenByDescending(k => k.Value[2]))
-                            {
-                                    decimal TipTotal = item.Value[1];
-                                    decimal TipWins = item.Value[2];
-                                    decimal TipPercentage = (TipWins / TipTotal) * 100;
-                                <tr>
-                                    <td>
-                                        <img src=@item.Key.TipFlag />
-                                    </td>
-                                    <td><small>@item.Key.TipName</small></td>
-                                    <td><small>@item.Value[0].ToString("#.00")</small></td>
-                                    <td><small>@TipTotal</small></td>
-                                    <td><small>@TipWins</small></td>
-                                    <td>
-                                        @if (TipPercentage == 0)
-                                        {
-                                            <small>0%</small>
-                                        }
-                                        else
-                                        {
-                                            <small>@TipPercentage.ToString("#.00")%</small>
-                                        }
-                                    </td>
-                                </tr>
-                            }
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col" style="height: 9vh;"></div>
-        </div>
         <nav class="nav-bottom" id="bottom-nav-stats-view">
             <ul class="nav-bottom-items-holder">
                 <li class="nav-bottom-item">

@@ -113,12 +113,23 @@ namespace DataAccessLibrary.Repository.SqlRepository
                                 .CountAsync();
         }
 
-        public async Task<List<Prediction>> GetTipsByLeagueId(int LeagueId)
+        public async Task<List<Prediction>> GetPredictionsByLeagueAndTipType(int LeagueId, int TipTypeId)
+        {
+            return await db.Predictions
+                                            .Include(p => p.Match)
+                                            .Include(p => p.Tip)
+                                        .Where(p => p.Match.LeagueId == LeagueId)
+                                        .Where(p => p.Tip.TipType.TipTypeId == TipTypeId)
+                                    .OrderByDescending(p => p.Match.MatchDateTime)
+                                    .ToListAsync();
+        }
+
+        public async Task<List<Prediction>> GetPredictionsByLeagueAndTip(int LeagueId, int TipId)
         {
             return await db.Predictions
                                         .Include(p => p.Match)
-                                        .Include(p => p.Tip)
-                                    .Where(p => p.Match.LeagueId == LeagueId)
+                                        .Where(p => p.Match.LeagueId == LeagueId)
+                                        .Where(p => p.TipId == TipId)
                                     .OrderByDescending(p => p.Match.MatchDateTime)
                                     .ToListAsync();
         }

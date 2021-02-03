@@ -17,12 +17,15 @@ namespace ProjectXbet.Controllers
     {
         private readonly IStatisticsRepository repository;
         private readonly ILeagueRepository leagueRepository;
+        private readonly ITipRepository tipRepository;
         private readonly StatisticsViewModel viewModel;
+        private bool AllLeaguesShown = true;
 
-        public StatisticsController(IStatisticsRepository repository, ILeagueRepository leagueRepository)
+        public StatisticsController(IStatisticsRepository repository, ILeagueRepository leagueRepository, ITipRepository tipRepository)
         {
             this.repository = repository;
             this.leagueRepository = leagueRepository;
+            this.tipRepository = tipRepository;
             viewModel = new StatisticsViewModel();
         }
 
@@ -45,16 +48,48 @@ namespace ProjectXbet.Controllers
             return await CreateViewModel(TipTypeId);
         }
         //viewodel objects fill
-        
+
+        [Route("league-stats")]
         [HttpGet]
-        public async Task<IActionResult> ShowLeagueStats(int LeagueId)
+        public async Task<IActionResult> ShowLeagueStats(int TipTypeId, int LeagueId)
         {
-            LeagueViewModel lVM = new LeagueViewModel();
-            lVM.League = await leagueRepository.GetLeagueByIdAsync(LeagueId);
-            lVM.Predictions = await leagueRepository.GetTipsByLeagueId(LeagueId);
+            LeagueViewModel lVM = new LeagueViewModel
+            {
+                League = await leagueRepository.GetLeagueByIdAsync(LeagueId),
+                Predictions = await leagueRepository.GetPredictionsByLeagueAndTipType(LeagueId, TipTypeId),
+                TipStats = await repository.GetTipStatsByLeague(TipTypeId, LeagueId)
+            };
+            ViewData["TipTypeId"] = TipTypeId;
             return View("League", lVM);
         }
 
+        [Route("league-tip-stats")]
+        [HttpGet]
+        public async Task<IActionResult> ShowLeagueTipsByTip(int TipTypeId, int TipId, int LeagueId)
+        {
+            LeagueViewModel lVM = new LeagueViewModel
+            {
+                League = await leagueRepository.GetLeagueByIdAsync(LeagueId),
+                Predictions = await leagueRepository.GetPredictionsByLeagueAndTip(LeagueId, TipId),
+                TipStats = await repository.GetTipStatsByTipAndLeague(TipId, LeagueId)
+            };
+            ViewData["TipTypeId"] = TipTypeId;
+            return View("League", lVM);
+        }
+
+        [Route("tip-stats")]
+        [HttpGet]
+        public async Task <IActionResult> ShowPredictionsByTip(int TipTypeId, int TipId)
+        {
+            TipViewModel tVM = new TipViewModel
+            {
+                Tip = await tipRepository.GetTipByTipId(TipId),
+                Predictions = await repository.GetPredictionsByTipId(TipId),
+                TipStats = await repository.GetTipStatsByTipId(TipId)
+            };
+            ViewData["TipTypeId"] = TipTypeId;
+            return View("Tip", tVM);
+        }
         
 
     }

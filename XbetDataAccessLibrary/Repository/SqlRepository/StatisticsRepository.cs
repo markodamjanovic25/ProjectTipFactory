@@ -38,20 +38,20 @@ namespace DataAccessLibrary.Repository.SqlRepository
                                     .ThenBy(p => p.Match.League.LeagueId)
                             .ToListAsync();
         }
-        
+
         //This method returns dictionary including leagues and their stats
         public async Task<ConcurrentDictionary<League, int[]>> GetLeagueStats(int TipTypeId)
         {
             ConcurrentDictionary<League, int[]> LeagueStats = new ConcurrentDictionary<League, int[]>();
-            
-            foreach(var item in await db.Leagues.ToListAsync())
+
+            foreach (var item in await db.Leagues.ToListAsync())
             {
                 int Total = await leagueRepository.GetLeagueTotalPlayed(item.LeagueId, TipTypeId);
                 int Wins = await leagueRepository.GetLeagueWins(item.LeagueId, TipTypeId);
 
-                if(Total != 0)
+                if (Total != 0)
                     LeagueStats.TryAdd(item, new int[] { Total, Wins });
-                                   
+
             }
             return LeagueStats;
         }
@@ -68,10 +68,30 @@ namespace DataAccessLibrary.Repository.SqlRepository
                 decimal Total = await tipRepository.GetTipTotalPlayed(item.TipId);
                 decimal Wins = await tipRepository.GetTipWins(item.TipId);
 
-                if(Total != 0)
+                if (Total != 0)
                     TipStats.TryAdd(item, new decimal[] { Odds, Total, Wins });
             }
             return TipStats;
+        }
+
+        //This method returns dictionary including tips and their stats for League specified
+
+        public async Task<ConcurrentDictionary<Tip, decimal[]>> GetTipStatsByLeague(int TipTypeId, int LeagueId)
+        {
+            ConcurrentDictionary<Tip, decimal[]> TipStats = new ConcurrentDictionary<Tip, decimal[]>();
+
+            foreach (var item in await GetTipsByLeagueAndTipType(LeagueId, TipTypeId))
+            {
+                decimal Odds = await tipRepository.GetTipAverageOddsByLeague(item.TipId, LeagueId);
+                decimal Total = await tipRepository.GetTipTotalPlayedByLeague(item.TipId, LeagueId);
+                decimal Wins = await tipRepository.GetTipWinsByLeague(item.TipId, LeagueId);
+
+                if (Total != 0)
+                    TipStats.TryAdd(item, new decimal[] { Odds, Total, Wins });
+            }
+
+            return TipStats;
+
         }
 
         #region TipType
@@ -87,7 +107,18 @@ namespace DataAccessLibrary.Repository.SqlRepository
                                 .ToListAsync();
         }
 
-        
+        public async Task<List<Tip>> GetTipsByLeagueAndTipType(int LeagueId, int TipTypeId)
+        {
+            return await db.Predictions
+                                            .Include(p => p.Match)
+                                            .Include(p => p.Tip)
+                                        .Where(p => p.Match.LeagueId == LeagueId)
+                                        .Where(p => p.Tip.TipType.TipTypeId == TipTypeId)
+                                        .Where(p => p.IsCorrect != null)
+                                    .OrderByDescending(p => p.Match.MatchDateTime)
+                                    .Select(p => p.Tip)
+                                    .ToListAsync();
+        }
 
         public async Task<decimal[]> GetTipTypeStats(int TipTypeId)
         {
@@ -129,5 +160,47 @@ namespace DataAccessLibrary.Repository.SqlRepository
 
         #endregion
 
+        public async Task<ConcurrentDictionary<Tip, decimal[]>> GetTipStatsByTipAndLeague(int TipId, int LeagueId)
+        {
+            ConcurrentDictionary<Tip, decimal[]> TipStats = new ConcurrentDictionary<Tip, decimal[]>();
+
+            Tip t = await tipRepository.GetTipByTipId(TipId);
+            decimal Odds = await tipRepository.GetTipAverageOddsByLeague(TipId, LeagueId);
+            decimal TotalPlayed = await tipRepository.GetTipTotalPlayedByLeague(TipId, LeagueId);
+            decimal Wins = await tipRepository.GetTipWinsByLeague(TipId, LeagueId);
+            TipStats.TryAdd(t, new decimal[] { Odds, TotalPlayed, Wins });
+            return TipStats;
+        }
+
+        public async Task<List<Prediction>> GetPredictionsByTipId(int TipId)
+        {
+            return await db.Predictions
+                                .Include(p => p.Match)
+                                    .ThenInclude(p => p.League)
+                                .Include(p => p.Tip)
+                                .Where(p => p.IsCorrect != null)
+                                .Where(p => p.TipId == TipId)
+                                .OrderByDescending(p => p.Match.MatchDateTime)
+                                    .ThenBy(p => p.Match.League.LeagueId)
+                                .ToListAsync();
+        }
+
+        //This method returns dictionary including tip and its stats
+        public async Task<ConcurrentDictionary<Tip, decimal[]>> GetTipStatsByTipId(int TipId)
+        {
+            ConcurrentDictionary<Tip, decimal[]> TipStats = new ConcurrentDictionary<Tip, decimal[]>();
+
+            Tip t = await tipRepository.GetTipByTipId(TipId);
+
+            decimal Odds = await tipRepository.GetTipAverageOdds(TipId);
+            decimal Total = await tipRepository.GetTipTotalPlayed(TipId);
+            decimal Wins = await tipRepository.GetTipWins(TipId);
+
+            TipStats.TryAdd(t, new decimal[] { Odds, Total, Wins });
+
+            return TipStats;
+
+
+        }
     }
 }

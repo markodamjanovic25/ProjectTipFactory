@@ -22,6 +22,7 @@ namespace DataAccessLibrary.Repository.IRepository
         Task<List<decimal>> GetAllOddsByTipType(int TipTypeId);
 
         Task<Dictionary<League, List<int[]>>> GetLeagueStatsByOdds(int TipTypeId);
-        Task<List<Prediction>> GetTipsByLeagueId(int LeagueId);
+        Task<List<Prediction>> GetPredictionsByLeagueAndTipType(int LeagueId, int TipTypeId);
+        Task<List<Prediction>> GetPredictionsByLeagueAndTip(int LeagueId, int TipId);
     }
 }

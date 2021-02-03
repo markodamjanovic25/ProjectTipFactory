@@ -79,10 +79,14 @@ function CubeShowSide(cube, side) {
 
 //Nav
 function NavItemActivate(item) {
-  div = document.getElementById(item);
-  svg = document.getElementById(item + "-svg");
-  div.classList.add(item + "-active");
-  svg.className = "nav-item-tips-svg-active";
+    div = document.getElementById(item);
+    div.classList.add(item + "-active");
+
+
+    svg = document.getElementById(item + "-svg");
+    svg.className = "nav-item-tips-svg-active";
+  
+  
 }
 
 let isNavExpanded = false;
@@ -326,4 +330,44 @@ $("#bottom-nav-invoices-account").on("click", function () {
     $("#account-user-holder").hide();
     $("#account-invoices-holder").show();
     $(this).addClass("nav-item-active");
+})
+
+/*page "Stats" navbar*/
+
+$("#page-navbar-item-previous-holder").on("click", function () {
+    $("#page-navbar-item-leagues-holder").removeClass("page-navbar-item-active");
+    $("#page-navbar-item-tips-holder").removeClass("page-navbar-item-active");
+    $("#page-navbar-item-previous-holder").addClass("page-navbar-item-active");
+
+    $("#stats-tipstats-holder").hide();
+    $("#stats-leaguestats-holder").hide();
+    $("#stats-tips-holder").css("height", "5vh");
+    $("#stats-tips-holder").show();
+    $("#stats-tips-holder").animate({ height: "100vh" });
+})
+
+$("#page-navbar-item-leagues-holder").on("click", function () {
+    $("#page-navbar-item-previous-holder").removeClass("page-navbar-item-active");
+    $("#page-navbar-item-tips-holder").removeClass("page-navbar-item-active");
+    $("#page-navbar-item-leagues-holder").addClass("page-navbar-item-active");
+
+    $("#stats-tipstats-holder").hide();
+    $("#stats-tips-holder").hide();
+    $("#stats-leaguestats-holder").css("height", "5vh");
+    $("#stats-leaguestats-holder").show();
+    $("#stats-leaguestats-holder").animate({ height: "100vh" });
+})
+
+$("#page-navbar-item-tips-holder").on("click", function () {
+    $("#page-navbar-item-previous-holder").removeClass("page-navbar-item-active");
+    $("#page-navbar-item-leagues-holder").removeClass("page-navbar-item-active");
+    $("#page-navbar-item-tips-holder").addClass("page-navbar-item-active");
+
+    $("#stats-leaguestats-holder").hide();
+    $("#stats-tips-holder").hide();
+    $("#stats-tipstats-holder").css("height", "5vh");
+    $("#stats-tipstats-holder").show();
+    $("#stats-tipstats-holder").animate({ height: "100vh" });
+
+
 })

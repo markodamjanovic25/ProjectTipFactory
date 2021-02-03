@@ -25,7 +25,12 @@ namespace DataAccessLibrary.Repository.SqlRepository
         {
             return await db.Tips.ToListAsync();
         }
-
+        public async Task<Tip> GetTipByTipId(int TipId)
+        {
+            return await db.Tips
+                                .Where(t => t.TipId == TipId)
+                            .SingleAsync();
+        }
         //This method returns average odds of Tip whose Id is provided
         public async Task<decimal> GetTipAverageOdds(int TipId)
         {
@@ -53,6 +58,35 @@ namespace DataAccessLibrary.Repository.SqlRepository
                         .CountAsync();
         }
 
+        public async Task<decimal> GetTipAverageOddsByLeague(int TipId, int LeagueId)
+        {
+            return await db.Predictions
+                                        .Where(p => p.TipId == TipId)
+                                        .Include(p => p.Match)
+                                        .Where(p => p.Match.LeagueId == LeagueId)
+                                    .Select(p => p.Odds)
+                                    .AverageAsync();
+        }
+
+        public async Task<decimal> GetTipTotalPlayedByLeague(int TipId, int LeagueId)
+        {
+            return await db.Predictions
+                                        .Where(p => p.TipId == TipId)
+                                        .Include(p => p.Match)
+                                        .Where(p => p.Match.LeagueId == LeagueId)
+                                        .Where(p => p.IsCorrect != null)
+                                    .CountAsync();
+        }
+
+        public async Task<decimal> GetTipWinsByLeague(int TipId, int LeagueId)
+        {
+            return await db.Predictions
+                                        .Where(p => p.TipId == TipId)
+                                        .Include(p => p.Match)
+                                        .Where(p => p.Match.LeagueId == LeagueId)
+                                        .Where(p => p.IsCorrect == true)
+                                    .CountAsync();
+        }
 
     }
 }

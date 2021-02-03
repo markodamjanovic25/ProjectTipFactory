@@ -10,5 +10,9 @@ namespace ProjectXbet.ViewModels
     {
         public League League { get; set; }
         public ICollection<Prediction> Predictions { get; set; }
+
+        public IDictionary<Tip, decimal[]> TipStats { get; set; }
+        
+        //best tip
     }
 }
