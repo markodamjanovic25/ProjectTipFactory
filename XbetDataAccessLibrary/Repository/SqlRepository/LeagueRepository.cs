@@ -118,6 +118,7 @@ namespace DataAccessLibrary.Repository.SqlRepository
             return await db.Predictions
                                             .Include(p => p.Match)
                                             .Include(p => p.Tip)
+                                        .Where(p => p.IsCorrect != null)
                                         .Where(p => p.Match.LeagueId == LeagueId)
                                         .Where(p => p.Tip.TipType.TipTypeId == TipTypeId)
                                     .OrderByDescending(p => p.Match.MatchDateTime)
@@ -128,6 +129,7 @@ namespace DataAccessLibrary.Repository.SqlRepository
         {
             return await db.Predictions
                                         .Include(p => p.Match)
+                                        .Where(p => p.IsCorrect != null)
                                         .Where(p => p.Match.LeagueId == LeagueId)
                                         .Where(p => p.TipId == TipId)
                                     .OrderByDescending(p => p.Match.MatchDateTime)
