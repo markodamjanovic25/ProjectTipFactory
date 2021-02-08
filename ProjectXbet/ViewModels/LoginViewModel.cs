@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel : BaseViewModel
     {
         [Required]
         public string UserName { get; set; }

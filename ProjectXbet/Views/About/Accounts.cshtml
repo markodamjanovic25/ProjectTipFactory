@@ -1,4 +1,5 @@
-﻿<script>
+﻿@model ProjectXbet.ViewModels.BaseViewModel
+<script>
     let activeItemLG = document.getElementById("lg-item-about");
     activeItemLG.classList.add("nav-item-active");
     let activeItemSM = document.getElementById("sm-item-about");
@@ -7,8 +8,8 @@
 
     
         
-            
-            <h4 class="text-dark font-weight-bolder mt-5"><span class="table-heading">accounts</span></h4>
+<div class="p-5">
+            <span class="section-heading">Account upgrade</span>
             <div class="border-danger bg-light" style="border: 2px solid red; width: 90%;">
                 <h5 class="text-danger">Since we are still heavily testing all the tips we provide, you will be getting all of them through Basic type of profile.</h5>
             </div>
@@ -16,64 +17,38 @@
                 <div class="col-lg-3 col-sm-12">
                     <div class="account-type-holder">
                         <div class="text-center mt-3">
-                            <svg width="100"
-                                 height="74"
-                                 viewBox="0 0 100 74"
-                                 fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path d="M91.6667 8.22222V65.7778H8.33333V8.22222H91.6667ZM100 0H0V74H100V0ZM58.3333 55.8988V57.5556H16.6667V55.8412C16.65 51.2697 16.85 48.6591 22.1833 47.4422C28.0292 46.1102 33.7958 44.9221 31.025 39.8737C22.8042 24.9216 28.6792 16.4444 37.5 16.4444C46.1542 16.4444 52.1708 24.605 43.9833 39.8737C41.2875 44.8892 46.85 46.0814 52.8208 47.4422C58.1708 48.6632 58.3542 51.2902 58.3333 55.8988Z"
-                                      fill="white" />
+                            <svg width="150" height="111" viewBox="0 0 150 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M137.5 12.3333V98.6667H12.5V12.3333H137.5ZM150 0H0V111H150V0ZM87.5 83.8482V86.3333H25V83.7618C24.975 76.9045 25.275 72.9887 33.275 71.1633C42.0438 69.1653 50.6938 67.3832 46.5375 59.8105C34.2063 37.3823 43.0187 24.6667 56.25 24.6667C69.2313 24.6667 78.2563 36.9075 65.975 59.8105C61.9313 67.3338 70.275 69.1222 79.2313 71.1633C87.2563 72.9948 87.5313 76.9353 87.5 83.8482Z" fill="#1A181B" />
                             </svg>
-                            <h5 class="text-white">basic</h5>
+
+                            <h5 class="text-dark">Basic</h5>
                         </div>
                         <div class="text-center">
-                            @*<svg width="255" height="94" viewBox="0 0 255 94" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g filter="url(#filter0_d)">
-                                    <rect x="4" width="247" height="85" fill="#484553" />
-                                </g>
-                                <path d="M87.2339 31.4243H100.549V34.0439H89.8716V42.3545H100.549V44.9741H89.8716V58H87.2339V31.4243ZM107.926 31.4243H113.22C116.171 31.4243 118.17 31.5448 119.218 31.7856C120.796 32.147 122.078 32.9238 123.066 34.1162C124.054 35.2965 124.548 36.7539 124.548 38.4883C124.548 39.9336 124.204 41.2043 123.518 42.3003C122.843 43.3963 121.874 44.2274 120.609 44.7935C119.344 45.3475 117.598 45.6305 115.37 45.6426L124.927 58H121.639L112.1 45.6426H110.582V58H107.926V31.4243ZM110.582 34.0259V43.0591L115.153 43.0952C116.923 43.0952 118.23 42.9266 119.073 42.5894C119.929 42.2521 120.591 41.7161 121.061 40.9814C121.542 40.2347 121.783 39.4036 121.783 38.4883C121.783 37.597 121.542 36.79 121.061 36.0674C120.579 35.3327 119.947 34.8088 119.164 34.4956C118.381 34.1825 117.08 34.0259 115.261 34.0259H110.582ZM132.865 31.4243H148.095V34.0439H135.52V42.3545H147.986V44.9561H135.52V55.3804H147.986V58H132.865V31.4243ZM155.291 31.4243H170.521V34.0439H157.947V42.3545H170.413V44.9561H157.947V55.3804H170.413V58H155.291V31.4243Z" fill="white" />
-                                <defs>
-                                    <filter id="filter0_d" x="0" y="0" width="255" height="94" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                                        <feOffset dy="5" />
-                                        <feGaussianBlur stdDeviation="2" />
-                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" />
-                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-                                    </filter>
-                                </defs>
-                            </svg>*@
                             <img src="~/img/priceFree.svg" alt="free" />
 
                         </div>
                         <div class="text-center">
-                            <p class="text-white font-weight-bold">features</p>
-                            <p class="text-white">
-                                9 monotonous tips per round
+                            <p class="text-dark font-weight-bold">Features</p>
+                            <p class="text-dark">
+                                9 monotonous tips per round.
                                 <br />
-                                5 adventurous tips per round
-                                <br/>
-                                unlimited ludicrous tips
+                                5 adventurous tips per round.
+                                <br />
+                                Unlimited ludicrous tips.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-12">
                     <div class="account-type-holder">
-                    <div class="text-center mt-3">
-                        <svg width="100"
-                             height="74"
-                             viewBox="0 0 100 74"
-                             fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M74 17C66.0863 29.2949 61 36.9858 61 44.4615C61 51.9405 66.8159 58 74 58C81.1841 58 87 51.9405 87 44.4615C87 36.9858 81.9137 29.2949 74 17ZM73.9561 25.7467C74.715 26.9852 75.625 29.1411 75.625 31.4183C75.625 38.0945 69.125 39.1878 69.125 35.1254C69.125 32.3357 72.3555 28.2169 73.9561 25.7467V25.7467Z"
-                                  fill="#00A3FF" />
-                            <path d="M91.6667 8.22222V65.7778H8.33333V8.22222H91.6667ZM100 0H0V74H100V0ZM58.3333 55.8988V57.5556H16.6667V55.8412C16.65 51.2697 16.85 48.6591 22.1833 47.4422C28.0292 46.1102 33.7958 44.9221 31.025 39.8737C22.8042 24.9216 28.6792 16.4444 37.5 16.4444C46.1542 16.4444 52.1708 24.605 43.9833 39.8737C41.2875 44.8892 46.85 46.0814 52.8208 47.4422C58.1708 48.6632 58.3542 51.2902 58.3333 55.8988Z"
-                                  fill="white" />
-                        </svg>
-                        <h5 class="text-white">monotoner</h5>
-                    </div>
+                        <div class="text-center mt-3">
+                            <svg width="100" height="74" viewBox="0 0 100 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M74 17C66.0863 29.2949 61 36.9858 61 44.4615C61 51.9405 66.8159 58 74 58C81.1841 58 87 51.9405 87 44.4615C87 36.9858 81.9137 29.2949 74 17ZM73.9561 25.7467C74.715 26.9852 75.625 29.1411 75.625 31.4183C75.625 38.0945 69.125 39.1878 69.125 35.1254C69.125 32.3357 72.3555 28.2169 73.9561 25.7467Z" fill="#00A3FF" />
+                                <path d="M91.6667 8.22222V65.7778H8.33333V8.22222H91.6667ZM100 0H0V74H100V0ZM58.3333 55.8988V57.5556H16.6667V55.8412C16.65 51.2697 16.85 48.6591 22.1833 47.4422C28.0292 46.1102 33.7958 44.9221 31.025 39.8737C22.8042 24.9216 28.6792 16.4444 37.5 16.4444C46.1542 16.4444 52.1708 24.605 43.9833 39.8737C41.2875 44.8892 46.85 46.0814 52.8208 47.4422C58.1708 48.6632 58.3542 51.2902 58.3333 55.8988Z" fill="#1A181B" />
+                            </svg>
+
+                            <h5 class="text-dark">Monotoner</h5>
+                        </div>
                     <div class="text-center">
                         <svg width="255"
                              height="94"
@@ -113,33 +88,28 @@
                         </svg>
                     </div>
                     <div class="text-center">
-                        <p class="text-white font-weight-bold">features</p>
-                        <p class="text-white">
-                            unlimited monotonous tips
+                        <p class="text-dark font-weight-bold">Features</p>
+                        <p class="text-dark">
+                            Unlimited monotonous tips.
                             <br />
-                            9 adventurous tips per round
-                            <br/>
-                            unlimited ludicrous tips
+                            9 adventurous tips per round.
+                            <br />
+                            Unlimited ludicrous tips.
                         </p>
-                        <a class="btn btn-blacknyellow mt-3 mb-3" asp-controller="Account" asp-action="Checkout" asp-route-PlanId="2">buy now</a>
+                        <a class="btn btn-primary mt-3 mb-3" asp-controller="Account" asp-action="Checkout" asp-route-PlanId="2">Buy now</a>
                     </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-12">
                     <div class="account-type-holder">
-                    <div class="text-center mt-3">
-                        <svg width="100"
-                             height="74"
-                             viewBox="0 0 100 74"
-                             fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M68.4167 34.75H60.5V31.5H68.4167C69.2907 31.5 70 30.772 70 29.875C70 28.978 69.2907 28.25 68.4167 28.25C67.7786 28.25 67.2339 28.6432 66.9838 29.2039L64.2145 27.6504C65.0046 26.0823 66.58 25 68.4167 25C74.7041 25 74.7009 34.75 68.4167 34.75ZM79.5 46.125C79.5 43.434 77.372 41.25 74.75 41.25H63.6667V44.5H74.75C75.624 44.5 76.3333 45.228 76.3333 46.125C76.3333 47.022 75.624 47.75 74.75 47.75C74.1119 47.75 73.5673 47.3568 73.3171 46.7961L70.5478 48.3496C71.3379 49.9177 72.9133 51 74.75 51C77.372 51 79.5 48.816 79.5 46.125ZM81.1055 33.6856C81.2353 32.462 82.2328 31.5 83.4583 31.5C84.7678 31.5 85.8333 32.5936 85.8333 33.9375C85.8333 35.2814 84.7678 36.375 83.4583 36.375H70V39.625H83.4583C86.5173 39.625 89 37.077 89 33.9375C89 30.798 86.5173 28.25 83.4583 28.25C80.887 28.25 78.7448 30.0635 78.1193 32.5026L81.1055 33.6856V33.6856ZM66.8333 36.375H54.1667V39.625H66.8333V36.375ZM60.5 41.25H51V44.5H60.5V41.25ZM57.3333 31.5H51V34.75H57.3333V31.5Z"
-                                  fill="#00C944" />
-                            <path d="M91.6667 8.22222V65.7778H8.33333V8.22222H91.6667ZM100 0H0V74H100V0ZM58.3333 55.8988V57.5556H16.6667V55.8412C16.65 51.2697 16.85 48.6591 22.1833 47.4422C28.0292 46.1102 33.7958 44.9221 31.025 39.8737C22.8042 24.9216 28.6792 16.4444 37.5 16.4444C46.1542 16.4444 52.1708 24.605 43.9833 39.8737C41.2875 44.8892 46.85 46.0814 52.8208 47.4422C58.1708 48.6632 58.3542 51.2902 58.3333 55.8988Z"
-                                  fill="white" />
-                        </svg>
-                        <h5 class="text-white">adventurer</h5>
-                    </div>
+                        <div class="text-center mt-3">
+                            <svg width="100" height="74" viewBox="0 0 100 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M68.4167 34.75H60.5V31.5H68.4167C69.2907 31.5 70 30.772 70 29.875C70 28.978 69.2907 28.25 68.4167 28.25C67.7786 28.25 67.2339 28.6432 66.9838 29.2039L64.2145 27.6504C65.0046 26.0823 66.58 25 68.4167 25C74.7041 25 74.7009 34.75 68.4167 34.75ZM79.5 46.125C79.5 43.434 77.372 41.25 74.75 41.25H63.6667V44.5H74.75C75.624 44.5 76.3333 45.228 76.3333 46.125C76.3333 47.022 75.624 47.75 74.75 47.75C74.1119 47.75 73.5673 47.3568 73.3171 46.7961L70.5478 48.3496C71.3379 49.9177 72.9133 51 74.75 51C77.372 51 79.5 48.816 79.5 46.125ZM81.1055 33.6856C81.2353 32.462 82.2328 31.5 83.4583 31.5C84.7677 31.5 85.8333 32.5936 85.8333 33.9375C85.8333 35.2814 84.7677 36.375 83.4583 36.375H70V39.625H83.4583C86.5173 39.625 89 37.077 89 33.9375C89 30.798 86.5173 28.25 83.4583 28.25C80.887 28.25 78.7448 30.0635 78.1193 32.5026L81.1055 33.6856ZM66.8333 36.375H54.1667V39.625H66.8333V36.375ZM60.5 41.25H51V44.5H60.5V41.25ZM57.3333 31.5H51V34.75H57.3333V31.5Z" fill="#00C944" />
+                                <path d="M91.6667 8.22222V65.7778H8.33333V8.22222H91.6667ZM100 0H0V74H100V0ZM58.3333 55.8988V57.5556H16.6667V55.8412C16.65 51.2697 16.85 48.6591 22.1833 47.4422C28.0292 46.1102 33.7958 44.9221 31.025 39.8737C22.8042 24.9216 28.6792 16.4444 37.5 16.4444C46.1542 16.4444 52.1708 24.605 43.9833 39.8737C41.2875 44.8892 46.85 46.0814 52.8208 47.4422C58.1708 48.6632 58.3542 51.2902 58.3333 55.8988Z" fill="#1A181B" />
+                            </svg>
+
+                            <h5 class="text-dark">Adventurer</h5>
+                        </div>
                     <div class="text-center">
                         <svg width="255"
                              height="94"
@@ -179,35 +149,28 @@
                         </svg>
                     </div>
                     <div class="text-center">
-                        <p class="text-white font-weight-bold">features</p>
-                        <p class="text-white">
-                            12 monotonous tips per round
+                        <p class="text-dark font-weight-bold">Features</p>
+                        <p class="text-dark">
+                            12 monotonous tips per round.
                             <br />
-                            unlimited adventurous tips
-                            <br/>
-                            unlimited ludicrous tips
+                            Unlimited adventurous tips.
+                            <br />
+                            Unlimited ludicrous tips.
                         </p>
-                        <a class="btn btn-blacknyellow mt-3 mb-3" asp-controller="Account" asp-action="Checkout" asp-route-PlanId="3">buy now</a>
+                        <a class="btn btn-primary mt-3 mb-3" asp-controller="Account" asp-action="Checkout" asp-route-PlanId="3">Buy now</a>
                     </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-12">
                     <div class="account-type-holder">
-                    <div class="text-center mt-3">
-                        <svg width="100"
-                             height="74"
-                             viewBox="0 0 100 74"
-                             fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  clip-rule="evenodd"
-                                  d="M67.6875 17C68.7381 29.2811 58 33.5092 58 44.3263C58 51.6738 63.2855 57.945 73.5 57.9997C83.7145 58.0544 89 50.4592 89 42.7C89 35.6258 85.4488 28.9548 78.7493 24.807C80.3407 29.2606 78.2223 33.3281 76.1643 34.729C76.2848 29.0283 74.2268 20.5687 67.6875 17ZM75.8009 39.2082C82.2678 46.0227 78.2964 54.5831 73.1022 54.5831C69.9419 54.5831 68.3161 52.422 68.3333 50.1807C68.3661 46.0244 73.0471 46.021 75.8009 39.2082Z"
-                                  fill="#FF0000" />
-                            <path d="M91.6667 8.22222V65.7778H8.33333V8.22222H91.6667ZM100 0H0V74H100V0ZM58.3333 55.8988V57.5556H16.6667V55.8412C16.65 51.2697 16.85 48.6591 22.1833 47.4422C28.0292 46.1102 33.7958 44.9221 31.025 39.8737C22.8042 24.9216 28.6792 16.4444 37.5 16.4444C46.1542 16.4444 52.1708 24.605 43.9833 39.8737C41.2875 44.8892 46.85 46.0814 52.8208 47.4422C58.1708 48.6632 58.3542 51.2902 58.3333 55.8988Z"
-                                  fill="white" />
-                        </svg>
-                        <h5 class="text-white">professional</h5>
-                    </div>
+                        <div class="text-center mt-3">
+                            <svg width="100" height="74" viewBox="0 0 100 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M67.6875 17C68.7381 29.2811 58 33.5092 58 44.3263C58 51.6738 63.2855 57.945 73.5 57.9997C83.7145 58.0544 89 50.4592 89 42.7C89 35.6258 85.4488 28.9548 78.7493 24.807C80.3407 29.2606 78.2223 33.3281 76.1643 34.729C76.2848 29.0283 74.2268 20.5687 67.6875 17ZM75.8009 39.2082C82.2678 46.0227 78.2964 54.5831 73.1022 54.5831C69.9419 54.5831 68.3161 52.422 68.3333 50.1807C68.3661 46.0244 73.0471 46.021 75.8009 39.2082Z" fill="#FF0000" />
+                                <path d="M91.6667 8.22222V65.7778H8.33333V8.22222H91.6667ZM100 0H0V74H100V0ZM58.3333 55.8988V57.5556H16.6667V55.8412C16.65 51.2697 16.85 48.6591 22.1833 47.4422C28.0292 46.1102 33.7958 44.9221 31.025 39.8737C22.8042 24.9216 28.6792 16.4444 37.5 16.4444C46.1542 16.4444 52.1708 24.605 43.9833 39.8737C41.2875 44.8892 46.85 46.0814 52.8208 47.4422C58.1708 48.6632 58.3542 51.2902 58.3333 55.8988Z" fill="#1A181B" />
+                            </svg>
+
+                            <h5 class="text-dark">Professional</h5>
+                        </div>
                     <div class="text-center">
                         <svg width="255" height="94" viewBox="0 0 255 94" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g filter="url(#filter0_d)">
@@ -229,16 +192,17 @@
 
                     </div>
                     <div class="text-center">
-                        <p class="text-white font-weight-bold">features</p>
-                        <p class="text-white">
-                            unlimited monotonous tips
+                        <p class="text-dark font-weight-bold">Features</p>
+                        <p class="text-dark">
+                            Unlimited monotonous tips.
                             <br />
-                            unlimited adventurous tips
-                            <br/>
-                            unlimited ludicrous tips
+                            Unlimited adventurous tips.
+                            <br />
+                            Unlimited ludicrous tips.
                         </p>
-                        <a class="btn btn-blacknyellow mt-3 mb-3" asp-controller="Account" asp-action="Checkout" asp-route-PlanId="4">buy now</a>
+                        <a class="btn btn-primary mt-3 mb-3" asp-controller="Account" asp-action="Checkout" asp-route-PlanId="4">Buy now</a>
                     </div>
                     </div>
                 </div>
             </div>
+</div>

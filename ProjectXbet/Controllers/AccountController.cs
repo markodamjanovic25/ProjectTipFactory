@@ -183,7 +183,11 @@ namespace ProjectXbet.Controllers
         [Route("contact")]
         public IActionResult Contact()
         {
-            return View();
+            MessageViewModel viewModel = new MessageViewModel()
+            {
+                TipTypeId = 0
+            };
+            return View(viewModel);
         }
 
         [HttpPost]

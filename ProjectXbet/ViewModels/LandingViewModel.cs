@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class LandingViewModel
+    public class LandingViewModel : BaseViewModel
     {
         public IEnumerable<Prediction> PredictionsMonotonous;
         public IEnumerable<Prediction> PredictionsPreviousMonotonous;

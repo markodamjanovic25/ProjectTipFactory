@@ -45,6 +45,8 @@ namespace ProjectXbet.Controllers
             randomRepository.Predictions = randomRepository.FillPredictionDictionary(await predictionRepository.GetPredictionsByTipType(GetUserRoleName(), TipTypeId));
             viewModel.PredictionBoxes = randomRepository.Predictions;
             viewModel.PredictionsPrevious = await statisticsRepository.GetPredictionsPrevious(TipTypeId);
+            viewModel.ControllerName = "Prediction";
+            viewModel.TipTypeId = TipTypeId;
             return View("Index", viewModel);
         }
 

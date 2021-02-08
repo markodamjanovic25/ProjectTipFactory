@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class PredictionsViewModel
+    public class PredictionsViewModel : BaseViewModel
     {
         public ICollection<Prediction> Predictions;
         public Dictionary<int, Prediction> PredictionBoxes;

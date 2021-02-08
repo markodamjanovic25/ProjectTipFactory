@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class TicketViewModel
+    public class TicketViewModel : BaseViewModel
     {
         public Ticket Ticket { get; set; }
         public List<Prediction> Predictions { get; set; }

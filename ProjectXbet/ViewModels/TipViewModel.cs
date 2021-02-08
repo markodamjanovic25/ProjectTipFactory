@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class TipViewModel
+    public class TipViewModel : BaseViewModel
     {
         public Tip Tip { get; set; }
         public ICollection<Prediction> Predictions { get; set; }
 
         public IDictionary<Tip, decimal[]> TipStats { get; set; }
+        public IDictionary<League, int[]> LeagueStats { get; set; }
     }
 }

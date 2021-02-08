@@ -44,6 +44,26 @@ namespace DataAccessLibrary.Repository.SqlRepository
                         .CountAsync();
         }
 
+        //This method returns a number of predictions which have LeagueId and TipTypeId as provided
+        public async Task<int> GetLeagueTotalPlayedByTip(int LeagueId, int TipId)
+        {
+            return await db.Predictions
+                                .Where(p => p.Match.LeagueId == LeagueId)
+                                .Where(p => p.TipId == TipId)
+                                .Where(p => p.IsCorrect != null)
+                        .CountAsync();
+        }
+
+        //This method returns a number of predictions which have LeagueId and TipTypeId as provided with property IsCorrect set to true
+        public async Task<int> GetLeagueWinsByTip(int LeagueId, int TipId)
+        {
+            return await db.Predictions
+                                .Where(p => p.Match.LeagueId == LeagueId)
+                                .Where(p => p.Tip.TipId == TipId)
+                                .Where(p => p.IsCorrect == true)
+                        .CountAsync();
+        }
+
         public async Task<League> GetLeagueByIdAsync(int LeagueId)
         {
             return await db.Leagues
@@ -136,7 +156,7 @@ namespace DataAccessLibrary.Repository.SqlRepository
                                     .ToListAsync();
         }
 
-
+        
 
 
 

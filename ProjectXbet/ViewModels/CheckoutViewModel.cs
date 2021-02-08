@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class CheckoutViewModel
+    public class CheckoutViewModel : BaseViewModel
     {
         public int PlanId { get; set; }
         public string PlanName { get; set; }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model ProjectXbet.ViewModels.BaseViewModel
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -108,47 +109,109 @@
         <nav class="tf-navbar">
             <div class="row">
                 <div class="col-4">
-                    <div class="row mt-2">
-                        <div class="col text-left">
-                            <h4 class="font-weight-bold text-orange">Tip Factory</h4>
-                        </div>
+                    <div class="col text-left">
+                        <img src="~/img/LogoNav.svg" alt="Tip Factory" />
                     </div>
-                    <hr />
                 </div>
-                <div class="col-4"></div>
-                <div class="col-4"></div>
-            </div>
-            <div class="row">
-                <div class="col-4 text-left">
-                    <div class="row tf-navbar-items-holder">
-                        <div class="col-4 tf-navbar-item" id="lg-item-tips">
-                            <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
-                                <span class="text-blue nav-item-text">Tips</span>
-                            </a>
-                        </div>
-                        <div class="col-4 tf-navbar-item" id="lg-item-stats">
-                            <a class="nav-link" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
-                                <span class="text-blue nav-item-text">Stats</span>
-                            </a>
-                        </div>
-                        <div class="col-4 tf-navbar-item" id="lg-item-about">
-                            <a class="nav-link" asp-controller="About" asp-action="Index">
-                                <span class="text-blue nav-item-text">Miscellaneous</span>
-                            </a>
-                        </div>
+                <div class="col-4 text-center">
+                    <div class="row tip-type-holder">
+                        @if (Model.TipTypeId == 1)
+                        {
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="1">
+                                    <img src="~/img/monotonousMediumActive.svg" alt="monotonous" />
+                                </a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="2">
+                                    <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
+                                </a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="3">
+                                    <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
+                                </a>
+                            </div>
+                        }
+                        else if (Model.TipTypeId == 2)
+                        {
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="1">
+                                    <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
+                                </a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="2">
+                                    <img src="~/img/adventurousMediumActive.svg" alt="adventurous" />
+                                </a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="3">
+                                    <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
+                                </a>
+                            </div>
+                        }
+                        else if (Model.TipTypeId == 3)
+                        {
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="1">
+                                    <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
+                                </a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="2">
+                                    <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
+                                </a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a asp-controller="@Model.ControllerName" asp-action="Index" asp-route-TipTypeId="3">
+                                    <img src="~/img/ludicrousMediumActive.svg" alt="ludicrous" />
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-4 text-center">
+                                <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                                    <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
+                                </a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="2">
+                                    <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
+                                </a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="3">
+                                    <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
+                                </a>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="col-4">
-                    
-                </div>
-                <div class="col-4">
-                    <div class="tf-navbar-items-holder w-25 float-right">
-                        <div class="tf-navbar-item" id="lg-item-account">
-                            <a class="nav-link" asp-controller="Account" asp-action="Profile">
-                                <span class="text-blue nav-item-text">
-                                    Account
-                                </span>
+                    <div class="tf-navbar-items-holder">
+                        <div class="tf-navbar-item text-right" id="lg-item-tips">
+                            <a class="nav-link justify-content-end" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                                <span class="text-white nav-item-text">Tips</span>
                             </a>
+                        </div>
+                        <div class="tf-navbar-item text-left" id="lg-item-stats">
+                            <a class="nav-link justify-content-start" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                                <span class="text-white nav-item-text">Stats</span>
+                            </a>
+                        </div>
+                        <div class="tf-navbar-item dropdown text-right">
+                            <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Miscellaneous
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" asp-controller="Account" asp-action="Profile">Account</a>
+                                <a class="dropdown-item" asp-controller="About" asp-action="Instructions">Instructions</a>
+                                <a class="dropdown-item" asp-controller="About" asp-action="Accounts">Account upgrade</a>
+                                <a class="dropdown-item" asp-controller="Account" asp-action="Contact">Contact</a>
+                                <a class="dropdown-item" asp-controller="About" asp-action="TermsAndConditions">Terms & conditions</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -165,7 +228,7 @@
             <div class="text-dark" id="message-holder">
                 <h5 class="text-dark" id="message"></h5>
             </div>
-            @await Component.InvokeAsync("Betslip")
+            @*@await Component.InvokeAsync("Betslip")*@
         </main>
 
         @*<footer class="footer text-muted">

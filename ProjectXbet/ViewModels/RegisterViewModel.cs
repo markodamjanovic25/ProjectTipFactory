@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class RegisterViewModel
+    public class RegisterViewModel : BaseViewModel
     {
         [Required]
         [MinLength(3, ErrorMessage = "Username must be at least 3 characters long.")]

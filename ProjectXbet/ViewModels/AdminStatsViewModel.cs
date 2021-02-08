@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class AdminStatsViewModel
+    public class AdminStatsViewModel : BaseViewModel
     {
         public List<decimal> Odds { get; set; }
         public Dictionary<League, List<int[]>> LeagueStatsByOdds { get; set; }

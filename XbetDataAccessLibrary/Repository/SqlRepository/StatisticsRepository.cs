@@ -199,8 +199,22 @@ namespace DataAccessLibrary.Repository.SqlRepository
             TipStats.TryAdd(t, new decimal[] { Odds, Total, Wins });
 
             return TipStats;
+        }
 
+        public async Task<Dictionary<League, int[]>> GetLeagueStatsByTip(int TipId)
+        {
+            Dictionary<League, int[]> LeagueStats = new Dictionary<League, int[]>();
 
+            foreach (var item in await leagueRepository.GetLeagues())
+            {
+                int Total = await leagueRepository.GetLeagueTotalPlayedByTip(item.LeagueId, TipId);
+                int Wins = await leagueRepository.GetLeagueWinsByTip(item.LeagueId, TipId);
+
+                if (Total != 0)
+                    LeagueStats.TryAdd(item, new int[] { Total, Wins });
+            }
+
+            return LeagueStats;
         }
     }
 }

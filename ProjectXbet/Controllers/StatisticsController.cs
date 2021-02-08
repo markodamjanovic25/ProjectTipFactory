@@ -33,11 +33,12 @@ namespace ProjectXbet.Controllers
         public async Task<IActionResult> CreateViewModel(int TipTypeId)
         {
             ViewData["TipType"] = TipTypeId;
-            viewModel.Leagues = await leagueRepository.GetLeagues();
             viewModel.TipStats = await repository.GetTipStats(TipTypeId);
             viewModel.Predictions = await repository.GetPredictionsPrevious(TipTypeId);
             viewModel.LeagueStats = await repository.GetLeagueStats(TipTypeId);
             viewModel.TipTypeStats = await repository.GetTipTypeStats(TipTypeId);
+            viewModel.ControllerName = "Statistics";
+            viewModel.TipTypeId = TipTypeId;
             return View("Index", viewModel);
         }
 
@@ -85,11 +86,14 @@ namespace ProjectXbet.Controllers
             {
                 Tip = await tipRepository.GetTipByTipId(TipId),
                 Predictions = await repository.GetPredictionsByTipId(TipId),
-                TipStats = await repository.GetTipStatsByTipId(TipId)
+                TipStats = await repository.GetTipStatsByTipId(TipId),
+                LeagueStats = await repository.GetLeagueStatsByTip(TipId)
             };
             ViewData["TipTypeId"] = TipTypeId;
             return View("Tip", tVM);
         }
+
+
         
 
     }

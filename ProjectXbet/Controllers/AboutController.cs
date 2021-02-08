@@ -13,9 +13,15 @@ namespace ProjectXbet.Controllers
     [Authorize]
     public class AboutController : BaseController
     {
+        BaseViewModel viewModel;
+        public AboutController()
+        {
+            viewModel = new BaseViewModel();
+            viewModel.TipTypeId = 0;
+        }
         public IActionResult CreateViewModel()
         {
-            return View("Index");
+            return View("Index", viewModel);
         }
         [Route("about")]
         public IActionResult Index()
@@ -25,17 +31,17 @@ namespace ProjectXbet.Controllers
         [Route("instructions")]
         public IActionResult Instructions()
         {
-            return View();
+            return View(viewModel);
         }
         [Route("accounts")]
         public IActionResult Accounts()
         {
-            return View();
+            return View(viewModel);
         }
         [Route("terms")]
         public IActionResult TermsAndConditions()
         {
-            return View();
+            return View(viewModel);
         }
     }
 }

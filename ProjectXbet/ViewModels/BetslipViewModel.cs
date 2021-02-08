@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class BetslipViewModel
+    public class BetslipViewModel : BaseViewModel
     {
         public int TicketId { get; set; }
         public decimal TotalOdds { get; set; }

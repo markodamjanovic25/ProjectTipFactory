@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class LeagueViewModel
+    public class LeagueViewModel : BaseViewModel
     {
         public League League { get; set; }
         public ICollection<Prediction> Predictions { get; set; }

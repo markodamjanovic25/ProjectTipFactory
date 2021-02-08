@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class AccountViewModel
+    public class AccountViewModel : BaseViewModel
     {
         public User User { get; set; }
         public Role Role { get; set; }

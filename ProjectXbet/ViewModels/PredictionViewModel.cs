@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class PredictionViewModel
+    public class PredictionViewModel : BaseViewModel
     {
         public int PredictionId { get; set; }
         public decimal Odds { get; set; }

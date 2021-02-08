@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class AdministrationViewModel
+    public class AdministrationViewModel : BaseViewModel
     {
 
         public AdministrationViewModel()

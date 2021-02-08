@@ -17,5 +17,6 @@ namespace DataAccessLibrary.Repository.IRepository
         Task<ConcurrentDictionary<Tip, decimal[]>> GetTipStatsByTipAndLeague(int TipId, int LeagueId);
         Task<List<Prediction>> GetPredictionsByTipId(int TipId);
         Task<ConcurrentDictionary<Tip, decimal[]>> GetTipStatsByTipId(int TipId);
+        Task<Dictionary<League, int[]>> GetLeagueStatsByTip(int TipId);
     }
 }

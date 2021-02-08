@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class MessageViewModel
+    public class MessageViewModel : BaseViewModel
     {
         [Required]
         [MinLength(4, ErrorMessage = "Subject has to be at least 4 characters long.")]

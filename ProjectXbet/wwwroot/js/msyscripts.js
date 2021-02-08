@@ -332,42 +332,77 @@ $("#bottom-nav-invoices-account").on("click", function () {
     $(this).addClass("nav-item-active");
 })
 
-/*page "Stats" navbar*/
-
-$("#page-navbar-item-previous-holder").on("click", function () {
-    $("#page-navbar-item-leagues-holder").removeClass("page-navbar-item-active");
-    $("#page-navbar-item-tips-holder").removeClass("page-navbar-item-active");
-    $("#page-navbar-item-previous-holder").addClass("page-navbar-item-active");
-
-    $("#stats-tipstats-holder").hide();
-    $("#stats-leaguestats-holder").hide();
-    $("#stats-tips-holder").css("height", "5vh");
-    $("#stats-tips-holder").show();
-    $("#stats-tips-holder").animate({ height: "100vh" });
+/*PAGE NAVBAR*/
+let StatsShown = "Tips";
+$("#btn-stats-tips-show").on("click", function () {
+    switch (StatsShown) {
+        case "Tips":
+            break;
+        case "LeagueStats":
+            $("#stats-leaguestats-holder").hide();
+            $("#btn-stats-leaguestats-show").removeClass("page-navbar-btn-active");
+            ShowContent("#stats-tips-holder");
+            $(this).addClass("page-navbar-btn-active");
+            StatsShown = "Tips";
+            break;
+        case "TipStats":
+            $("#stats-tipstats-holder").hide();
+            $("#btn-stats-tipstats-show").removeClass("page-navbar-btn-active");
+            ShowContent("#stats-tips-holder");
+            $(this).addClass("page-navbar-btn-active");
+            StatsShown = "Tips";
+            break;
+    }
+})
+$("#btn-stats-tipstats-show").on("click", function () {
+    switch (StatsShown) {
+        case "TipStats":
+            break;
+        case "Tips":
+            $("#stats-tips-holder").hide();
+            $("#btn-stats-tips-show").removeClass("page-navbar-btn-active");
+            ShowContent("#stats-tipstats-holder");
+            $(this).addClass("page-navbar-btn-active");
+            StatsShown = "TipStats";
+            break;
+        case "LeagueStats":
+            $("#stats-leaguestats-holder").hide();
+            $("#btn-stats-leaguestats-show").removeClass("page-navbar-btn-active");
+            ShowContent("#stats-tipstats-holder");
+            $(this).addClass("page-navbar-btn-active");
+            StatsShown = "TipStats";
+            break;
+    }
+})
+$("#btn-stats-leaguestats-show").on("click", function () {
+    switch (StatsShown) {
+        case "LeagueStats":
+            break;
+        case "Tips":
+            $("#stats-tips-holder").hide();
+            $("#btn-stats-tips-show").removeClass("page-navbar-btn-active");
+            ShowContent("#stats-leaguestats-holder");
+            $(this).addClass("page-navbar-btn-active");
+            StatsShown = "LeagueStats";
+            break;
+        case "TipStats":
+            $("#stats-tipstats-holder").hide();
+            $("#btn-stats-tipstats-show").removeClass("page-navbar-btn-active");
+            ShowContent("#stats-leaguestats-holder");
+            $(this).addClass("page-navbar-btn-active");
+            StatsShown = "LeagueStats";
+            break;
+    }
 })
 
-$("#page-navbar-item-leagues-holder").on("click", function () {
-    $("#page-navbar-item-previous-holder").removeClass("page-navbar-item-active");
-    $("#page-navbar-item-tips-holder").removeClass("page-navbar-item-active");
-    $("#page-navbar-item-leagues-holder").addClass("page-navbar-item-active");
-
-    $("#stats-tipstats-holder").hide();
-    $("#stats-tips-holder").hide();
-    $("#stats-leaguestats-holder").css("height", "5vh");
-    $("#stats-leaguestats-holder").show();
-    $("#stats-leaguestats-holder").animate({ height: "100vh" });
-})
-
-$("#page-navbar-item-tips-holder").on("click", function () {
-    $("#page-navbar-item-previous-holder").removeClass("page-navbar-item-active");
-    $("#page-navbar-item-leagues-holder").removeClass("page-navbar-item-active");
-    $("#page-navbar-item-tips-holder").addClass("page-navbar-item-active");
-
-    $("#stats-leaguestats-holder").hide();
-    $("#stats-tips-holder").hide();
-    $("#stats-tipstats-holder").css("height", "5vh");
-    $("#stats-tipstats-holder").show();
-    $("#stats-tipstats-holder").animate({ height: "100vh" });
+function ShowContent(item) {
+    $(item).css("height", "5vh");
+    $(item).show();
+    $(item).animate({ height: "91vh" });
+}
 
 
-})
+
+
+
+/*PAGE NAVBAR*/

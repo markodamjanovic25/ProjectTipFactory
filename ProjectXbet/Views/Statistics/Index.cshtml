@@ -10,25 +10,8 @@
 </script>
 
 <div class="row">
-    <div class="col-2">
+    <div class="col-2 d-none">
         <div class="tf-navbar-left">
-            <div class="tf-navbar-left-page-navbar-holder">
-                <div class="row">
-                    <div class="col page-navbar-item page-navbar-item-active" id="page-navbar-item-previous-holder">
-                        <span class="nav-item-text">Previous</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col page-navbar-item" id="page-navbar-item-leagues-holder">
-                        <span class="nav-item-text">Leagues</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col page-navbar-item" id="page-navbar-item-tips-holder">
-                        <span class="nav-item-text">Tips</span>
-                    </div>
-                </div>
-            </div>
             <div class="tf-navbar-left-tiptype-holder">
                 <h5><span class="font-weight-bold text-orange">Tip type</span></h5>
                 <hr />
@@ -92,42 +75,25 @@
                 </div>
 
             </div>
-            <div class="tf-navbar-left-leagues-holder">
-                <h5><span class="font-weight-bold text-orange">Leagues</span></h5>
-                <hr />
-                @foreach (var item in Model.Leagues)
-                {
-                    <div class="row tf-navbar-left-league-item-holder">
-                        <div class="col">
-                            <a class="tf-navbar-left-league-item" href="#" id="tf-navbar-left-@item.LeagueId">
-                                <img src="@item.LeagueFlag" width="33" height="22" />
-                                <span class="fs-s text-dark font-weight-bolder">@item.LeagueName</span>
-                            </a>
-                        </div>
-                    </div>
-                    <script type="text/javascript">
-                                        $(document).ready(function () {
-                                            $("#tf-navbar-left-@item.LeagueId").on("click", function () {
-                                                $.ajax({
-                                                    url: "Statistics/ShowPreviousTipsByLeagueAndTipType",
-                                                    method: "POST",
-                                                    data: {LeagueId : @item.LeagueId, TipTypeId : @TipTypeId}
-                                                }).done(function () {
-                                                    $('#stats-tips-table').load(document.URL + ' #stats-tips-table');
-                                                });
-                                            });
-                                        });
-                    </script>
-                }
-            </div>
         </div>
     </div>
-    <div class="col-10">
+    <div class="col-12">
+        <div class="row page-navbar-holder">
+            <div class="col-4 page-navbar-item">
+                <button class="btn-primary page-navbar-btn" id="btn-stats-tipstats-show">Tip stats</button>
+            </div>
+            <div class="col-4 page-navbar-item">
+                <button class="btn-primary page-navbar-btn page-navbar-btn-active" id="btn-stats-tips-show">Previous tips</button>
+            </div>
+            <div class="col-4 page-navbar-item">
+                <button class="btn-primary page-navbar-btn" id="btn-stats-leaguestats-show">League stats</button>
+            </div>
+        </div>
         <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-12">
-                <div class="stats-content-holder text-center mt-3" id="stats-tipstats-holder">
-                    <div class="mt-3 tips-holder-header">
-                        <h4><span class="section-heading">Tip stats <img src="img/tipStatsFlag.svg" /></span></h4>
+            <div class="col-xl-3 col-lg-12" id="stats-tipstats-holder">
+                <div class="content-holder text-center mt-3">
+                    <div class="tips-holder-header">
+                        <span class="section-heading"><img src="~/img/tipStatsFlag.svg"/>Tip stats</span>
                     </div>
                     <div class="row">
                         @{
@@ -139,26 +105,22 @@
                         }
                         <div class="col-12">
                             <div class="tip-card">
-                                <div class="tip-card-tip bg-blue">
+                                <div class="tip-card-header">
                                     <div class="row">
-                                        <div class="col text-center">
+                                        <div class="col text-left">
                                             <img src="~/img/Overall.svg" />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col text-center">
-                                            <span class="tip-card-text text-white">Overall</span>
+                                            <span class="tip-card-text-second">Tip type</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tip-card-tip">
                                     <table>
                                         <tr>
-                                            <th scope="col"><span class="tip-card-text-second text-blue">Odds</span></th>
-                                            <th scope="col"><span class="tip-card-text-second text-blue">Total</span></th>
-                                            <th scope="col"><span class="tip-card-text-second text-blue">Wins</span></th>
-                                            <th scope="col"><span class="tip-card-text-second text-blue">%</span></th>
-                                            <th scope="col"><span class="tip-card-text-second text-blue">ROI</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-dark">Odds</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-dark">Total</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-dark">Wins</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-dark">%</span></th>
+                                            <th scope="col"><span class="tip-card-text-second text-dark">ROI</span></th>
                                         </tr>
                                         <tr>
                                             <td><span class="tip-card-text font-weight-bold text-blue">@TipTypeAverageOdds.ToString("#.00")</span></td>
@@ -199,59 +161,43 @@
                             decimal TipPercentage = (TipWins / TipTotal) * 100;
                             decimal TipRoi = ((TipAverageOdds * TipWins) - TipTotal) / TipTotal * 100;
                             <div class="col-12">
-                                <div class="tip-card">
-                                    <div class="tip-card-tip bg-blue">
-                                        <div class="row">
-                                            <div class="col text-center">
-                                                <img src="@item.Key.TipFlag" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col text-center">
-                                                <span class="tip-card-text text-white">@item.Key.TipName</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tip-card-tip">
-                                        <table>
-                                            <tr>
-                                                <th scope="col"><span class="tip-card-text text-blue">Odds</span></th>
-                                                <th scope="col"><span class="tip-card-text text-blue">Total</span></th>
-                                                <th scope="col"><span class="tip-card-text text-blue">Wins</span></th>
-                                                <th scope="col"><span class="tip-card-text text-blue">%</span></th>
-                                                <th scope="col"><span class="tip-card-text text-blue">ROI</span></th>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="tip-card-text font-weight-bold text-blue">@TipAverageOdds.ToString("#.00")</span></td>
-                                                <td><span class="tip-card-text font-weight-bold text-blue">@TipTotal</span></td>
-                                                <td><span class="tip-card-text font-weight-bold text-blue">@TipWins</span></td>
-                                                <td>
-                                                    @if (TipPercentage == 0)
-                                                    {
-                                                        <span class="tip-card-text font-weight-bold text-blue">0%</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="tip-card-text font-weight-bold text-blue">@TipPercentage.ToString("#.00")%</span>
-                                                    }
+                                <div class="tipstats-card">
+                                    <div class="row">
+                                        <div class="col-4">
 
-                                                </td>
-                                                <td>
-                                                    @if (TipRoi > 0)
-                                                    {
-                                                        <span class="tip-card-text font-weight-bold text-adventurous">@TipRoi.ToString("#.00")%</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="tip-card-text font-weight-bold text-ludicrous">@TipRoi.ToString("#.00")%</span>
-                                                    }
+                                            <div class="tipstats-card-header bg-white text-center h-100 ">
+                                                <div style="margin: auto !important;">
+                                                    <img src="@item.Key.TipFlag" />
+                                                    <br />
+                                                    <span class="tip-card-text-second">@item.Key.TipName</span>
+                                                </div>
+                                            </div>
 
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="btn-orange d-block mt-3" asp-controller="Statistics" asp-action="ShowPredictionsByTip" asp-route-TipTypeId="@TipTypeId" asp-route-TipId="@item.Key.TipId">Show all</a>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="tip-card-body">
+                                                <table>
+                                                    <tr>
+                                                        <th scope="col"><span class="tip-card-text-second text-dark">%</span></th>
+                                                        <th scope="col"><span class="tip-card-text-second text-dark">ROI</span></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="tip-card-text font-weight-bold text-blue">@TipPercentage.ToString("#")%</span></td>
+                                                        <td>
+                                                            @if (TipRoi > 0)
+                                                            {
+                                                                <span class="tip-card-text font-weight-bold text-adventurous">@TipRoi.ToString("#.00")%</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="tip-card-text font-weight-bold text-ludicrous">@TipRoi.ToString("#.00")%</span>
+                                                            }
+                                                        </td>
+                                                        <td rowspan="2" align="center" valign="middle">
+                                                                <a class="btn btn-details" asp-controller="Statistics" asp-action="ShowPredictionsByTip" asp-route-TipTypeId="@TipTypeId" asp-route-TipId="@item.Key.TipId">></a>
+                                                        </td> 
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -265,79 +211,104 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-12">
-                <div class="stats-content-holder text-center mt-3" id="stats-tips-holder">
-                    <div class="mt-3 tips-holder-header">
-                        <h4><span class="section-heading">Tips <img src="img/tipsFlag.svg" /></span></h4>
+            <div class="col-xl-6 col-lg-12" id="stats-tips-holder">
+                <div class="content-holder text-center mt-3">
+                    <div class="tips-holder-header">
+                       <span class="section-heading"><img src="~/img/tipsFlag.svg"/>Tips </span>
                     </div>
                     <div class="row">
                         @foreach (var item in Model.Predictions)
                         {
                             <div class="col-12">
                                 <div class="tip-card">
-                                    <div class="row bg-blue tip-card-header">
-                                        <div class="col-7 text-left border-right">
+                                    <div class="row tip-card-header">
+                                        <div class="col-7 text-left">
                                             <img src="@item.Match.League.LeagueFlag" width="33" height="22" />
-                                            <span class="tip-card-text text-white">@item.Match.League.LeagueName</span>
+                                            <span class="tip-card-text-second">@item.Match.League.LeagueName</span>
                                         </div>
-                                        <div class="col-5 text-center">
-                                            <span class="tip-card-text-second text-white">@item.Tip.TipName</span>
-
+                                        <div class="col-5 text-right">
+                                            <span class="tip-card-text-second">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</span>
                                         </div>
                                     </div>
-                                    <div class="row tip-card-body">
-                                        <div class="col-7 border-right">
-                                            <div class="row">
-                                                <div class="col-4 text-left"><span class="tip-card-text-second">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</span></div>
-                                                <div class="col-4"></div>
-                                                <div class="col-4"></div>
+                                    <div class="tip-card-body">
+                                        <div class="row">
+                                            <div class="col-6 text-center">
+                                                <span class="tip-card-text-second">(@item.Match.ClubHomeGoalsHalf-@item.Match.ClubAwayGoalsHalf) </span>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-2"></div>
-                                                <div class="col-3 text-right"><span class="tip-card-text">@item.Match.ClubHomeName</span></div>
-                                                <div class="col-2 text-center"><span class="tip-card-text">@item.Match.ClubHomeGoals-@item.Match.ClubAwayGoals</span></div>
-                                                <div class="col-3 text-left"><span class="tip-card-text">@item.Match.ClubAwayName</span></div>
-                                                <div class="col-2 text-right"><span class="tip-card-text-second">(@item.Match.ClubHomeGoalsHalf-@item.Match.ClubAwayGoalsHalf) </span></div>
-                                            </div>
-                                            <div class="row d-none">
-                                                <div class="col text-center"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="row mt-2">
-                                                <div class="col-4"></div>
-                                                <div class="col-4 text-center">
-                                                    <img src="@item.Tip.TipFlag" />
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="row">
-                                                        <div class="col-4"></div>
+                                            <div class="col-6 text-center">
+                                                <div class="row">
+                                                    <div class="col-6 text-center"><img class="img-tip-flag" src="@item.Tip.TipFlag" /></div>
+                                                    <div class="col-6 text-center">
                                                         @if (item.IsCorrect.Value)
                                                         {
-                                                            <div class="col-4 text-center"><span class="tip-card-text text-adventurous">@item.Odds</span></div>
-                                                            <div class="col-4 text-left"><img src="~/img/IsCorrectTrue.svg" /></div>
+                                                            <span class="tip-card-text text-adventurous">@item.Odds</span>
                                                         }
                                                         else
                                                         {
-                                                            <div class="col-4 text-center"><span class="tip-card-text text-ludicrous">@item.Odds</span></div>
-                                                            <div class="col-4 text-left"><img src="~/img/IsCorrectFalse.svg" /></div>
+                                                            <span class="tip-card-text text-ludicrous">@item.Odds</span>
                                                         }
                                                     </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-6 text-center">
+                                                <div class="row">
+                                                    <div class="col-4 text-right">
+                                                        <span class="tip-card-text d-inline">@item.Match.ClubHomeName</span>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <span class="tip-card-text text-primary d-inline">@item.Match.ClubHomeGoals<span class="tip-card-text-second">  -  </span>@item.Match.ClubAwayGoals</span>
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                        <span class="tip-card-text d-inline">@item.Match.ClubAwayName</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 text-center">
+                                                <div class="row">
+                                                    <div class="col-6 text-center"><span class="tip-card-text text-primary">@item.Tip.TipName</span></div>
+                                                    <div class="col-6 text-center">
+                                                        @if (item.IsCorrect.Value)
+                                                        {
+                                                            <img src="~/img/IsCorrectTrue.svg" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/img/IsCorrectFalse.svg" />
+                                                        }
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row tip-card-footer d-none">
+                                            <div class="col-10"></div>
+                                            @if (item.IsCorrect.Value)
+                                            {
+                                                <div class="col-1 text-right"><span class="tip-card-text text-adventurous">@item.Odds</span></div>
+                                                <div class="col-1 text-right"><img src="~/img/IsCorrectTrue.svg" /></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-1 text-right"><span class="tip-card-text text-ludicrous">@item.Odds</span></div>
+                                                <div class="col-1 text-right"><img src="~/img/IsCorrectFalse.svg" /></div>
+                                            }
                                     </div>
                                 </div>
                             </div>
                         }
-                        
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-12">
-                <div class="stats-content-holder text-center mt-3" id="stats-leaguestats-holder">
-                    <div class="mt-3 tips-holder-header">
-                        <h4><span class="section-heading">League stats <img src="~/img/leagueStatsFlag.svg" /></span></h4>
+            <div class="col-xl-3 col-lg-12" id="stats-leaguestats-holder">
+                <div class="content-holder text-center mt-3">
+                    <div class="tips-holder-header">
+                        <h3><span class="section-heading"><img src="~/img/leagueStatsFlag.svg"/>League stats</span></h3>
                     </div>
 
                     <div class="row">
@@ -348,28 +319,25 @@
                             decimal LeaguePercentage = (LeagueWins / LeagueTotal) * 100;
                             <div class="col-12">
                                 <div class="tip-card">
-                                    <div class="tip-card-tip bg-blue">
+                                    <div class="tip-card-header">
                                         <div class="row">
-                                            <div class="col text-center">
+                                            <div class="col text-left">
                                                 <img src="@item.Key.LeagueFlag" width="33" height="22" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col text-center">
-                                                <span class="tip-card-text text-white">@item.Key.LeagueName</span>
+                                                <span class="tip-card-text-second">@item.Key.LeagueName</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tip-card-tip">
                                         <div class="row">
-                                            <div class="col-4"><span class="tip-card-text-second text-blue">Total</span></div>
-                                            <div class="col-4"><span class="tip-card-text-second text-blue">Wins</span></div>
-                                            <div class="col-4"><span class="tip-card-text-second text-blue">%</span></div>
+                                            <div class="col-3"><span class="tip-card-text-second text-blue">Total</span></div>
+                                            <div class="col-3"><span class="tip-card-text-second text-blue">Wins</span></div>
+                                            <div class="col-3"><span class="tip-card-text-second text-blue">%</span></div>
+                                            <div class="col-3"></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-4"><span class="tip-card-text font-weight-bold text-blue">@LeagueTotal</span></div>
-                                            <div class="col-4"><span class="tip-card-text font-weight-bold text-blue">@LeagueWins</span></div>
-                                            <div class="col-4">
+                                            <div class="col-3"><span class="tip-card-text font-weight-bold text-blue">@LeagueTotal</span></div>
+                                            <div class="col-3"><span class="tip-card-text font-weight-bold text-blue">@LeagueWins</span></div>
+                                            <div class="col-3">
                                                 @if (LeaguePercentage == 0)
                                                 {
                                                     <span class="tip-card-text font-weight-bold text-blue">0%</span>
@@ -379,13 +347,11 @@
                                                     <span class="tip-card-text font-weight-bold text-blue">@LeaguePercentage.ToString("#.00")%</span>
                                                 }
                                             </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="btn-orange d-block mt-3" asp-controller="Statistics" asp-action="ShowLeagueStats" asp-route-TipTypeId="@TipTypeId" asp-route-LeagueId="@item.Key.LeagueId">Show all</a>
+                                            <div class="col-3">
+                                                <a class="btn btn-details" asp-controller="Statistics" asp-action="ShowLeagueStats" asp-route-TipTypeId="@TipTypeId" asp-route-LeagueId="@item.Key.LeagueId">></a>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -395,7 +361,6 @@
             </div>
 
 
-            
         </div>
 </div>
 </div>

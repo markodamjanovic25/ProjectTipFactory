@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class MatchViewModel
+    public class MatchViewModel : BaseViewModel
     {
         public int MatchId { get; set; }
 
