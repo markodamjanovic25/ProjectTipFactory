@@ -10,35 +10,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/style.css" />
-    @*<script src="~/js/msyscripts.js"></script>*@
+    <script src="~/js/jquery.js"></script>
     <title>Welcome to Tip Factory</title>
 </head>
 <body style="height: 100vh;">
-    <div class="container-fluid landing-bg">
-        <div class="bg-70-black" id="bg-70-black"></div>
+    <div class="container-fluid">
+        <nav class="tf-navbar">
+            <div class="row">
+                <div class="col-4 text-left">
+                        <a href="#" id="default-landing-show">
+                        <img src="~/img/LogoNav.svg" alt="Tip Factory" />
+                        </a>
+                </div>
+                <div class="col-4 text-center">
+                    
+                </div>
+                <div class="col-4">
+                    <div class="tf-navbar-items-holder">
+                        <div class="tf-navbar-item border-right">
+                            <a class="nav-link" id="tipsnstats-landing-show">
+                                <span class="text-white nav-item-text">Tips & stats</span>
+                            </a>
+                        </div>
+                        <div class="tf-navbar-item">
+                            <a class="nav-link" id="about-landing-show">
+                                <span class="text-white nav-item-text">About</span>
+                            </a>
+                        </div>
+                        <div class="tf-navbar-item">
+                            <a class="nav-link btn btn-primary
+                               " asp-controller="Account" asp-action="Login">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+        </nav>
 
-        <div class="logo-holder-landing" id="logoholderlanding">
-            <img src="~/img/logo-landing.svg" alt="logo" />
+        <div class="landing-default-component" id="landing-default-holder">
+            <img src="~/img/logo-large.svg" alt="logo" />
+            <br />
+            <br />
+            <span class="section-heading-landing">Welcome to Tip Factory.</span>
+            <br />
+            <span class="text-landing">Our tips are made out of math.</span>
+            <br />
+            <br />
+            <img src="~/img/landing-yesno.svg"  />
+            <br />
+            <br />
+            <span class="text-landing">No additives.</span>
+            <div class="float-right">
+                <span class="text-primary font-weight-bold"><a href="#" id="tipsnstats-landing-show-second">Check out our stats ></a></span>
+            </div>
         </div>
-        <br />
-        <div class="welcome-message-landing">
-            <h5 class="text-grey mt-3" id="welcome-landing">We bet on mathematics.</h5>
-        </div>
-        <div class="tipsnstats-header-holder" id="tipsnstatsheader">
-            <a href="#" onclick="ShowTipsNStats()">
-                <img src="~/img/tipsnstats.svg" alt="" />
-                <h6 class="text-white">tips&stats</h6>
-            </a>
-        </div>
-        <div class="about-header-holder" id="aboutheader">
-            <a href="#" onclick="ShowAbout()">
-                <img src="~/img/about.svg" alt="" />
-                <h6 class="text-white">about</h6>
-            </a>
-        </div>
-        <div class="statsntips-component" id="tipsnstatsholder">
-            <div class="ml-5">
-                <h4 class="text-black-50">log in to see more!</h4>
+
+        <div class="statsntips-component" id="landing-tipsnstats-holder">
+            <div class="row mt-3">
+                <div class="col-4"></div>
+                <div class="col-xl-4 col-lg-12">
+                    <span class="section-heading-landing">Welcome to Tip Factory.</span>
+                    <br /> <br />
+                    <span class="text-landing">
+                        Below shown is statistics about each tip type tips, leagues and previous predictions outcome.
+                        <br /> <br />
+                        You can find more about tip types <a href="#" class="text-primary font-weight-bold" id="about-landing-show-second">here</a>.
+                        <br /> <br />
+                        Log in to see advanced statistics, get tips and much more!
+                    </span>
+                </div>
+                <div class="col-4"></div>
             </div>
             <div class="row">
                 <div class="col-1"></div>
@@ -51,7 +94,7 @@
                                     <div class="cube-face-header">
                                         <img src="img/monotonousSmall.svg" alt="monotonous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">this round</span>
+                                            <span class="cube-table-heading">This round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
@@ -80,17 +123,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('monotonous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('monotonous', 'top')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('monotonous', 'bottom')" />
                                     </div>
                                 </div>
@@ -99,7 +142,7 @@
                                     <div class="cube-face-header">
                                         <img src="img/monotonousSmall.svg" alt="monotonous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">last round</span>
+                                            <span class="cube-table-heading">Last round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
@@ -128,17 +171,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('monotonous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('monotonous', 'top')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('monotonous', 'bottom')" />
                                     </div>
                                 </div>
@@ -160,21 +203,21 @@
                                     <div class="cube-face-header">
                                         <img src="img/monotonousSmall.svg" alt="monotonous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">tip stats</span>
+                                            <span class="cube-table-heading">Tip stats</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" colspan="2"><h5>tip</h5></th>
+                                                    <th scope="col" colspan="2"><h5>Tip</h5></th>
                                                     <th scope="col">
-                                                        <h5>odds</h5>
+                                                        <h5>Odds</h5>
                                                     </th>
                                                     <th scope="col">
-                                                        <h5>total</h5>
+                                                        <h5>Total</h5>
                                                     </th>
-                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>Wins</h5></th>
                                                     <th scope="col"><h5>%</h5></th>
                                                 </tr>
                                             </thead>
@@ -209,17 +252,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('monotonous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('monotonous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('monotonous', 'bottom')" />
                                     </div>
                                 </div>
@@ -227,18 +270,18 @@
                                     <div class="cube-face-header">
                                         <img src="img/monotonousSmall.svg" alt="monotonous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">league stats</span>
+                                            <span class="cube-table-heading">League stats</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" colspan="2"><h5>league</h5></th>
+                                                    <th scope="col" colspan="2"><h5>League</h5></th>
                                                     <th scope="col">
-                                                        <h5>total</h5>
+                                                        <h5>Total</h5>
                                                     </th>
-                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>Wins</h5></th>
                                                     <th scope="col"><h5>%</h5></th>
                                                 </tr>
                                             </thead>
@@ -285,17 +328,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('monotonous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('monotonous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('monotonous', 'top')" />
                                     </div>
                                 </div>
@@ -312,7 +355,7 @@
                                     <div class="cube-face-header">
                                         <img src="~/img/adventurousSmall.svg" alt="adventurous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">this round</span>
+                                            <span class="cube-table-heading">This round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
@@ -341,17 +384,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('adventurous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('adventurous', 'top')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('adventurous', 'bottom')" />
                                     </div>
                                 </div>
@@ -360,7 +403,7 @@
                                     <div class="cube-face-header">
                                         <img src="~/img/adventurousSmall.svg" alt="adventurous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">last round</span>
+                                            <span class="cube-table-heading">Last round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
@@ -387,17 +430,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('adventurous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('adventurous', 'top')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('adventurous', 'bottom')" />
                                     </div>
                                 </div>
@@ -419,21 +462,21 @@
                                     <div class="cube-face-header">
                                         <img src="~/img/adventurousSmall.svg" alt="adventurous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">tip stats</span>
+                                            <span class="cube-table-heading">Tip stats</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" colspan="2"><h5>tip</h5></th>
+                                                    <th scope="col" colspan="2"><h5>Tip</h5></th>
                                                     <th scope="col">
-                                                        <h5>odds</h5>
+                                                        <h5>Odds</h5>
                                                     </th>
                                                     <th scope="col">
-                                                        <h5>total</h5>
+                                                        <h5>Total</h5>
                                                     </th>
-                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>Wins</h5></th>
                                                     <th scope="col"><h5>%</h5></th>
                                                 </tr>
                                             </thead>
@@ -468,17 +511,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('adventurous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('adventurous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('adventurous', 'bottom')" />
                                     </div>
                                 </div>
@@ -486,18 +529,18 @@
                                     <div class="cube-face-header">
                                         <img src="~/img/adventurousSmall.svg" alt="adventurous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">league stats</span>
+                                            <span class="cube-table-heading">League stats</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" colspan="2"><h5>league</h5></th>
+                                                    <th scope="col" colspan="2"><h5>League</h5></th>
                                                     <th scope="col">
-                                                        <h5>total</h5>
+                                                        <h5>Total</h5>
                                                     </th>
-                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>Wins</h5></th>
                                                     <th scope="col"><h5>%</h5></th>
                                                 </tr>
                                             </thead>
@@ -544,17 +587,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('adventurous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('adventurous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('adventurous', 'top')" />
                                     </div>
                                 </div>
@@ -571,7 +614,7 @@
                                     <div class="cube-face-header">
                                         <img src="~/img/ludicrousSmall.svg" alt="ludicrous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">this round</span>
+                                            <span class="cube-table-heading">This round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
@@ -600,17 +643,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('ludicrous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('ludicrous', 'top')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('ludicrous', 'bottom')" />
                                     </div>
                                 </div>
@@ -619,7 +662,7 @@
                                     <div class="cube-face-header">
                                         <img src="~/img/ludicrousSmall.svg" alt="ludicrous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">last round</span>
+                                            <span class="cube-table-heading">Last round</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
@@ -646,17 +689,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('ludicrous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('ludicrous', 'top')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('ludicrous', 'bottom')" />
                                     </div>
                                 </div>
@@ -678,21 +721,21 @@
                                     <div class="cube-face-header">
                                         <img src="~/img/ludicrousSmall.svg" alt="ludicrous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">tip stats</span>
+                                            <span class="cube-table-heading">Tip stats</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" colspan="2"><h5>tip</h5></th>
+                                                    <th scope="col" colspan="2"><h5>Tip</h5></th>
                                                     <th scope="col">
-                                                        <h5>odds</h5>
+                                                        <h5>Odds</h5>
                                                     </th>
                                                     <th scope="col">
-                                                        <h5>total</h5>
+                                                        <h5>Total</h5>
                                                     </th>
-                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>Wins</h5></th>
                                                     <th scope="col"><h5>%</h5></th>
                                                 </tr>
                                             </thead>
@@ -727,17 +770,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('ludicrous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('ludicrous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="league stats"
+                                               value="League stats"
                                                onclick="CubeShowSide('ludicrous', 'bottom')" />
                                     </div>
                                 </div>
@@ -745,18 +788,18 @@
                                     <div class="cube-face-header">
                                         <img src="~/img/ludicrousSmall.svg" alt="ludicrous" />
                                         <h5 class="mt-1">
-                                            <span class="cube-table-heading">league stats</span>
+                                            <span class="cube-table-heading">League stats</span>
                                         </h5>
                                     </div>
                                     <div class="cube-table-holder">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" colspan="2"><h5>league</h5></th>
+                                                    <th scope="col" colspan="2"><h5>League</h5></th>
                                                     <th scope="col">
-                                                        <h5>total</h5>
+                                                        <h5>Total</h5>
                                                     </th>
-                                                    <th scope="col"><h5>wins</h5></th>
+                                                    <th scope="col"><h5>Wins</h5></th>
                                                     <th scope="col"><h5>%</h5></th>
                                                 </tr>
                                             </thead>
@@ -803,17 +846,17 @@
                                         </table>
                                     </div>
                                     <div class="cube-face-footer">
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="this round"
+                                               value="This round"
                                                onclick="CubeShowSide('ludicrous', 'front')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="last round"
+                                               value="Last round"
                                                onclick="CubeShowSide('ludicrous', 'back')" />
-                                        <input class="btn bg-black font-weight-bold"
+                                        <input class="btn btn-primary"
                                                type="submit"
-                                               value="tip stats"
+                                               value="Tip stats"
                                                onclick="CubeShowSide('ludicrous', 'top')" />
                                     </div>
                                 </div>
@@ -825,24 +868,26 @@
             </div>
         </div>
 
-        <div class="about-component" id="aboutholder">
+        <div class="about-component" id="landing-about-holder">
             <div class="row mt-3">
                 <div class="col-4"></div>
-                <div class="col-xl-4 col-sm-12 text-center">
-                    <h4 class="text-dark font-weight-bold">Welcome to Tip Factory</h4>
-                    <br /> <br />
-                    We offer football tips that are product of enormous amount of statistics.
-                    <br /> <br />
-                    Goal of our prediction system is to find tips that have way better chances of winning outcome than it was expected. That difference in chances brings profit.
-                    <br /> <br />
-                    All tips we offer are goal amount tips, we do not interfere with winner predictions since we found them unreliable.
-                    <br /> <br />
-                    We only share tips that our prediction system considers valuable.
-                    <br /> <br />
+                <div class="col-xl-4 col-sm-12">
+                    <span class="section-heading-landing">Welcome to Tip Factory</span>
+                    <span class="text-landing">
+                        <br /> <br />
+                        We offer football tips that are product of enormous amount of statistics.
+                        <br /> <br />
+                        Goal of our prediction system is to find tips that have way better chances of winning outcome than it was expected. That difference in chances brings profit.
+                        <br /> <br />
+                        All tips we offer are goal amount tips, we do not interfere with winner predictions since we found them unreliable.
+                        <br /> <br />
+                        We only share tips that our prediction system considers valuable.
+                        <br /> <br />
+                    </span>
                 </div>
                 <div class="col-4"></div>
             </div>
-            <hr id="about-component-hr"/>
+            
             <div class="row m-auto">
                 <div class="col-xl-4 col-sm-12 text-center mt-2">
                     <div class="row">
@@ -1014,17 +1059,10 @@
                 </div>
         </div>
 
-        <!--footer-->
-        <div class="login-holder-landing">
-            <form asp-controller="Account" asp-action="Login" method="get">
-                <input class="btn btn-login-landing font-weight-bold"
-                       type="submit"
-                       value="log in" />
-            </form>
-        </div>
+
 
     </div>
-    <div style="width: 100%; height: 5vh;"></div>
+    
     <script src="~/js/msyscripts.js"></script>
 </body>
 </html>

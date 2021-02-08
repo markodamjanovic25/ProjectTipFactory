@@ -13,19 +13,22 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/style.css" />
-    <title>Log in - Tip Factory</title>
+    <title>Log in</title>
 </head>
-<body style="background-color: #1E1D22; height: 100vh;">
+<body>
+    
     <div class="login-form">
-
-        <div class="row align-content-center h-100">
+        <div class="row" style="align-content: center; height: 100%">
             <div class="col text-center">
-                <img src="~/img/logo-landing.svg" alt="logo" />
+                <a asp-controller="Landing" asp-action="Index">
+                    <img src="~/img/logo-large.svg" alt="logo" />
+                </a>
+                
             </div>
         </div>
         <div class="row mt-3">
             <div class="col text-left">
-                <h5 class="text-grey">welcome</h5>
+                <span class="text-landing font-weight-bold">Log in</span>
             </div>
         </div>
 
@@ -45,28 +48,28 @@
                         </div>
 
                         <div class="login-form-item flex-row justify-content-end">
-                            <small style="color: #535353;">remember me</small>
+                            <small style="color: #535353;">Remember me</small>
                             <input asp-for="RememberMe" />
                         </div>
 
                         <div class="login-form-item flex-row justify-content-end">
-                            <input class="btn btn-login" style="font-size: 14px;" type="submit" value="log in" />
+                            <input class="btn btn-primary" type="submit" value="Log in" />
                         </div>
                         <br />
 
                     </div>
                 </form>
                 <div class="login-form-items">
-                    <div class="login-form-item" style="margin-top: 25vh;">
+                    <div class="login-form-item" style="margin-top: 10vh;">
                         <div class="row">
                             <div class="col text-center">
                                 <a asp-controller="Account" asp-action="Login">
-                                    <small class="text-dark">password recovery</small>
+                                    <small class="text-dark">Password recovery</small>
                                 </a>
                             </div>
                             <div class="col text-center">
                                 <a asp-controller="Account" asp-action="Register">
-                                    <small class="text-yellow">register</small>
+                                    <small class="text-primary">Register</small>
                                 </a>
                             </div>
                         </div>

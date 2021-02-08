@@ -15,17 +15,18 @@
     <link rel="stylesheet" href="~/css/style.css" />
     <title>Log in - Tip Factory</title>
 </head>
-<body  style="background-color: #1E1D22; height: 100vh;">
+<body>
     <div class="login-form">
-
         <div class="row" style="align-content: center; height: 100%">
             <div class="col text-center">
-                <img src="~/img/logo-landing.svg" alt="logo" />
+                <a asp-controller="Landing" asp-action="Index">
+                    <img src="~/img/logo-large.svg" alt="logo" />
+                </a>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col text-left">
-                <h5 class="text-grey">user registration</h5>
+                <span class="text-landing">Registration</span>
             </div>
         </div>
         <div class="row mt-2">
@@ -53,7 +54,7 @@
                             <span class="fs-s text-ludicrous" asp-validation-for="ConfirmPassword"></span>
                         </div>
                         <div class="login-form-item flex-row justify-content-end">
-                            <input class="btn btn-login" style="font-size: 14px;" type="submit" value="register" />
+                            <input class="btn btn-primary" type="submit" value="Register" />
                         </div>
 
                     </div>
@@ -63,12 +64,12 @@
                         <div class="row">
                             <div class="col text-center">
                                 <a asp-controller="Account" asp-action="Login">
-                                    <small class="text-dark">password recovery</small>
+                                    <small class="text-dark">Password recovery</small>
                                 </a>
                             </div>
                             <div class="col text-center">
                                 <a asp-controller="Account" asp-action="Login">
-                                    <small class="text-yellow">log in</small>
+                                    <small class="text-primary">Log in</small>
                                 </a>
                             </div>
                         </div>

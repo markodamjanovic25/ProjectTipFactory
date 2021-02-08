@@ -191,19 +191,19 @@
                 </div>
                 <div class="col-4">
                     <div class="tf-navbar-items-holder">
-                        <div class="tf-navbar-item text-right" id="lg-item-tips">
-                            <a class="nav-link justify-content-end" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                        <div class="tf-navbar-item border-right" id="lg-item-tips">
+                            <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
                                 <span class="text-white nav-item-text">Tips</span>
                             </a>
                         </div>
-                        <div class="tf-navbar-item text-left" id="lg-item-stats">
-                            <a class="nav-link justify-content-start" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                        <div class="tf-navbar-item border-right" id="lg-item-stats">
+                            <a class="nav-link" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
                                 <span class="text-white nav-item-text">Stats</span>
                             </a>
                         </div>
-                        <div class="tf-navbar-item dropdown text-right">
+                        <div class="tf-navbar-item dropdown" id="tf-navbar-item-dropdown">
                             <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Miscellaneous
+                                <span class="nav-item-text">Miscellaneous</span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" asp-controller="Account" asp-action="Profile">Account</a>
@@ -216,10 +216,7 @@
                     </div>
                 </div>
             </div>
-            
-
-                
-            
+             
         </nav>
         <main role="main" class="pb-3">
             <div class="wrapper">
