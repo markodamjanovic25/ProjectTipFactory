@@ -408,3 +408,6 @@ function HideDefault() {
         $(item).animate({ height: "91vh" });
     }
 
+/*AJAX*/
+
+/*AJAX*/

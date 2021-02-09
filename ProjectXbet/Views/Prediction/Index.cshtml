@@ -3,248 +3,140 @@
     Layout = "_Layout";
     int TipTypeId = (int)ViewData["TipType"];
 }
-<script>
-    let activeItemLG = document.getElementById("lg-item-tips");
-    activeItemLG.classList.add("nav-item-active");
-    let activeItemSM = document.getElementById("sm-item-tips");
-    activeItemSM.classList.add("nav-item-active");
-</script>
-    <div class="row mb-3">
-        <div class="col-4"></div>
-        @if (TipTypeId == 1)
-        {
-            <div class="col-4 tiptype-holder">
-                <div class="row">
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
-                            <img src="~/img/monotonousMediumActive.svg" alt="monotonous" />
-                        </a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="2">
-                            <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
-
-
-                        </a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="3">
-                            <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        }
-        else if (TipTypeId == 2)
-        {
-            <div class="col-4 tiptype-holder">
-                <div class="row">
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
-                            <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
-                        </a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="2">
-                            <img src="~/img/adventurousMediumActive.svg" alt="adventurous" />
-                        </a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="3">
-                            <img src="~/img/ludicrousMediumInactive.svg" alt="ludicrous" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="col-4 tiptype-holder">
-                <div class="row">
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
-                            <img src="~/img/monotonousMediumInactive.svg" alt="monotonous" />
-                        </a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="2">
-                            <img src="~/img/adventurousMediumInactive.svg" alt="adventurous" />
-                        </a>
-                    </div>
-                    <div class="col-4 text-center">
-                        <a asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="3">
-                            <img src="~/img/ludicrousMediumActive.svg" alt="ludicrous" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        }
-
-        <div class="col-4"></div>
-    </div>
+    
     <!--wrapper-->
     <div class="row">
         
-        <div class="col-xl-4 col-lg-12">
-                <div class="tips-holder text-center" id="previous-tips-holder">
-                    <div class="tips-holder-header">
-                        <h4><span class="table-heading">previous tips</span></h4>
-                    </div>
-                    <div class="table-holder">
-                        <table class="table table-light text-center">
-                            <tr>
-                                <th scope="col">datetime</th>
-                                <th scope="col"></th>
-                                <th scope="col">match</th>
-                                <th scope="col">tip</th>
-                                <th scope="col">odds</th>
-                                <th scope="col"></th>
-                            </tr>
-                            @foreach (var item in Model.PredictionsPrevious)
-                            {
-                                <tr>
-                                    <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
-                                    <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
-                                    <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
-                                    <td align="center"><img src=@item.Tip.TipFlag title="@item.Tip.TipName" width="33" height="22" /> </td>
-                                    @if (item.IsCorrect.Value == true)
-                                    {
-                                        <td class="text-adventurous" align="center"><small>@item.Odds</small></td>
-                                        <td align="center"><img src="~/img/IsCorrectTrue.svg" /></td>
-                                    }
-                                    else
-                                    {
-                                        <td class="text-ludicrous" align="center"><small>@item.Odds</small></td>
-                                        <td align="center"><img src="~/img/IsCorrectFalse.svg" /></td>
-                                    }
-                                </tr>
-                            }
-                        </table>
-                    </div>
+        <div class="col-xl-8 col-lg-12">
+            <div class="content-holder text-center mt-3">
+                <div class="tips-holder-header">
+                    <span class="section-heading"><img src="~/img/tipsFlag.svg" /> Tips </span>
                 </div>
+                <div class="row" id="tips-holder">
+                    @if(Model.Predictions.Count < 1)
+                    {
+                        <span class="text-danger">Tips will be available on friday, check out our stats <a class="text-primary font-weight-bold" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="@TipTypeId">here</a>.</span>
+                    }
+                    else
+                    {
+                    @foreach (var item in Model.Predictions)
+                        {
+                            <div class="col-12">
+                                <div class="tip-card">
+                                    <div class="row tip-card-header d-none">
+                                        <div class="col-7 text-left">
+                                            <img src="@item.Match.League.LeagueFlag" width="33" height="22" />
+                                            <span class="tip-card-text-second">@item.Match.League.LeagueName</span>
+                                        </div>
+                                        <div class="col-5 text-right">
+                                            <span class="tip-card-text-second">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</span>
+                                        </div>
+                                    </div>
+                                    <div class="tip-card-body">
+                                        <div class="row">
+                                            <div class="col-6 text-center">
+                                                <div class="row">
+                                                    <div class="col-6"></div>
+                                                    <div class="col-3 text-center">
+                                                        <span class="tip-card-text-second">@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</span>
+                                                    </div>
+                                                    <div class="col-3"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 text-center">
+                                                <div class="row">
+                                                    <div class="col-6 text-center"><img class="img-tip-flag" src="@item.Tip.TipFlag" /></div>
+                                                    <div class="col-6 text-center">
+                                                            
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 text-center">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <img src="@item.Match.League.LeagueFlag" width="33" height="22" />
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <span class="tip-card-text d-inline">@item.Match.ClubHomeName</span>
+                                                    </div>
+                                                    <div class="col-3 text-center">
+                                                        <span class="tip-card-text text-primary d-inline"><span class="tip-card-text-second">  -  </span></span>
+                                                    </div>
+                                                    <div class="col-3 text-left">
+                                                        <span class="tip-card-text d-inline">@item.Match.ClubAwayName</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 text-center">
+                                                <div class="row">
+                                                    <div class="col-6 text-center">
+                                                        <span class="tip-card-text text-primary">@item.Tip.TipName</span>
+                                                    </div>
+                                                    <div class="col-6 text-center">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <span class="tip-card-text text-primary">@item.Odds</span>
+                                                            </div>
+                                                            <div class="col-4">
+                                                            <span class="tip-card-text">@item.Chance%</span>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <a href="#" class="btn btn-primary" title="add to betslip" id="TicketItem-@item.PredictionId">+</a>
+                                                                <script type="text/javascript">
+
+                                                                        $(document).ready(function () {
+                                                                            $("#TicketItem-@item.PredictionId").on("click", function () {
+                                                                                var thisPredictionId = @item.PredictionId;
+                                                                                $.ajax({
+                                                                                    url: "Prediction/AddTicketItem",
+                                                                                    method: "POST",
+                                                                                    data: { PredictionId: thisPredictionId }
+                                                                                }).done(function () {
+                                                                                    $('#betslip-holder').load(document.URL + ' #betslip-holder');
+                                                                                    $('#betslip').css("display", "block");
+                                                                                    $("#message").html("Ticket item added");
+                                                                                    $("#message").fadeOut();
+                                                                                    $("#message").fadeIn();
+                                                                                });
+                                                                            });
+                                                                        });
+                                                                </script>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row tip-card-footer d-none">
+                                            <div class="col-10"></div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    
+                </div>
+            </div>
+            
         </div>
 
         
-        <div class="col-xl-8 col-lg-12 col-sm-12">
-                <div class="tips-holder text-center" id="tips-holder">
-                    <div class="tips-holder-header">
-                        <h3><span class="table-heading">your tips</span></h3>
-                    </div>
-                    <div class="table-holder">
-                        <table class="table table-light text-center">
-                            <tr>
-                                <th scope="col">datetime</th>
-                                <th scope="col"></th>
-                                <th scope="col">match</th>
-                                <th scope="col">tip</th>
-                                <th class="tip-name-cell" scope="col"></th>
-                                <th scope="col">odds</th>
-                                <th class="tip-chance-cell" scope="col">chance</th>
-                                <th scope="col"></th>
-                            </tr>
-                            @if (Model.Predictions.Count < 1)
-                            {
-                                <tr>
-                                    <td align="center" valign="middle" colspan="8" class="text-primary">Tips will be available on friday.</td>
-                                </tr>
-                            }
-                            @foreach (var item in Model.Predictions)
-                            {
-                                <tr>
-                                    <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
-                                    <td align="center"><img src=@item.Match.League.LeagueFlag width="33" height="22"></td>
-                                    <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
-                                    <td align="center"><img src=@item.Tip.TipFlag title="@item.Tip.TipName" width="33" height="22" /> </td>
-                                    <td class="tip-name-cell" align="center"><small>@item.Tip.TipName</small></td>
-                                    <td align="center"><small>@item.Odds.ToString("#.00")</small></td>
-                                    <td class="tip-chance-cell" align="center"><small>@item.Chance%</small></td>
-                                    <td align="center">
-                                        <a href="#" class="text-yellow font-weight-bold" title="add to betslip" id="TicketItem-@item.PredictionId">+</a>
-                                        <script type="text/javascript">
-
-                                        $(document).ready(function () {
-                                            $("#TicketItem-@item.PredictionId").on("click", function () {
-                                                var thisPredictionId = @item.PredictionId;
-                                                $.ajax({
-                                                    url: "Prediction/AddTicketItem",
-                                                    method: "POST",
-                                                    data: { PredictionId: thisPredictionId }
-                                                }).done(function () {
-                                                    $('#betslip-holder').load(document.URL + ' #betslip-holder');
-                                                    $('#betslip').css("display", "block");
-                                                    $("#message").html("Ticket item added");
-                                                    $("#message").fadeOut();
-                                                    $("#message").fadeIn();
-                                                });
-                                            });
-                                        });
-                                        </script>
-                                    </td>
-                                </tr>
-                            }
-                        </table>
-                    </div>
-                </div>
+        <div class="col-xl-4 col-lg-12 p-3">
+                @await Component.InvokeAsync("Betslip")
             
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div id="randomizer-holder">
-                <span class="table-heading">
-                    let the system randomize your bet slip
-                    <br />
-                    click on a box to get random tip
-                </span>
-                <div class="tips-picker mt-2">
-                    <div class="tips-boxes-holder">
-                        @if (Model.Predictions.Count < 1)
-                        {
-                            
-                                <span class="text-primary">Tips will be available on friday.</span>
-                            
-                        }
-                        @{int boxPosition = 0; }
-                        @foreach (var item in Model.PredictionBoxes)
-                        {
-                            //while (boxPosition <= Model.PredictionBoxes.Count)
-                            //{
-                            <div class="tips-box" onmouseover="BoxMouseover(@boxPosition)" onmouseout="BoxMouseout(@boxPosition)">
-                                <a href="#" class="random-ticket-item text-yellow font-weight-bold" id="RandomTicketItem-@item.Key">
-                                    <img class="box" id="box-closed-@boxPosition" src="~/img/box-closed.svg" alt="box" />
-                                    <img class="box" id="box-open-@boxPosition" src="~/img/box-open.svg" alt="box" style="display: none;" />
-                                    <script type="text/javascript">
-                                        $(document).ready(function () {
-                                            $("#RandomTicketItem-@item.Key").on("click", function () {
-                                                $.ajax({
-                                                    url: "Prediction/AddRandomTicketItem",
-                                                    method: "POST",
-                                                    data: { TipTypeId: @TipTypeId}
-                                                }).done(function () {
-                                                    $('#betslip').load(document.URL + ' #betslip');
-                                                    $('#betslip').css("display", "block");
-                                                    $("#message").html("Ticket item added");
-                                                    $("#message").fadeOut();
-                                                    $("#message").fadeIn();
-                                                });
-                                            });
-                                        });
-                                    </script>
-                                </a>
-
-                            </div>
-                            boxPosition++;
-                            //}
-                        }
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    @*<div class="row">
-        <div class="col" style="height: 5vh;"></div>
-    </div>*@
+    
+    
 
 <nav class="nav-bottom" id="bottom-nav-tips-view">
     <ul class="nav-bottom-items-holder">

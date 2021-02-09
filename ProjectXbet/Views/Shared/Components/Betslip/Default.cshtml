@@ -1,53 +1,43 @@
 ﻿@model ProjectXbet.ViewModels.BetslipViewModel
 
 <div class="betslip-holder" id="betslip-holder">
-    <div class="betslip-header" id="betslip-header" onclick="ExpandBetslip()">
-        <div class="row ml-2 mb-2">
-            <div class="col-auto p-0">
-                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.4167 1.58333V17.4167H1.58333V1.58333H17.4167ZM19 0H0V19H19V0ZM15.7429 5.54167H3.25714V6.33333H15.7429V5.54167ZM15.7429 9.5H3.25714V10.2917H15.7429V9.5ZM15.7429 13.4583H3.25714V14.25H15.7429V13.4583Z" fill="white" />
-                </svg>
+    <div class="betslip-header" id="betslip-header">
+        <div class="row">
+            <div class="col-6 text-left">
+                <img src="~/img/betslipFlag.svg" />
+                <span class="section-heading">Betslip</span>
             </div>
-            <div class="col-auto p-1 text-white mt-2">
-                <small class="text-white">betslip</small>
-            </div>
-            @if (Model.Predictions.Count > 0)
-            {
-                <div class="col-9" id="betslip-cancel">
-                    <div class="betslip-controls">
-                        <div class="betslip-control justify-content-end">
-                            <a href="#" id="delete-ticket">
-                                <span class="text-white fs-19">x</span>
-                                <script type="text/javascript">
+            <div class="col-6 text-right">
+                <button class="btn btn-primary" id="btn-add-random-ticket-item" title="Get random tip">
+                    <svg style="margin-top: 0 !important;" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.8855 1.64746L1.64666 3.88629L16.7611 19L19 16.7611L3.8855 1.64746ZM5.56461 6.68485L2.76609 3.88629L3.8855 2.76687L6.68404 5.56543L5.56461 6.68485ZM6.935 2.05754C7.91035 2.35521 8.67432 3.11917 8.97115 4.0945C9.26961 3.11917 10.0336 2.35521 11.0081 2.05754C10.0336 1.75988 9.26961 0.996707 8.97115 0.0205834C8.67432 0.995915 7.91035 1.75988 6.935 2.05754ZM2.70117 7.56281C2.30692 8.85715 1.29438 9.86969 0 10.2647C1.29438 10.6598 2.30692 11.6715 2.70117 12.9651C3.09621 11.6715 4.10875 10.659 5.40234 10.2647C4.10875 9.86893 3.09621 8.85715 2.70117 7.56281ZM10.264 5.05717C10.9543 5.26775 11.4934 5.80765 11.704 6.498C11.9146 5.80765 12.4545 5.26775 13.144 5.05717C12.4545 4.84659 11.9146 4.30667 11.704 3.61634C11.4934 4.30587 10.9535 4.84659 10.264 5.05717ZM13.7679 0C13.528 0.786915 12.9113 1.40284 12.1251 1.6435C12.9129 1.88416 13.528 2.50009 13.7695 3.28779C14.0094 2.50087 14.626 1.88496 15.4114 1.6435C14.626 1.40363 14.0085 0.786915 13.7679 0Z" fill="white" />
+                    </svg>
+                </button>
+                <script type="text/javascript">
                                         $(document).ready(function () {
-                                            $("#delete-ticket").on("click", function () {
+                                            $("#btn-add-random-ticket-item").on("click", function () {
                                                 $.ajax({
-                                                    url: "Prediction/DeleteTicket",
+                                                    url: "Prediction/AddRandomTicketItem",
                                                     method: "POST",
-                                                    data: {TicketId : @Model.TicketId}
+                                                    data: { TipTypeId: @Model.TipTypeId}
                                                 }).done(function () {
-                                                    $('#betslip-holder').load(document.URL + ' #betslip-holder');
-                                                    $("#message").html("Ticket canceled");
+                                                    $('#betslip').load(document.URL + ' #betslip');
+                                                    $('#betslip').css("display", "block");
+                                                    $("#message").html("Ticket item added");
                                                     $("#message").fadeOut();
                                                     $("#message").fadeIn();
                                                 });
                                             });
                                         });
-                                </script>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            }
-
-
+                </script>
+            </div>
         </div>
 
     </div>
 
     <div class="betslip" id="betslip">
         <div class="betslip-table-holder">
-            <table class="table table-dark text-center">
+            <table class="table table-light text-center">
                 @if (Model.Predictions != null)
                 {
                     foreach (var item in Model.Predictions)
@@ -55,10 +45,10 @@
                         <tr>
                             <td align="center"><small>@item.Match.MatchDateTime.Day/@item.Match.MatchDateTime.Month @item.Match.MatchDateTime.Hour:@item.Match.MatchDateTime.Minute</small></td>
                             <td align="center"><small>@item.Match.ClubHomeName - @item.Match.ClubAwayName</small></td>
-                            <td align="center"><img src=@item.Tip.TipFlag title="@item.Tip.TipName" title="@item.Tip.TipName" width="33" height="22" /> </td>
+                            <td align="center"><img src=@item.Tip.TipFlag title="@item.Tip.TipName" width="33" height="22" /> </td>
                             <td align="center"><small>@item.Odds</small></td>
                             <td align="center">
-                                <a href="#" class="text-light" id="DeleteTicketItem-@item.PredictionId">-</a>
+                                <a href="#" class="btn btn-secondary" id="DeleteTicketItem-@item.PredictionId">-</a>
                                 <script type="text/javascript">
                                         $(document).ready(function () {
 
@@ -89,29 +79,17 @@
                 }
                 else
                 {
-                    <tr><td colspan="4"><small class="text-white">add bet to betslip by clicking "+" near tip</small></td></tr>
+                    <tr><td colspan="4"><small class="text-primary">Add tip to betslip by clicking "+" near it</small></td></tr>
                 }
             </table>
         </div>
         @if (Model.Predictions.Count > 0)
         {
-        <div class="betslip-infos">
-            <div class="betslip-info">
-                <div class="text-white text-right w-100" style="height: 5%;">
-                    <span class="fs-19">odds: <b>@Model.TotalOdds.ToString("#.00")</b></span>
-                </div>
-            </div>
-        </div>
-        <div class="betslip-control">
+    <div class="betslip-footer">
 
-            @*@using (Html.BeginForm("SaveTicket", "Prediction", new { TicketId = Model.TicketId }, FormMethod.Post))
-            {
-                <label>
-                    <small class="text-success font-weight-bold">save</small>
-                    <input type="submit" style="display: none;" />
-                </label>
-            }*@
-            <a href="#" id="SaveTicket"><small class="text-success font-weight-bold">save</small></a>
+
+        <div class="betslip-control">
+            <a class="btn btn-success" href="#" id="SaveTicket">Save</a>
             <script type="text/javascript">
                                         $(document).ready(function () {
 
@@ -129,7 +107,36 @@
                                             });
                                         });
             </script>
+
         </div>
+        <div class="betslip-control">
+            <a class="btn btn-danger" href="#" id="delete-ticket">
+                Delete
+                <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $("#delete-ticket").on("click", function () {
+                                                $.ajax({
+                                                    url: "Prediction/DeleteTicket",
+                                                    method: "POST",
+                                                    data: {TicketId : @Model.TicketId}
+                                                }).done(function () {
+                                                    $('#betslip-holder').load(document.URL + ' #betslip-holder');
+                                                    $("#message").html("Ticket canceled");
+                                                    $("#message").fadeOut();
+                                                    $("#message").fadeIn();
+                                                });
+                                            });
+                                        });
+                </script>
+            </a>
+        </div>
+        <div class="betslip-info">
+            <div class="text-primary text-right w-100 mr-2" style="height: 5%;">
+                <span class="fs-19">Odds: <b>@Model.TotalOdds.ToString("#.00")</b></span>
+            </div>
+        </div>
+    </div>
+        
         }
 
     </div>

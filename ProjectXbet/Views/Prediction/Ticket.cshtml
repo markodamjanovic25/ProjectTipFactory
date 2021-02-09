@@ -13,7 +13,7 @@
             <h5>@Model.Ticket.TimeCreated</h5>
         </div>
         <div class="table-holder" style="max-height: 100vh;">
-            <table class="table table-dark text-center">
+            <table class="table table-light text-center">
                 <tr>
                     <th scope="col">datetime</th>
                     <th scope="col" colspan="2">match</th>
@@ -31,19 +31,19 @@
                         {
                         if (item.IsCorrect.Value == true)
                         {
-                            <td align="center"><small class="text-success">@item.Tip.TipName</small></td>
+                            <td align="center"><small class="text-success font-weight-bold">@item.Tip.TipName</small></td>
                         }
                         else
                         {
-                            <td align="center"><small class="text-danger">@item.Tip.TipName</small></td>
+                            <td align="center"><small class="text-danger font-weight-bold">@item.Tip.TipName</small></td>
                             }
                         }
                         else
                         {
-                            <td align="center"><small class="text-warning">@item.Tip.TipName</small></td>
+                            <td align="center"><small class="text-warning font-weight-bold">@item.Tip.TipName</small></td>
                         }
 
-                        <td class="text-white" align="center"><small>@item.Odds</small></td>
+                        <td class="text-primary" align="center"><small>@item.Odds</small></td>
 
 
 
@@ -54,16 +54,16 @@
                     {
                         if (Model.Ticket.Status == "Win")
                         {
-                            <td colspan="5" align="right"><span class="fs-s text-success">WIN</span></td>
+                            <td colspan="5" align="right"><span class="fs-s text-success font-weight-bold">WIN</span></td>
                         }
                         else
                         {
-                            <td colspan="5" align="right"><span class="fs-s text-danger">LOSE</span></td>
+                            <td colspan="5" align="right"><span class="fs-s text-danger font-weight-bold">LOSE</span></td>
                         }
                     }
                     else
                     {
-                        <td colspan="5" align="right"><span class="fs-s text-warning">ACTIVE</span></td>
+                        <td colspan="5" align="right"><span class="fs-s text-warning font-weight-bold">ACTIVE</span></td>
                     }
                     <td><span class="fs-s font-weight-bold">@Model.Ticket.TotalOdds.ToString("#.00")</span></td>
                 </tr>

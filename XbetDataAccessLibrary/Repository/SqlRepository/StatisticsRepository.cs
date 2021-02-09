@@ -145,6 +145,7 @@ namespace DataAccessLibrary.Repository.SqlRepository
                                         .Include(p => p.Tip)
                                             .ThenInclude(p => p.TipType)
                                         .Where(p => p.Tip.TipType.TipTypeId == TipTypeId)
+                                        .Where(p => p.IsCorrect != null)
                                     .CountAsync();
         }
 

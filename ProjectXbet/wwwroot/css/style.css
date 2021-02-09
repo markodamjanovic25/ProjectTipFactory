@@ -238,7 +238,7 @@ a:hover {
     }
 .table-heading {
     color: #f8f8ff;
-    background-color: #946F0D;
+    background-color: #F46036;
     box-shadow: 0 10px 6px -6px #777;
 }
 .section-heading {
@@ -485,7 +485,7 @@ table th {
 }
 
     .login-form-item > input[type="text"] {
-        caret-color: white;
+        caret-color: #F46036;
         color: #1A181B;
         text-align: center;
         width: 100%;
@@ -495,7 +495,7 @@ table th {
     }
 
     .login-form-item > input[type="password"] {
-        caret-color: white;
+        caret-color: #F46036;
         color: #1A181B;
         text-align: center;
         width: 100%;
@@ -813,6 +813,9 @@ hr {
 }
 
 /*CONTENT*/
+#tips-holder .tip-card{
+    margin-top: 0;
+}
 .tips-info {
     background-color: #1e1d22;
     height: 10vh;
@@ -969,7 +972,7 @@ hr {
     padding-bottom: 0.5%;
     text-align: left;
     width: 100%;
-    margin-top: 1.9vh;
+    margin-top: 1vh;
 }
 
 .tips-previous-holder {
@@ -1011,15 +1014,14 @@ hr {
 }
 
 .account-holder {
-    color: white;
-    background-color: #1e1d22;
+    color: #1A181B;
+    background-color: white;
     padding: 3%;
-    box-shadow: 0 14px 6px -6px #777;
+    box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
 }
 
 .account-bets-holder {
     width: 100%;
-    border: 2px solid black;
     max-height: 50vh;
     overflow-y: auto;
 }
@@ -1069,22 +1071,18 @@ hr {
 
 
 .betslip-holder {
-    z-index: 50;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    width: 27%;
-    position: fixed;
-    bottom: 0;
-    right: 3%;
-    background-color: #1E1D22;
-    border: 2px solid #ffc700;
-    border-bottom: 0;
+    width: 100%;
+    height: 91vh;
+    box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
 }
 
 .betslip-header {
     width: 100%;
-    height: 10%;
-    border-bottom: 2px solid white;
+    padding: 2%;
+    box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
 }
 
     .betslip-header > a {
@@ -1092,7 +1090,6 @@ hr {
     }
 
 .betslip-holder:hover {
-    cursor: pointer;
 }
 
 .betslip-table-holder {
@@ -1102,14 +1099,13 @@ hr {
 }
 
 .betslip {
-    /*display: none;*/
     width: 100%;
     height: 100%;
 }
 
-.betslip-infos {
+.betslip-footer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -1121,21 +1117,13 @@ hr {
     width: 100%;
 }
 
-.betslip-controls {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
 .betslip-control {
     display: flex;
     flex-direction: row;
-    width: 100%;
     height: 100%;
     justify-content: center;
     align-items: center;
+    margin-left: 0.3vw;
 }
 
 @media only screen and (max-width: 768px) {
