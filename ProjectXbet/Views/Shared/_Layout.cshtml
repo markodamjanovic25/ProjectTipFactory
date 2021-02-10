@@ -19,7 +19,7 @@
         <div class="nav-top-expanded" id="nav-top-expanded">
             <ul class="nav-expanded-items-holder" id="nav-expanded-items-holder">
                 <li class="nav-top-expanded-item" id="sm-item-tips">
-                    <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                    <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="@Model.TipTypeId">
                         <img src="~/img/tipsFlag.svg" />
                         <h6 class="text-dark font-weight-bold ml-1">Tips
                         </h6>
@@ -27,7 +27,7 @@
                 </li>
 
                 <li class="nav-top-expanded-item" id="sm-item-stats">
-                    <a class="nav-link" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                    <a class="nav-link" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="@Model.TipTypeId">
                         <img src="~/img/tipStatsFlag.svg" />
                         <h6 class="text-dark font-weight-bold ml-1">Stats</h6>
                     </a>
@@ -158,7 +158,7 @@
                     </div>
                     <div class="tf-navbar-items-holder">
                         <div class="tf-navbar-item border-right" id="lg-item-tips">
-                            <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="1">
+                            <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="@Model.TipTypeId">
                                 @if (Model.ControllerName == "Prediction")
                                 {
                                     <span class="text-white nav-item-text" style="color:#F46036 !important; border-bottom: 5px solid #F46036 !important;">Tips</span>
@@ -171,7 +171,7 @@
                             </a>
                         </div>
                         <div class="tf-navbar-item border-right" id="lg-item-stats">
-                            <a class="nav-link" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="1">
+                            <a class="nav-link" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="@Model.TipTypeId">
                                 @if (Model.ControllerName == "Statistics")
                                 {
                                     <span class="text-white nav-item-text" style="color:#F46036 !important; border-bottom: 5px solid #F46036 !important;">Stats</span>
