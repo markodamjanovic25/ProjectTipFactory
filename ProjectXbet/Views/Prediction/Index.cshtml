@@ -7,12 +7,12 @@
     <!--wrapper-->
     <div class="row">
         
-        <div class="col-xl-8 col-lg-12">
+        <div class="col-xl-8 col-lg-12" id="tips-holder">
             <div class="content-holder text-center mt-3">
                 <div class="tips-holder-header">
                     <span class="section-heading"><img src="~/img/tipsFlag.svg" /> Tips </span>
                 </div>
-                <div class="row" id="tips-holder">
+                <div class="row">
                     @if(Model.Predictions.Count < 1)
                     {
                         <span class="text-danger">Tips will be available on friday, check out our stats <a class="text-primary font-weight-bold" asp-controller="Statistics" asp-action="Index" asp-route-TipTypeId="@TipTypeId">here</a>.</span>
@@ -138,28 +138,17 @@
     
     
 
-<nav class="nav-bottom" id="bottom-nav-tips-view">
-    <ul class="nav-bottom-items-holder">
-        <li class="nav-bottom-item">
-            <a class="nav-link" id="bottom-nav-previous-tips">
-                <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M32.0833 2.91667V32.0833H2.91667V2.91667H32.0833ZM35 0H0V35H35V0ZM29.1667 10.2083H17.5V11.6667H29.1667V10.2083ZM29.1667 17.5H17.5V18.9583H29.1667V17.5ZM29.1667 24H10.5L10 22.5L5.5 25L10 27.5L10.5 26.25H29.1667V24ZM13.8308 8.30667L12.7954 7.29167L9.07229 11.0935L6.82792 8.97604L5.81 10.0115L9.09125 13.125L13.8308 8.30667ZM13.8308 15.5983L12.7954 14.5833L9.07375 18.3852L6.82938 16.2677L5.81146 17.3017L9.09125 20.4167L13.8308 15.5983Z" fill="white" />
-                </svg>
-            </a>
-        </li>
+<nav class="tf-navbar-bottom" id="bottom-nav-tips-view">
+    <ul class="tf-navbar-bottom-items-holder">
         
-        <li class="nav-bottom-item">
+        <li class="tf-navbar-bottom-item">
             <a class="nav-link nav-item-active" id="bottom-nav-tips-tips">
-                <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M32.0833 2.91667V32.0833H2.91667V2.91667H32.0833ZM35 0H0V35H35V0ZM29.1667 10.2083H17.5V11.6667H29.1667V10.2083ZM29.1667 17.5H17.5V18.9583H29.1667V17.5ZM29.1667 24.7917H17.5V26.25H29.1667V24.7917ZM13.8308 8.30667L12.7954 7.29167L9.07229 11.0935L6.82792 8.97604L5.81 10.0115L9.09125 13.125L13.8308 8.30667ZM13.8308 15.5983L12.7954 14.5833L9.07375 18.3852L6.82938 16.2677L5.81146 17.3017L9.09125 20.4167L13.8308 15.5983ZM13.8308 22.89L12.7954 21.875L9.07375 25.6769L6.82938 23.5594L5.81146 24.5933L9.09125 27.7083L13.8308 22.89Z" fill="white" />
-                </svg>
+                <img src="~/img/tipsFlag.svg"/>
             </a>
         </li>
-        <li class="nav-bottom-item">
-            <a class="nav-link" id="bottom-nav-randomize-tips">
-                <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.1575 3.03479L3.03333 7.15896L30.8758 35L35 30.8758L7.1575 3.03479V3.03479ZM10.2506 12.3142L5.09542 7.15896L7.1575 5.09687L12.3127 10.2521L10.2506 12.3142ZM12.775 3.79021C14.5717 4.33854 15.979 5.74583 16.5258 7.5425C17.0756 5.74583 18.4829 4.33854 20.2781 3.79021C18.4829 3.24188 17.0756 1.83604 16.5258 0.0379167C15.979 1.83458 14.5717 3.24188 12.775 3.79021V3.79021ZM4.97583 13.9315C4.24958 16.3158 2.38438 18.181 0 18.9087C2.38438 19.6365 4.24958 21.5002 4.97583 23.8831C5.70354 21.5002 7.56875 19.635 9.95167 18.9087C7.56875 18.1796 5.70354 16.3158 4.97583 13.9315V13.9315ZM18.9073 9.31583C20.179 9.70375 21.1721 10.6983 21.56 11.97C21.9479 10.6983 22.9425 9.70375 24.2127 9.31583C22.9425 8.92792 21.9479 7.93333 21.56 6.66167C21.1721 7.93187 20.1775 8.92792 18.9073 9.31583V9.31583ZM25.3619 0C24.92 1.44958 23.784 2.58417 22.3358 3.0275C23.7869 3.47083 24.92 4.60542 25.3648 6.05646C25.8067 4.60687 26.9427 3.47229 28.3894 3.0275C26.9427 2.58563 25.8052 1.44958 25.3619 0V0Z" fill="white" />
-                </svg>
+        <li class="tf-navbar-bottom-item">
+            <a class="nav-link" id="bottom-nav-tips-betslip">
+                <img src="~/img/betslipFlag.svg" />
             </a>
         </li>
     </ul>

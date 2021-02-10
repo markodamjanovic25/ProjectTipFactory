@@ -614,71 +614,42 @@ ANIMATIONS
 /*LANDING PAGE*/
 
 /*NAV-TOP*/
-.nav-top {
-    width: 100%;
-    height: 10vh;
-    background-color: #1e1d22;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    display: none;
-}
 
 .nav-top-expanded {
     display: none;
-    background-color: #1e1d22;
-    width: 100%;
-    height: 90vh;
+    background-color: white;
+    width: 95%;
+    height: 100vh;
+    margin-top: 7vh;
     position: fixed;
-    z-index: 1;
-    margin-top: 10vh;
+    left: 3%;
+    z-index: 2;
+    box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
 }
 
-.nav-top-items-holder {
-    width: 100%;
-    list-style: none;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-}
 
-.nav-top-item {
-    width: 100%;
-}
-
-.nav-top-item .nav-link {
-filter: opacity(0.7);
-}
-
-.nav-top-item > a {
-display: flex;
-align-items: center;
-justify-content: center;
-}
 
 .line {
     width: 30px;
     height: 2px;
     margin: 5px;
-    background-color: white;
+    background-color: #1A181B;
 }
 /*NAV-TOP*/
 
 /*NAV-BOTTOM*/
-.nav-bottom {
+.tf-navbar-bottom {
     width: 100%;
-    height: 10vh;
-    background-color: #1e1d22;
+    background-color: white;
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;
     z-index: 1;
     display: none;
+    box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
 }
 
-.nav-bottom-items-holder {
+.tf-navbar-bottom-items-holder {
     width: 100%;
     list-style: none;
     padding: 0;
@@ -687,13 +658,16 @@ justify-content: center;
     flex-direction: row;
 }
 
-.nav-bottom-item {
+.tf-navbar-bottom-item {
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
+    .tf-navbar-bottom-item .nav-link {
+        filter: grayscale(1) opacity(0.4);
+    }
 /*NAV-BOTTOM*/
 
 /*FOOTER
@@ -715,12 +689,17 @@ svg {
 
 .tf-navbar {
     width: 100vw;
-    background-color: /*#1A181B*/ white;
+    background-color: white;
     position: relative;
     z-index: 1;
     padding: 0.5%;
     padding-right: 2.5%;
     box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
+}
+.tf-navbar-hamburger{
+    float: right;
+    margin-right: 2vw;
+    display: none;
 }
 .tf-navbar .row{
     align-items: center;
@@ -748,8 +727,12 @@ hr {
     display: flex;
     border-bottom: 5px solid white;
 }
-.nav-item{
-    margin-left: 2vw;
+.nav-top-expanded-item {
+    width: 100%;
+    border-bottom: 1px solid #ECECEC;
+}
+.nav-top-expanded-item .nav-link{
+    justify-content: flex-end;
 }
 
 .nav-item-text {
@@ -1143,12 +1126,6 @@ hr {
         margin-top: 5vh;
     }
     /*NAVBAR-ITEMS*/
-
-    .wrapper {
-        left: 7%;
-        margin-top: 19%;
-    }
-
     table > svg {
         margin-top: 30vh;
     }
@@ -1179,9 +1156,6 @@ hr {
 
     
     /*LANDING PAGE*/
-    .wrapper {
-        margin-top: 12%;
-    }
     /*.tip-name-cell {
         display: none;
     }*/
@@ -1262,33 +1236,32 @@ hr {
         display: none;
     }
 
+    .tf-navbar-hamburger{
+        display: block;
+    }
+    .tf-navbar-items-holder{
+        display: none;
+    }
     .nav-top {
         position: fixed;
-        display: flex;
+        display: none;
     }
 
-    .nav-bottom{
+    .tf-navbar-bottom{
         position: fixed;
         display: flex;
     }
-
-    .tf-navbar {
-        display: none;
-    }
-
     .nav-expanded-items-holder {
-        width: 100%;
         list-style: none;
         padding: 0;
-        margin-top: 30vh;
         display: none;
-        flex-direction: row;
+        flex-direction: column;
         text-align: center;
     }
 
-    .nav-item > a {
+    .nav-top-expanded-item > a {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
     }
@@ -1296,10 +1269,6 @@ hr {
     .nav-item-active {
         border-left: 0;/*
         border-top: 1px solid #ffc700;*/
-    }
-
-    .nav-item:last-child {
-        margin-top: 0;
     }
 
     .line-expanded {

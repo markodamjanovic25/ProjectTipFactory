@@ -137,6 +137,7 @@ function HideDefault() {
     function ExpandBetslip() {
         if (!isBetslipExpanded) {
             $("#betslip").fadeIn(900);
+            $("#tips-holder").hide();
             isBetslipExpanded = true;
         } else {
             HideBetslip();
@@ -147,9 +148,12 @@ function HideDefault() {
         isBetslipExpanded = false;
     }
 
-    $("#nav-top-betslip").on("click", function () {
-        if (!isBetslipExpanded)
+    $("#bottom-nav-tips-betslip").on("click", function () {
+        if (!isBetslipExpanded) {
+            $(".nav-item-active").removeClass("nav-item-active");
+            $(this).addClass("nav-item-active");
             $("#betslip-holder").show();
+        }
         else
             $("#betslip-holder").hide();
         ExpandBetslip();
@@ -257,29 +261,16 @@ function HideDefault() {
 
 
     //small screen
-    $("#bottom-nav-previous-tips").on("click", function () {
-        $(".nav-item-active").removeClass("nav-item-active");
-        $("#tips-holder").hide();
-        $("#randomizer-holder").hide();
-        $("#previous-tips-holder").show();
-        $(this).addClass("nav-item-active");
-    })
+    
 
     $("#bottom-nav-tips-tips").on("click", function () {
         $(".nav-item-active").removeClass("nav-item-active");
-        $("#previous-tips-holder").hide();
-        $("#randomizer-holder").hide();
+        $("#betslip-holder").hide();
         $("#tips-holder").show();
         $(this).addClass("nav-item-active");
     })
 
-    $("#bottom-nav-randomize-tips").on("click", function () {
-        $(".nav-item-active").removeClass("nav-item-active");
-        $("#previous-tips-holder").hide();
-        $("#tips-holder").hide();
-        $("#randomizer-holder").show();
-        $(this).addClass("nav-item-active");
-    })
+    
 
     $("#bottom-nav-leagues-stats").on("click", function () {
         $(".nav-item-active").removeClass("nav-item-active");
