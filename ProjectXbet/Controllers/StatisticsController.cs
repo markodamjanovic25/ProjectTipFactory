@@ -19,7 +19,6 @@ namespace ProjectXbet.Controllers
         private readonly ILeagueRepository leagueRepository;
         private readonly ITipRepository tipRepository;
         private readonly StatisticsViewModel viewModel;
-        private bool AllLeaguesShown = true;
 
         public StatisticsController(IStatisticsRepository repository, ILeagueRepository leagueRepository, ITipRepository tipRepository)
         {
@@ -54,11 +53,21 @@ namespace ProjectXbet.Controllers
         [HttpGet]
         public async Task<IActionResult> ShowLeagueStats(int TipTypeId, int LeagueId)
         {
-            LeagueViewModel lVM = new LeagueViewModel
-            {
-                League = await leagueRepository.GetLeagueByIdAsync(LeagueId),
-                Predictions = await leagueRepository.GetPredictionsByLeagueAndTipType(LeagueId, TipTypeId),
-                TipStats = await repository.GetTipStatsByLeague(TipTypeId, LeagueId)
+            decimal TotalPlayed = await leagueRepository.GetLeagueTotalPlayed(LeagueId, TipTypeId);
+            decimal Wins = await leagueRepository.GetLeagueWins(LeagueId, TipTypeId);
+            decimal Odds = await leagueRepository.GetLeagueAverageOdds(LeagueId, TipTypeId);
+            decimal Percentage = PercentageCalculator.CalculatePercentage(TotalPlayed, Wins);
+            decimal Roi = PercentageCalculator.CalculateRoi(TotalPlayed, Wins, Odds);
+
+            LeagueViewModel lVM = new LeagueViewModel { 
+               LeagueTotalPlayed = TotalPlayed,
+               LeagueWins = Wins,
+               LeaguePercentage = Percentage,
+               LeagueAverageOdds = Odds,
+               LeagueRoi = Roi,
+               League = await leagueRepository.GetLeagueByIdAsync(LeagueId),
+               Predictions = await leagueRepository.GetPredictionsByLeagueAndTipType(LeagueId, TipTypeId),
+               TipStats = await repository.GetTipStatsByLeague(TipTypeId, LeagueId)
             };
             ViewData["TipTypeId"] = TipTypeId;
             return View("League", lVM);
@@ -66,16 +75,28 @@ namespace ProjectXbet.Controllers
 
         [Route("league-tip-stats")]
         [HttpGet]
-        public async Task<IActionResult> ShowLeagueTipsByTip(int TipTypeId, int TipId, int LeagueId)
+        public async Task<IActionResult> ShowTipsByLeagueAndTip(int TipTypeId, int TipId, int LeagueId)
         {
-            LeagueViewModel lVM = new LeagueViewModel
+            decimal TotalPlayed = await leagueRepository.GetLeagueTotalPlayedByTip(LeagueId, TipId);
+            decimal Wins = await leagueRepository.GetLeagueWinsByTip(LeagueId, TipId);
+            decimal Odds = await leagueRepository.GetLeagueAverageOddsByTip(LeagueId, TipId);
+            decimal Percentage = PercentageCalculator.CalculatePercentage(TotalPlayed, Wins);
+            decimal Roi = PercentageCalculator.CalculateRoi(TotalPlayed, Wins, Odds);
+
+
+            LeagueTipDetailedViewModel VM = new LeagueTipDetailedViewModel
             {
+                Tip = await tipRepository.GetTipByTipId(TipId),
                 League = await leagueRepository.GetLeagueByIdAsync(LeagueId),
-                Predictions = await leagueRepository.GetPredictionsByLeagueAndTip(LeagueId, TipId),
-                TipStats = await repository.GetTipStatsByTipAndLeague(TipId, LeagueId)
+                LeagueTotalPlayed = TotalPlayed,
+                LeagueWins = Wins,
+                LeagueAverageOdds = Odds,
+                LeaguePercentage = Percentage,
+                LeagueRoi = Roi,
+                Predictions = await leagueRepository.GetPredictionsByLeagueAndTip(LeagueId, TipId)
             };
             ViewData["TipTypeId"] = TipTypeId;
-            return View("League", lVM);
+            return View("LeagueTipDetailed", VM);
         }
 
         [Route("tip-stats")]

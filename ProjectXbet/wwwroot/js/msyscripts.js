@@ -34,6 +34,10 @@ $("#default-landing-show").on("click", function () {
             $("#landing-tipsnstats-holder").addClass("landing-element-shown");
             $("#landing-tipsnstats-holder").addClass("landing-component-show");
             LandingTipsnstatsShown = true;
+            $("#nav-top-expanded").hide();
+            $("#x-line-1").removeClass("rotateZ45");
+            $("#x-line-2").show();
+            $("#x-line-3").removeClass("rotateZM45");
         }
         else {
             HideTipsNStats();
@@ -52,6 +56,10 @@ $("#default-landing-show").on("click", function () {
             $("#landing-about-holder").addClass("landing-element-shown");
             $("#landing-about-holder").addClass("landing-component-show");
             LandingAboutShown = true;
+            $("#nav-top-expanded").hide();
+            $("#x-line-1").removeClass("rotateZ45");
+            $("#x-line-2").show();
+            $("#x-line-3").removeClass("rotateZM45");
         }
         else {
             HideAbout();
@@ -61,6 +69,10 @@ $("#default-landing-show").on("click", function () {
 function ShowDefaultLanding() {
     $("#landing-default-holder").show();
     LandingDefaultShown = true;
+    $("#nav-top-expanded").hide();
+    $("#x-line-1").removeClass("rotateZ45");
+    $("#x-line-2").show();
+    $("#x-line-3").removeClass("rotateZM45");
 }
 
 

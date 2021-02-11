@@ -16,6 +16,8 @@ namespace DataAccessLibrary.Repository.IRepository
 
         //returns each league and number of predictions it has based on TipType provided
         Task<int> GetLeagueWins(int LeagueId, int TipTypeId);
+        Task<decimal> GetLeagueAverageOdds(int LeagueId, int TipTypeId);
+        Task<decimal> GetLeagueAverageOddsByTip(int LeagueId, int TipId);
 
         Task<League> GetLeagueByIdAsync(int LeagueId);
 

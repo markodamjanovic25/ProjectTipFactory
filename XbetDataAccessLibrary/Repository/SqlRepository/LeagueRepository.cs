@@ -44,6 +44,26 @@ namespace DataAccessLibrary.Repository.SqlRepository
                         .CountAsync();
         }
 
+        public async Task<decimal> GetLeagueAverageOdds(int LeagueId, int TipTypeId)
+        {
+            return await db.Predictions
+                                .Where(p => p.Match.LeagueId == LeagueId)
+                                .Where(p => p.Tip.TipType.TipTypeId == TipTypeId)
+                                .Where(p => p.IsCorrect == true)
+                                .Select(p => p.Odds)
+                                .AverageAsync();
+        }
+
+        public async Task<decimal> GetLeagueAverageOddsByTip(int LeagueId, int TipId)
+        {
+            return await db.Predictions
+                                .Where(p => p.Match.LeagueId == LeagueId)
+                                .Where(p => p.TipId == TipId)
+                                .Where(p => p.IsCorrect == true)
+                                .Select(p => p.Odds)
+                                .AverageAsync();
+        }
+
         //This method returns a number of predictions which have LeagueId and TipTypeId as provided
         public async Task<int> GetLeagueTotalPlayedByTip(int LeagueId, int TipId)
         {

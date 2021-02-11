@@ -1,4 +1,9 @@
 ﻿@model ProjectXbet.ViewModels.BaseViewModel
+@{
+    if (Model.TipTypeId == 0)
+        Model.TipTypeId = 1;
+
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +26,8 @@
                 <li class="nav-top-expanded-item" id="sm-item-tips">
                     <a class="nav-link" asp-controller="Prediction" asp-action="Index" asp-route-TipTypeId="@Model.TipTypeId">
                         <img src="~/img/tipsFlag.svg" />
-                        <h6 class="text-dark font-weight-bold ml-1">Tips
+                        <h6 class="text-dark font-weight-bold ml-1">
+                            Tips
                         </h6>
                     </a>
                 </li>
@@ -58,10 +64,13 @@
                         <h6 class="text-dark">Account</h6>
                     </a>
                 </li>
-                <li>
-                    <div class="dropdown-divider"></div>
+                <li class="nav-top-expanded-item" id="sm-item-account">
+                    <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                        <form asp-controller="Account" asp-action="Logout" method="post">
+                            <input type="submit" class="btn btn-logout float-right" value="Log out" />
+                        </form>
+                    </a>
                 </li>
-
             </ul>
         </div>
 
@@ -193,6 +202,11 @@
                                 <a class="dropdown-item" asp-controller="About" asp-action="Accounts">Account upgrade</a>
                                 <a class="dropdown-item" asp-controller="Account" asp-action="Contact">Contact</a>
                                 <a class="dropdown-item" asp-controller="About" asp-action="TermsAndConditions">Terms & conditions</a>
+                                    <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <input type="submit" class="btn btn-logout float-right" value="Log out" />
+                                        </form>
+                                    </a>
                             </div>
                         </div>
                     </div>

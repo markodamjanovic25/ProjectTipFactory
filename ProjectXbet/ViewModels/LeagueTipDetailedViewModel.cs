@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProjectXbet.ViewModels
 {
-    public class LeagueViewModel : BaseViewModel
+    public class LeagueTipDetailedViewModel : BaseViewModel
     {
+        public Tip Tip { get; set; }
         public League League { get; set; }
         public decimal LeagueTotalPlayed { get; set; }
         public decimal LeagueWins { get; set; }
@@ -15,7 +16,6 @@ namespace ProjectXbet.ViewModels
         public decimal LeagueAverageOdds { get; set; }
         public decimal LeagueRoi { get; set; }
         public ICollection<Prediction> Predictions { get; set; }
-
-        public IDictionary<Tip, decimal[]> TipStats { get; set; }
+        
     }
 }

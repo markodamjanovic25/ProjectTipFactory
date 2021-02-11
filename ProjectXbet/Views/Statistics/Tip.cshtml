@@ -7,9 +7,9 @@
     
     <div class="col-12">
         <div class="row justify-content-center">
-            <div class="col-xl-3 col-lg-12 content-holder text-center mt-3">
+            <div class="col-xl-3 col-lg-12 text-center mt-3">
                 <div class="mt-3 tips-holder-header">
-                    <span class="section-heading"><img src="~/img/tipStatsFlag.svg" />Tip stats</span>
+                    <span class="section-heading"><img src="~/img/tipStatsFlag.svg" /> Tip stats</span>
                 </div>
                 @foreach (var item in Model.TipStats.OrderByDescending(k => k.Value[1]).ThenByDescending(k => k.Value[2]))
                 {
@@ -75,10 +75,10 @@
                 }
             </div>
             
-            <div class="col-lg-6 col-md-12">
+            <div class="col-xl-6 col-lg-12">
                 <div class="content-holder text-center mt-3" id="stats-tips-holder">
                     <div class="mt-3 tips-holder-header">
-                        <span class="section-heading"><img src="~/img/tipsFlag.svg" />Tips </span>
+                        <span class="section-heading"><img src="~/img/tipsFlag.svg" /> Tips </span>
                     </div>
                     <div class="row">
                         @foreach (var item in Model.Predictions)
@@ -174,7 +174,7 @@
             <div class="col-xl-3 col-lg-12" id="stats-leaguestats-holder">
                 <div class="content-holder text-center mt-3">
                     <div class="tips-holder-header">
-                        <span class="section-heading"><img src="~/img/leagueStatsFlag.svg" />League stats</span>
+                        <span class="section-heading"><img src="~/img/leagueStatsFlag.svg" /> League stats</span>
                     </div>
 
                     <div class="row">
@@ -185,24 +185,25 @@
                             decimal LeaguePercentage = (LeagueWins / LeagueTotal) * 100;
                             <div class="col-12">
                                 <div class="tip-card">
-                                    <div class="tip-card-header bg-white">
+                                    <div class="tip-card-header">
                                         <div class="row">
                                             <div class="col text-left">
                                                 <img src="@item.Key.LeagueFlag" width="33" height="22" />
-                                                <span class="tip-card-text text-dark">@item.Key.LeagueName</span>
+                                                <span class="tip-card-text-second">@item.Key.LeagueName</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tip-card-tip">
                                         <div class="row">
-                                            <div class="col-4"><span class="tip-card-text-second text-blue">Total</span></div>
-                                            <div class="col-4"><span class="tip-card-text-second text-blue">Wins</span></div>
-                                            <div class="col-4"><span class="tip-card-text-second text-blue">%</span></div>
+                                            <div class="col-3"><span class="tip-card-text-second text-blue">Total</span></div>
+                                            <div class="col-3"><span class="tip-card-text-second text-blue">Wins</span></div>
+                                            <div class="col-3"><span class="tip-card-text-second text-blue">%</span></div>
+                                            <div class="col-3"></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-4"><span class="tip-card-text font-weight-bold text-blue">@LeagueTotal</span></div>
-                                            <div class="col-4"><span class="tip-card-text font-weight-bold text-blue">@LeagueWins</span></div>
-                                            <div class="col-4">
+                                            <div class="col-3"><span class="tip-card-text font-weight-bold text-blue">@LeagueTotal</span></div>
+                                            <div class="col-3"><span class="tip-card-text font-weight-bold text-blue">@LeagueWins</span></div>
+                                            <div class="col-3">
                                                 @if (LeaguePercentage == 0)
                                                 {
                                                     <span class="tip-card-text font-weight-bold text-blue">0%</span>
@@ -212,15 +213,11 @@
                                                     <span class="tip-card-text font-weight-bold text-blue">@LeaguePercentage.ToString("#.00")%</span>
                                                 }
                                             </div>
+                                            <div class="col-3">
+                                                <a class="btn btn-details" asp-controller="Statistics" asp-action="ShowTipsByLeagueAndTip" asp-route-TipTypeId="@TipTypeId" asp-route-TipId="@Model.Tip.TipId" asp-route-LeagueId="@item.Key.LeagueId">></a>
+                                            </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-4"></div>
-                                            <div class="col-4">
-                                                <a class="btn-secondary d-block mt-3" asp-controller="Statistics" asp-action="ShowLeagueTipsByTip" asp-route-TipTypeId="@TipTypeId" asp-route-TipId="@Model.Tip.TipId" asp-route-LeagueId="@item.Key.LeagueId">Show all</a>
-                                            </div>
-                                            <div class="col-4"></div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -233,5 +230,21 @@
         
     </div>
 </div>
+
+<nav class="tf-navbar-bottom" id="bottom-nav-stats-view">
+    <ul class="tf-navbar-bottom-items-holder">
+        <li class="tf-navbar-bottom-item">
+            <a class="nav-link" id="bottom-nav-leagues-stats">
+                <img src="~/img/leagueStatsFlag.svg" alt="Alternate Text" />
+            </a>
+        </li>
+
+        <li class="tf-navbar-bottom-item">
+            <a class="nav-link nav-item-active" id="bottom-nav-tips-previous-stats">
+                <img src="~/img/tipsFlag.svg" />
+            </a>
+        </li>
+    </ul>
+</nav>
     
 

@@ -1020,6 +1020,16 @@ hr {
     padding: 1%;
 }
 
+#account-bets-holder{
+        display: none;
+    }
+    #account-messages-holder{
+        display: none;
+    }
+    #account-invoices-holder{
+        display: none;
+    }
+
 .message-collapsed {
     background-color: #1e1d22;
     border: 1px solid #D1D1D1;
@@ -1117,9 +1127,6 @@ hr {
     .login-holder-landing{
         left: 77%;
     }
-    .statsntips-component{
-        margin-top: 45%;
-    }
     .scene{
         margin:0;
         margin-left: -14px;
@@ -1183,9 +1190,6 @@ hr {
     .ludicrous-col {
         margin-top: 14vh;
     }
-    .about-component {
-        margin-top: 47%;
-    }
     .login-form-item > input[type="text"] {
         width: 100%;
     }
@@ -1224,15 +1228,6 @@ hr {
         display: none;
     }
     #randomizer-holder{
-        display: none;
-    }
-    #account-bets-holder{
-        display: none;
-    }
-    #account-messages-holder{
-        display: none;
-    }
-    #account-invoices-holder{
         display: none;
     }
 
