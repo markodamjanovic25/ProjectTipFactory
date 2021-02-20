@@ -67,7 +67,9 @@ namespace ProjectXbet.Controllers
                LeagueRoi = Roi,
                League = await leagueRepository.GetLeagueByIdAsync(LeagueId),
                Predictions = await leagueRepository.GetPredictionsByLeagueAndTipType(LeagueId, TipTypeId),
-               TipStats = await repository.GetTipStatsByLeague(TipTypeId, LeagueId)
+               TipStats = await repository.GetTipStatsByLeague(TipTypeId, LeagueId),
+                ControllerName = "Statistics",
+                TipTypeId = TipTypeId
             };
             ViewData["TipTypeId"] = TipTypeId;
             return View("League", lVM);
@@ -93,7 +95,9 @@ namespace ProjectXbet.Controllers
                 LeagueAverageOdds = Odds,
                 LeaguePercentage = Percentage,
                 LeagueRoi = Roi,
-                Predictions = await leagueRepository.GetPredictionsByLeagueAndTip(LeagueId, TipId)
+                Predictions = await leagueRepository.GetPredictionsByLeagueAndTip(LeagueId, TipId),
+                ControllerName = "Statistics",
+                TipTypeId = TipTypeId
             };
             ViewData["TipTypeId"] = TipTypeId;
             return View("LeagueTipDetailed", VM);
@@ -108,7 +112,9 @@ namespace ProjectXbet.Controllers
                 Tip = await tipRepository.GetTipByTipId(TipId),
                 Predictions = await repository.GetPredictionsByTipId(TipId),
                 TipStats = await repository.GetTipStatsByTipId(TipId),
-                LeagueStats = await repository.GetLeagueStatsByTip(TipId)
+                LeagueStats = await repository.GetLeagueStatsByTip(TipId),
+                ControllerName = "Statistics",
+                TipTypeId = TipTypeId
             };
             ViewData["TipTypeId"] = TipTypeId;
             return View("Tip", tVM);

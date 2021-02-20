@@ -18,6 +18,12 @@ $("#tipsnstats-landing-show-second").on("click", function () {
 $("#about-landing-show-second").on("click", function () {
     ShowAbout();
 })
+$("#tipsnstats-landing-show-third").on("click", function () {
+    ShowTipsNStats();
+})
+$("#about-landing-show-third").on("click", function () {
+    ShowAbout();
+})
 $("#default-landing-show").on("click", function () {
     ShowDefaultLanding();
 })
@@ -118,15 +124,19 @@ function HideDefault() {
         if (isNavExpanded) {
             ExpandNavbarReverse();
         } else {
-            //let nav = document.getElementById("nav-top-expanded");
-            //nav.style.display = "block";
             $("#nav-top-expanded").show();
-            //let navItemsHolder = document.getElementById("nav-expanded-items-holder");
-            //navItemsHolder.style.display = "flex";
             $("#nav-expanded-items-holder").css("display", "flex");
 
+            //$("#x-line-2").hide();
+            //$("#x-line-1").animate({ position: "absolute", top: "50%", margin: "0", marginTop: "-1px" }, 100);
+            //$("#x-line-3").animate({ position: "absolute", top: "50%", margin: "0", marginTop: "-1px" }, 100);
+            //setTimeout(function () {
+            //    $("#x-line-1").css("transform", "rotateZ(45deg)");
+            //    $("#x-line-3").css("transform", "rotateZ(-45deg)");
+            //}, 100);
+            
             $("#x-line-1").addClass("rotateZ45");
-            $("#x-line-2").hide();
+            $("#x-line-2").hide();            
             $("#x-line-3").addClass("rotateZM45");
             isNavExpanded = true;
         }

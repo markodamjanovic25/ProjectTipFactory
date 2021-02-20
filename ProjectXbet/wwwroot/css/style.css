@@ -25,6 +25,7 @@ h5,
 h6 {
     pointer-events: none;
 }
+
 ::selection {
     color: #1B6EC2;
     background-color: white;
@@ -38,6 +39,9 @@ svg:hover {
 }
 a:hover {
     text-decoration: none;
+}
+.shadow{
+    box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
 }
 * {
     box-sizing: border-box;
@@ -853,11 +857,15 @@ hr {
     background-color: white;
 }
 .tip-card {
-    margin-top: 2vh;
+    padding-bottom: 1%;
+    margin-top: 0.4vh;
     width: 100%;
     border-radius: 5px !important;
     box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
     background-color: white;
+}
+.tip-card-small-screen{
+    display: none;
 }
 .tip-card-header {
     background-color: #F0EFF4;
@@ -869,10 +877,10 @@ hr {
     box-shadow: inset rgb(0 0 0 / 15%) 0 0 0 1px !important;
 }
 .tip-card-body {
-    padding-top: 1%;
-    padding-bottom: 1%;
     align-items: center;
-    box-shadow: rgb(0 0 0 / 11%) 0 1px;
+}
+.tip-card-body .row{
+    padding: 0.5%;
 }
 .tip-card-footer {
     padding: 0.5%;
@@ -900,13 +908,13 @@ hr {
 }
 .tip-card-text {
     color: #1A181B;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bolder;
 }
 .tip-card-text-second {
     color: #1A181B;
     opacity: 0.55;
-    font-size: 12px;
+    font-size: 11px;
 }
 .tipstats-card {
     margin-top: 2vh;
@@ -1119,6 +1127,16 @@ hr {
     margin-left: 0.3vw;
 }
 
+@media only screen and (max-width: 500px){
+    .tip-card-large-screen {
+        display: none;
+    }
+
+    .tip-card-small-screen {
+        display: block;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     /*LANDING PAGE*/
     #welcome-landing{
@@ -1154,6 +1172,9 @@ hr {
     }
     .about-items-holder {
         margin-top: 27vh;
+    }
+    .tip-card-body .row {
+        padding: 2%;
     }
 }
 
@@ -1271,11 +1292,29 @@ hr {
     }
 
     .rotateZ45 {
-        transform: rotateZ(45deg);
+        margin: 0;
+        animation: RotateHamburgerPlusDegree 0.3s ease forwards; 
     }
 
     .rotateZM45 {
-        transform: rotateZ(-45deg);
+        margin: 0;
+        animation: RotateHamburgerMinusDegree 0.3s ease forwards;
+    }
+    @keyframes RotateHamburgerPlusDegree{
+        0%{
+            transform: rotateZ(15deg);
+        }
+        100% {
+            transform: rotateZ(45deg);
+        }
+    }
+    @keyframes RotateHamburgerMinusDegree{
+        0% {
+            transform: rotateZ(-15deg);
+        }
+        100% {
+            transform: rotateZ(-45deg);
+        }
     }
     /*betslip*/
     #betslip-holder{
